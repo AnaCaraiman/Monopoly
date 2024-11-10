@@ -1,0 +1,49 @@
+UK/USA Version Property Titles
+
+Brown (Dark Purple)
+Old Kent Road/Mediterranean Avenue
+Whitechapel Road/Baltic Avenue
+
+Light Blue
+The Angel Islington/Oriental Avenue
+Euston Road/Vermont Avenue
+Pentonville Road/Connecticut Avenue
+
+Pink
+Pall Mall/St. Charles Place
+Whitehall/States Avenue
+Northumberland Avenue/Virginia Avenue
+
+Orange
+Bow Street/St. James Place
+Marlborough Street/Tennessee Avenue
+Vine Street/New York Avenue
+
+Red
+The Strand/Kentucky Avenue
+Fleet Street/Indiana Avenue
+Trafalgar Square/Illinois Avenue
+
+Yellow
+Leicester Square/Atlantic Avenue
+Coventry Street/Ventnor Avenue
+Piccadilly/Marvin Gardens
+
+Green
+Regent Street/Pacific Avenue
+Oxford Street/North Carolina Avenue
+Bond Street/Pennsylvania Avenue
+
+Dark Blue
+Park Lane/Park Place
+Mayfair/Boardwalk
+
+Stations
+King's Cross Station/Reading Railroad
+Marylebone Station/Pennsylvania Railroad
+Fenchurch St Station/B. & O. Railroad
+Liverpool Street Station/Short Line
+
+Utilities
+Electric Company
+Water Works

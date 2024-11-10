@@ -1,0 +1,33 @@
+Chance Cards
+------------
+Advance to Go.<br><br><color=green>Collect Go Money</color>
+
+Advance to Illinois Ave.
+
+Advance to St. Charles Place.
+
+Advance token to nearest <color=blue>Utility</color>.<br><br>If unowned, you may buy it from the Bank.
+
+Advance token to nearest <color=blue>Railroad</color>. If unowned, you may buy it from the Bank.
+
+Take a trip to Reading Railroad.<br><br>If you pass Go, collect <color=green>$500</color>
+
+Take a walk on the Boardwalk.
+
+Go Back <b>Three Spaces</b>.
+
+Get out of Jail Free - this card may be kept until needed, or sold.
+
+Go directly to jail.<br><br><color=red>Do not pass Go, do not collect $500.</color>
+
+Make general repairs on all your property!<br><br>For each house <color=red>pay $25</color>.<br>For each hotel <color=red>pay $100</color>
+
+<color=red>Pay</color> poor tax of <color=red>$15</color>.
+
+You have been elected Chairman of the Board.<br><br><color=red>Pay each player $50.</color>
+
+Your building loan matures.<br><br><color=green>Collect $150.</color>
+
+You have won a crossword competition.<br><br><color=green>Collect $100</color>.
+
+Bank <color=green>pays</color> you dividend of <color=green>$50</color>.
