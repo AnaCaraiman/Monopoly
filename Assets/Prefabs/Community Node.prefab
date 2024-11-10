@@ -114,6 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7163219589716747960}
+  - component: {fileID: 1619482675114420545}
   m_Layer: 0
   m_Name: Community Node
   m_TagString: Untagged
@@ -138,6 +139,18 @@ Transform:
   - {fileID: 3006029328909244108}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1619482675114420545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5196560763619776856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66fa35dd13555d45899845a78481f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5359068580007101100
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,16 +312,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.066037714, g: 0.06448022, b: 0.06448022, a: 0.2627451}
+  m_Color: {r: 0.5660378, g: 0.49738353, b: 0.45122823, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1664004160, guid: c6139f9ecc0603d478af8c23a090acee, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
