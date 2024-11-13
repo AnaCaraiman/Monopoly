@@ -23,7 +23,7 @@ public class MonopolyBoard : MonoBehaviour
             for (int i = 0; i < route.Count; i++)
             {
                 Vector3 current = route[i].transform.position;
-                Vector3 next = (i + 1 < route.Count)?route[i+1].transform.position : current;
+                Vector3 next = (i + 1 < route.Count) ? route[i+1].transform.position : current;
 
                 Gizmos.color = Color.green;
                 Gizmos.DrawLine(current, next);
