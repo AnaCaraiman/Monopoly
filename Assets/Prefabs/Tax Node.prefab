@@ -599,6 +599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66fa35dd13555d45899845a78481f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
+  monopolyNodeType: 3
 --- !u!1 &8915726917010851862
 GameObject:
   m_ObjectHideFlags: 0
