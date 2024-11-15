@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     private int[] rolledDice;
     private bool rolledADouble;
     private int doubleRollCount;
+
+    public int GetGoMoney => goMoney;
     
 
     void Awake()
