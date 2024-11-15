@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monopolyNodeType: 0
+  propertyColorField: {fileID: 755358962348037825}
   name: Whatever Road
   nameText: {fileID: 1149205669012679299}
   price: 0
@@ -212,7 +213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5826991624859347822
 RectTransform:
   m_ObjectHideFlags: 0
@@ -433,7 +434,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4299187668998501358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,7 +517,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Owner
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -707,7 +708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2029810083358889822
 RectTransform:
   m_ObjectHideFlags: 0
