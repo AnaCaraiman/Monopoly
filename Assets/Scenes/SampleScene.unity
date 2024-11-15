@@ -1111,6 +1111,11 @@ MonoBehaviour:
   propertyImage: {fileID: 0}
   isMortgaged: 0
   mortgageValue: 0
+  owner:
+    playerType: 0
+    name: 
+    myToken: {fileID: 0}
+    myMonopolyNodes: []
   ownerBar: {fileID: 0}
   ownerText: {fileID: 0}
 --- !u!1 &320483623
@@ -1306,6 +1311,11 @@ MonoBehaviour:
   propertyImage: {fileID: 0}
   isMortgaged: 0
   mortgageValue: 0
+  owner:
+    playerType: 0
+    name: 
+    myToken: {fileID: 0}
+    myMonopolyNodes: []
   ownerBar: {fileID: 0}
   ownerText: {fileID: 0}
 --- !u!1 &359427069
@@ -3736,6 +3746,10 @@ PrefabInstance:
       value: 780
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: owner.name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: mortgageValue
       value: 390
       objectReference: {fileID: 0}
@@ -3813,6 +3827,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5804,6 +5822,11 @@ MonoBehaviour:
   propertyImage: {fileID: 0}
   isMortgaged: 0
   mortgageValue: 0
+  owner:
+    playerType: 0
+    name: 
+    myToken: {fileID: 0}
+    myMonopolyNodes: []
   ownerBar: {fileID: 0}
   ownerText: {fileID: 0}
 --- !u!1 &1876806096
@@ -5865,6 +5888,11 @@ MonoBehaviour:
   propertyImage: {fileID: 0}
   isMortgaged: 0
   mortgageValue: 0
+  owner:
+    playerType: 0
+    name: 
+    myToken: {fileID: 0}
+    myMonopolyNodes: []
   ownerBar: {fileID: 0}
   ownerText: {fileID: 0}
 --- !u!1001 &1878264808
