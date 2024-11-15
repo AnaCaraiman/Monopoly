@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MonopolyBoard : MonoBehaviour
 {
@@ -29,5 +31,48 @@ public class MonopolyBoard : MonoBehaviour
                 Gizmos.DrawLine(current, next);
             }    
         }
+    }
+
+    public void MovePlayerToken(int steps,Player player)
+    {
+        StartCoroutine(MovePlayerInStep(steps, player));
+    }
+
+    IEnumerator MovePlayerInStep(int steps, Player player)
+    {
+        int stepsLeft = steps;
+        GameObject tokenToMove = player.MyToken;
+        int indexOnBoard = route.IndexOf(player.CurrentNode);
+        bool moveOverGo = false;
+        while(stepsLeft>0) 
+        {
+            indexOnBoard++;
+
+            if(indexOnBoard>route.Count-1) {
+                indexOnBoard = 0;
+                moveOverGo = true;
+            }
+
+            Vector3 startPos = tokenToMove.transform.position;
+            Vector3 endPos = route[indexOnBoard].transform.position;
+
+            while(MoveToNextNode(tokenToMove, endPos, 10f))
+            {
+                yield return null;
+            }
+
+            stepsLeft--;
+        }
+        if(moveOverGo){
+            player.CollectMoney(GameManager.instance.GetGoMoney);
+        }
+
+        player.SetMyCurrentNode(route[indexOnBoard]);
+
+    }
+
+    bool MoveToNextNode(GameObject tokenToMove, Vector3 endPos, float speed)
+    {
+        return endPos != (tokenToMove.transform.position = Vector3.MoveTowards(tokenToMove.transform.position, endPos, speed * Time.deltaTime));
     }
 }
