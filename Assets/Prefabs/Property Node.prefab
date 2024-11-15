@@ -194,11 +194,6 @@ MonoBehaviour:
   propertyImage: {fileID: 8258443266199573970}
   isMortgaged: 0
   mortgageValue: 0
-  owner:
-    playerType: 0
-    name: 
-    myToken: {fileID: 0}
-    myMonopolyNodes: []
   ownerBar: {fileID: 7478521123610688101}
   ownerText: {fileID: 125404923165731267}
 --- !u!1 &1824169680789106479
@@ -439,7 +434,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4299187668998501358
 MonoBehaviour:
   m_ObjectHideFlags: 0
