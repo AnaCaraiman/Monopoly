@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using TMPro;
 
@@ -21,6 +22,7 @@ public enum  MonopolyNodeType
 public class MonopolyNode : MonoBehaviour
 {
     public MonopolyNodeType monopolyNodeType;
+    [SerializeField] Image propertyColorField;
     [Header("Property Name")]
     [SerializeField] internal new string name;
     [SerializeField] TMP_Text nameText;
@@ -32,6 +34,7 @@ public class MonopolyNode : MonoBehaviour
     [SerializeField] int currentRent;
     [SerializeField] internal int baseRent;
     [SerializeField] internal int[] rentWithHouses;
+    int numberOfHouses;
     [Header("Property Mortgage")]
     [SerializeField] GameObject mortgageImage;
     [SerializeField] GameObject propertyImage;
@@ -88,6 +91,14 @@ public class MonopolyNode : MonoBehaviour
         // isMortgaged = false;
     }
 
+    public void UpdateColorField(Color color)
+    {
+        if (propertyColorField != null)
+        {
+            propertyColorField.color = color;
+        }
+    }
+
     //MORTGAGE CONTENT
     public int MortgageProperty()
     {
@@ -135,10 +146,87 @@ public class MonopolyNode : MonoBehaviour
         }
     }
 
-    public void playerLandedOnNode(Player currentPlayer)
+    public void PlayerLandedOnNode(Player currentPlayer)
     {
         bool playerIsHuman = currentPlayer.playerType == Player.PlayerType.Human;
+        //check for node type and act
 
+        switch (monopolyNodeType)
+        {
+            case MonopolyNodeType.Property:
+                if (!playerIsHuman)//AI
+                {
+                    //IF IT IS OWNED AND WE ARE NOT OWNER AND IS NOT MORTGAGED
+                    if (owner.name != "" && owner != currentPlayer && !isMortgaged)
+                    {
+                        //PAY RENT TO SOMEBODY
+
+                        //CALCUATE RENT
+                        int rentToPay = CalculatePropertyRent();
+
+                        //PAY RENT TO OWNER
+
+                        //SHOW A MESSAGE
+                    }
+                    else if(owner.name == "" /*&& IF CAN AFFORD*/)
+                    {
+                        //BUY THE NODE
+
+                        //SHOW A MESSAGE
+                    }
+                    else
+                    {
+                        //IS UNOWNED AND CANNOT AFFORD
+                    }
+                }
+                else //HUMAN
+                {
+                    //IF IT IS OWNED AND WE ARE NOT OWNER AND IS NOT MORTGAGED
+                    if (owner.name != "" && owner != currentPlayer && !isMortgaged)
+                    {
+                        //PAY RENT TO SOMEBODY
+
+                        //CALCUATE RENT
+
+                        //PAY RENT TO OWNER
+
+                        //SHOW A MESSAGE
+                    }
+                    else if (owner.name == "")
+                    {
+                        //SHOW BUY INTERFACE FOR PROPERTY
+                    }
+                    else
+                    {
+                        //IS UNOWNED AND CANNOT AFFORD
+                    }
+                }
+
+                break;
+            case MonopolyNodeType.Utility:
+
+                break;
+            case MonopolyNodeType.Railroad:
+
+                break;
+            case MonopolyNodeType.Tax:
+
+                break;
+            case MonopolyNodeType.FreeParking:
+
+                break;
+            case MonopolyNodeType.GoToJail:
+
+                break;
+            case MonopolyNodeType.Chance:
+
+                break;
+            case MonopolyNodeType.CommunityChest:
+
+                break;
+        }
+
+        //continue
         if(!playerIsHuman)
         {
             Invoke("ContinueGame", 2f);
@@ -152,5 +240,41 @@ public class MonopolyNode : MonoBehaviour
     void ContinueGame()
     {
         GameManager.instance.SwitchPlayers();
+    }
+
+    int CalculatePropertyRent()
+    {
+        switch (numberOfHouses)
+        {
+            case 0:
+                //CHECK IF OWNER HAS FULL SET OF THIS NODES
+                bool allsame = true;
+                if(allsame)
+                {
+                    currentRent = baseRent * 2;
+                }
+                else
+                {
+                    currentRent = baseRent;
+                }
+                break;
+            case 1:
+                currentRent = rentWithHouses[0];
+                break;
+            case 2:
+                currentRent = rentWithHouses[1];
+                break;
+            case 3:
+                currentRent = rentWithHouses[2];
+                break;
+            case 4:
+                currentRent = rentWithHouses[3];
+                break;
+            case 5: //HOTEL
+                currentRent = rentWithHouses[4];
+                break;
+        }
+
+        return currentRent;
     }
 }

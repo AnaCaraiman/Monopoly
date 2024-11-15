@@ -43,7 +43,7 @@ public class Player
     public void SetMyCurrentNode(MonopolyNode node)
     {
         currentNode = node;
-        node.playerLandedOnNode(this);
+        node.PlayerLandedOnNode(this);
     }
 
     public void CollectMoney(int amount)
