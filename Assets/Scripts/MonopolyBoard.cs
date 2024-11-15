@@ -64,7 +64,7 @@ public class MonopolyBoard : MonoBehaviour
             stepsLeft--;
         }
         if(moveOverGo){
-            //
+            player.CollectMoney(GameManager.instance.GetGoMoney);
         }
 
         player.SetMyCurrentNode(route[indexOnBoard]);
