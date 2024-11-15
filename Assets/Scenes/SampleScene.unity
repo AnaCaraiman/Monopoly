@@ -1041,22 +1041,17 @@ MonoBehaviour:
     myToken: {fileID: 0}
     myMonopolyNodes:
     - {fileID: 0}
-  - playerType: 1
-    name: AI_333
-    myToken: {fileID: 0}
-    myMonopolyNodes:
-    - {fileID: 0}
-  - playerType: 1
-    name: AI_333
-    myToken: {fileID: 0}
-    myMonopolyNodes:
-    - {fileID: 0}
   currentPlayerIndex: 0
   maxTurnsInJail: 3
   startMoney: 1500
   goMoney: 500
   playerInfoPrefab: {fileID: 3803622035211508678, guid: a935cac1b50b9fa4d853682136c782e1, type: 3}
   playerPanel: {fileID: 864032338}
+  playerTokenList:
+  - {fileID: 4867338632412047374, guid: 4dc04e6e95b35128b9357e724811f45f, type: 3}
+  - {fileID: 7260608439329319426, guid: d1cd322bf33c1d1ac804a5cfd3ac3ea3, type: 3}
+  - {fileID: 2569138251018583920, guid: b8347be5ecb2c8d07bed282d8a5834e3, type: 3}
+  - {fileID: 4500234306836694006, guid: 4db3264bf1e5f60fabcc10c6cacef6f5, type: 3}
 --- !u!1 &253848782
 GameObject:
   m_ObjectHideFlags: 0

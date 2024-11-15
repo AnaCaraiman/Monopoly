@@ -31,11 +31,12 @@ public class Player
     public GameObject MyToken => myToken;
     public MonopolyNode CurrentNode => currentNode;
 
-    public void InitializePlayer(MonopolyNode startingNode, int startMoney, PlayerInfo playerInfo)
+    public void InitializePlayer(MonopolyNode startingNode, int startMoney, PlayerInfo playerInfo, GameObject token)
     {
         currentNode = startingNode;
         money = startMoney;
         myInfo = playerInfo;
         myInfo.SetPlayerNameAndCash(name, money);
+        myToken = token;    
     }
 }
