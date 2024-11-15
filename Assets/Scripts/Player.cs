@@ -43,5 +43,6 @@ public class Player
     public void SetMyCurrentNode(MonopolyNode node)
     {
         currentNode = node;
+        node.playerLandedOnNode(this);
     }
 }

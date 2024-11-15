@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
         else {
             //
         }
-        RollDice();
     }
 
     void Initialize()
@@ -74,5 +73,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         gameBoard.MovePlayerToken(rolledDice, playerList[currentPlayerIndex]);
+    }
+
+    public void SwitchPlayers(){
+        currentPlayerIndex++;
+        if(currentPlayerIndex >= playerList.Count) {
+            currentPlayerIndex = 0;
+        }
+
+        if(playerList[currentPlayerIndex].playerType == Player.PlayerType.AI) {
+            RollDice();
+        }
     }
 }
