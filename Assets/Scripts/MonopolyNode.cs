@@ -38,6 +38,7 @@ public class MonopolyNode : MonoBehaviour
     [SerializeField] bool isMortgaged;
     [SerializeField] int mortgageValue;
     [Header("Property Owner")]
+    public Player owner;
     [SerializeField] GameObject ownerBar;
     [SerializeField] TMP_Text ownerText;
     void OnValidate()
@@ -82,22 +83,35 @@ public class MonopolyNode : MonoBehaviour
             priceText.text = "$ " + price;
         }
         //UPDATE OWNER
+        OnOwnerUpdated();
+        UnMortgageProperty();
+        // isMortgaged = false;
     }
 
     //MORTGAGE CONTENT
     public int MortgageProperty()
     {
         isMortgaged = true;
+        if(mortgageImage!=null){
         mortgageImage.SetActive(true);
-        propertyImage.SetActive(false);
+        }
+        if(propertyImage!=null)
+        {
+            propertyImage.SetActive(false);
+        }
         return mortgageValue;
     }
 
     public void UnMortgageProperty()
     {
         isMortgaged = false;
+        if(mortgageImage!=null){
         mortgageImage.SetActive(false);
-        propertyImage.SetActive(true);
+        }
+        if(propertyImage!=null)
+        {
+            propertyImage.SetActive(true);
+        }
     }
 
     public bool IsMortgaged => isMortgaged;
@@ -107,10 +121,10 @@ public class MonopolyNode : MonoBehaviour
     {
         if(ownerBar!=null)
         {
-            if(ownerText.text != "")
+            if(owner.name != "")
             {
                 ownerBar.SetActive(true);
-                //ownerText.text = owner.name;
+                ownerText.text = owner.name;
             }
             else
             {
@@ -119,5 +133,24 @@ public class MonopolyNode : MonoBehaviour
             }
 
         }
+    }
+
+    public void playerLandedOnNode(Player currentPlayer)
+    {
+        bool playerIsHuman = currentPlayer.playerType == Player.PlayerType.Human;
+
+        if(!playerIsHuman)
+        {
+            Invoke("ContinueGame", 2f);
+        }
+        else
+        {
+
+        }
+    }
+
+    void ContinueGame()
+    {
+        GameManager.instance.SwitchPlayers();
     }
 }
