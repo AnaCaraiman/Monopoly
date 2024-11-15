@@ -134,4 +134,23 @@ public class MonopolyNode : MonoBehaviour
 
         }
     }
+
+    public void playerLandedOnNode(Player currentPlayer)
+    {
+        bool playerIsHuman = currentPlayer.playerType == Player.PlayerType.Human;
+
+        if(!playerIsHuman)
+        {
+            Invoke("ContinueGame", 2f);
+        }
+        else
+        {
+
+        }
+    }
+
+    void ContinueGame()
+    {
+        GameManager.instance.SwitchPlayers();
+    }
 }

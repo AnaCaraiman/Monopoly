@@ -43,5 +43,12 @@ public class Player
     public void SetMyCurrentNode(MonopolyNode node)
     {
         currentNode = node;
+        node.playerLandedOnNode(this);
+    }
+
+    public void CollectMoney(int amount)
+    {
+        money+=amount;
+        myInfo.SetPlayerCash(money);
     }
 }
