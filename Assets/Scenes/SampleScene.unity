@@ -787,9 +787,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: currentRent
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 1250
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 300
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1011,6 +1055,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66fa35dd13555d45899845a78481f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monopolyNodeType: 8
+  name: 
+  nameText: {fileID: 0}
+  price: 0
+  priceText: {fileID: 0}
+  calculateRentAuto: 0
+  currentRent: 0
+  baseRent: 0
+  rentWithHouses: 
+  mortgageImage: {fileID: 0}
+  propertyImage: {fileID: 0}
+  isMortgaged: 0
+  mortgageValue: 0
+  ownerBar: {fileID: 0}
+  ownerText: {fileID: 0}
 --- !u!1 &320483623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,6 +1250,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66fa35dd13555d45899845a78481f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monopolyNodeType: 9
+  name: 
+  nameText: {fileID: 0}
+  price: 0
+  priceText: {fileID: 0}
+  calculateRentAuto: 0
+  currentRent: 0
+  baseRent: 0
+  rentWithHouses: 
+  mortgageImage: {fileID: 0}
+  propertyImage: {fileID: 0}
+  isMortgaged: 0
+  mortgageValue: 0
+  ownerBar: {fileID: 0}
+  ownerText: {fileID: 0}
 --- !u!1 &365564897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,9 +1348,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 1250
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 300
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1587,9 +1701,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 1350
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 225
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 675
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 2025
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 3600
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 5625
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 1350
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1764,9 +1918,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 480
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 480
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2079,9 +2273,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 660
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 330
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 990
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 1760
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 2750
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 660
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2152,9 +2386,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 480
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 750
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 180
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2225,9 +2499,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 810
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 1440
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 2250
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 540
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2298,9 +2612,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 240
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2505,9 +2859,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 960
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 360
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2655,9 +3049,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 420
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 630
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 1120
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 1750
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 420
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2820,9 +3254,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 780
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 390
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 1170
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 2080
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 3250
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 780
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2968,6 +3442,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Railroad Node (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1672416545606516348, guid: a110d498550b3f54699bec11358e52eb, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3072,9 +3550,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 420
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 630
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 1120
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 1750
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 420
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3583,9 +4101,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: currentRent
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 480
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 750
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 180
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3760,9 +4322,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 2250
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 6250
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 1500
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3833,9 +4435,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 135
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 375
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 90
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4405,9 +5047,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 660
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 330
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 990
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 1760
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 2750
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 660
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4516,6 +5198,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66fa35dd13555d45899845a78481f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monopolyNodeType: 6
+  name: 
+  nameText: {fileID: 0}
+  price: 0
+  priceText: {fileID: 0}
+  calculateRentAuto: 0
+  currentRent: 0
+  baseRent: 0
+  rentWithHouses: 
+  mortgageImage: {fileID: 0}
+  propertyImage: {fileID: 0}
+  isMortgaged: 0
+  mortgageValue: 0
+  ownerBar: {fileID: 0}
+  ownerText: {fileID: 0}
 --- !u!1 &1876806096
 GameObject:
   m_ObjectHideFlags: 0
@@ -4562,6 +5259,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66fa35dd13555d45899845a78481f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monopolyNodeType: 7
+  name: 
+  nameText: {fileID: 0}
+  price: 0
+  priceText: {fileID: 0}
+  calculateRentAuto: 0
+  currentRent: 0
+  baseRent: 0
+  rentWithHouses: 
+  mortgageImage: {fileID: 0}
+  propertyImage: {fileID: 0}
+  isMortgaged: 0
+  mortgageValue: 0
+  ownerBar: {fileID: 0}
+  ownerText: {fileID: 0}
 --- !u!1001 &1878264808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4570,9 +5282,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 840
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 420
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 1260
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 2240
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 3500
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 840
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4716,9 +5468,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 810
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 1440
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 2250
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 540
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4789,9 +5581,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 720
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5130,9 +5962,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 780
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 390
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 1170
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 2080
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 3250
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 780
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5432,9 +6304,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 1600
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 2500
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 600
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5737,9 +6649,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2083298813}
     m_Modifications:
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: price
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: baseRent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: isMortgaged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: calculateRentAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[0]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[1]
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[2]
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[3]
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: rentWithHouses.Array.data[4]
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 1549667496323092384, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_Name
       value: Property Node
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936294174777621444, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
+      propertyPath: m_text
+      value: $ 60
       objectReference: {fileID: 0}
     - target: {fileID: 7253677678588709019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302, type: 3}
       propertyPath: m_LocalPosition.x
