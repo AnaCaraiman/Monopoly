@@ -19,13 +19,23 @@ public class Player
     int numTurnsInJail;
     [SerializeField] private GameObject myToken;
     [SerializeField] private List<MonopolyNode> myMonopolyNodes = new List<MonopolyNode>();
-    
+
     // PLAYER INFO
-    
+    private PlayerInfo myInfo;
+
+    //AI
+    private int aiMoneySavity = 200;
+
     //RETURN SOME INFOS
     public bool IsInJail => isInJail;
     public GameObject MyToken => myToken;
     public MonopolyNode CurrentNode => currentNode;
-    
-    private int aiMoneySavity = 200;
+
+    public void InitializePlayer(MonopolyNode startingNode, int startMoney, PlayerInfo playerInfo)
+    {
+        currentNode = startingNode;
+        money = startMoney;
+        myInfo = playerInfo;
+        myInfo.SetPlayerNameAndCash(name, money);
+    }
 }
