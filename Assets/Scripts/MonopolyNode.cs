@@ -222,7 +222,56 @@ public class MonopolyNode : MonoBehaviour
 
                 break;
             case MonopolyNodeType.Utility:
+                if (!playerIsHuman)//AI
+                {
+                    //IF IT IS OWNED AND WE ARE NOT OWNER AND IS NOT MORTGAGED
+                    if (owner != null && owner != currentPlayer && !isMortgaged)
+                    {
+                        //PAY RENT TO SOMEBODY
 
+                        //CALCUATE RENT
+                        int rentToPay = CalculateUtilityRent();
+                        //PAY RENT TO OWNER
+                        currentPlayer.PayRent(rentToPay, owner);
+
+                        //SHOW A MESSAGE
+                        Debug.Log(currentPlayer.name + " pays rent of " + rentToPay + " to " + owner.name);
+                    }
+                    else if (owner == null && currentPlayer.CanAffordNode(price))
+                    {
+                        //BUY THE NODE
+                        Debug.Log("PLAYER COULD BUY");
+                        currentPlayer.BuyProperty(this);
+                        OnOwnerUpdated();
+                        //SHOW A MESSAGE
+                    }
+                    else
+                    {
+                        //IS UNOWNED AND CANNOT AFFORD
+                    }
+                }
+                else //HUMAN
+                {
+                    //IF IT IS OWNED AND WE ARE NOT OWNER AND IS NOT MORTGAGED
+                    if (owner != null && owner != currentPlayer && !isMortgaged)
+                    {
+                        //PAY RENT TO SOMEBODY
+
+                        //CALCUATE RENT
+
+                        //PAY RENT TO OWNER
+
+                        //SHOW A MESSAGE
+                    }
+                    else if (owner == null)
+                    {
+                        //SHOW BUY INTERFACE FOR PROPERTY
+                    }
+                    else
+                    {
+                        //IS UNOWNED AND CANNOT AFFORD
+                    }
+                }
                 break;
             case MonopolyNodeType.Railroad:
 
@@ -294,5 +343,23 @@ public class MonopolyNode : MonoBehaviour
         }
 
         return currentRent;
+    }
+
+    int CalculateUtilityRent()
+    {
+        int[] lastRolledDice = GameManager.instance.LastRolledDice;
+
+        int result = 0;
+        var (list, allSame) = MonopolyBoard.instance.PlayerHasAllNodesOfSet(this);
+        if (allSame)
+        {
+            result = (lastRolledDice[0] + lastRolledDice[1]) * 10;
+        }
+        else
+        {
+            result = (lastRolledDice[0] + lastRolledDice[1]) * 4;
+        }
+        
+        return result;
     }
 }

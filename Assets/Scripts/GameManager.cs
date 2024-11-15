@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
 
         rolledADouble = rolledDice[0] == rolledDice[1];
 
+        Debug.Log($"Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
+
         StartCoroutine(DelayBeforMove(rolledDice[0] + rolledDice[1]));
     }
 
@@ -87,4 +89,7 @@ public class GameManager : MonoBehaviour
             RollDice();
         }
     }
+
+    public int[] LastRolledDice => rolledDice;
+   
 }
