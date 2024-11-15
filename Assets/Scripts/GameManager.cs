@@ -33,6 +33,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Initialize();
+        if(playerList[currentPlayerIndex].playerType == Player.PlayerType.AI) {
+            RollDice();
+        }
+        else {
+            //
+        }
+        RollDice();
     }
 
     void Initialize()
@@ -58,10 +65,14 @@ public class GameManager : MonoBehaviour
         rolledDice[1] = Random.Range(1, 7);
 
         rolledADouble = rolledDice[0] == rolledDice[1];
+
+        StartCoroutine(DelayBeforMove(rolledDice[0] + rolledDice[1]));
     }
 
-    IEnumerator DelayBeforMove()
+    IEnumerator DelayBeforMove(int rolledDice)
     {
         yield return new WaitForSeconds(2f);
+
+        gameBoard.MovePlayerToken(rolledDice, playerList[currentPlayerIndex]);
     }
 }

@@ -39,4 +39,9 @@ public class Player
         myInfo.SetPlayerNameAndCash(name, money);
         myToken = token;    
     }
+
+    public void SetMyCurrentNode(MonopolyNode node)
+    {
+        currentNode = node;
+    }
 }
