@@ -100,7 +100,6 @@ public class GameManager : MonoBehaviour
                 {
                     //MOVE TO JAIL
                     
-                    
                     return;
                 }
             }
@@ -133,6 +132,9 @@ public class GameManager : MonoBehaviour
 
     public void SwitchPlayers(){
         currentPlayerIndex++;
+        //rolled double
+        doubleRollCount = 0;
+
         if(currentPlayerIndex >= playerList.Count) {
             currentPlayerIndex = 0;
         }
