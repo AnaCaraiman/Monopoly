@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using System.Linq;
+using static UnityEngine.UI.GridLayoutGroup;
 
 [System.Serializable]
 public class Player
@@ -89,6 +90,18 @@ public class Player
         }
         money -= rentAmount;
         owner.CollectMoney(rentAmount);
+        //UPDATE UI
+        myInfo.SetPlayerCash(money);
+    }
+
+    internal void PayMoney(int amount)
+    {
+        if (money < amount)
+        {
+            //HANDLE INSUFFICIENT FUNDS > AI
+        }
+        money -= amount;
+
         //UPDATE UI
         myInfo.SetPlayerCash(money);
     }

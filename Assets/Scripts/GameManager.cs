@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     private int[] rolledDice;
     private bool rolledADouble;
     private int doubleRollCount;
+    //tax pool
+    int taxPool = 0;
 
     public int GetGoMoney => goMoney;
     
@@ -91,5 +93,17 @@ public class GameManager : MonoBehaviour
     }
 
     public int[] LastRolledDice => rolledDice;
+
+    public void AddTaxToPool(int amount)
+    {
+        taxPool += amount;
+    }
+
+    public int GetTaxPool()
+    {
+        int currentTaxCollected = taxPool;
+        taxPool = 0;
+        return currentTaxCollected;
+    }
    
 }
