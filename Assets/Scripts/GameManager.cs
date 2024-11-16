@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     [SerializeField] private MonopolyBoard gameBoard;
     [SerializeField] private List<Player> playerList = new List<Player>();
-    [SerializeField] private int currentPlayerIndex;
+    [SerializeField] private int currentPlayer;
 
     [Header("Globla Game Settings")] [SerializeField]
     private int maxTurnsInJail = 3;
@@ -22,12 +22,16 @@ public class GameManager : MonoBehaviour
 
     private int[] rolledDice;
     private bool rolledADouble;
+    public bool RolledADouble => rolledADouble;
     private int doubleRollCount;
     //tax pool
     int taxPool = 0;
 
     public int GetGoMoney => goMoney;
     
+
+    //DEBUG
+    public bool alwaysRollDouble = false;
 
     void Awake()
     {
@@ -37,7 +41,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Initialize();
-        if(playerList[currentPlayerIndex].playerType == Player.PlayerType.AI) {
+        if(playerList[currentPlayer].playerType == Player.PlayerType.AI) {
             RollDice();
         }
         else {
@@ -63,31 +67,99 @@ public class GameManager : MonoBehaviour
 
     public void RollDice()
     {
+        bool allowedToMove = true;
+        //RESET LAST ROLL
         rolledDice = new int[2];
         rolledDice[0] = Random.Range(1, 7);
         rolledDice[1] = Random.Range(1, 7);
 
+        Debug.Log($"{playerList[currentPlayer].name} Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
+
+
+        //DEBUG
+        if (alwaysRollDouble)
+        {
+            rolledDice[0] = 2;
+            rolledDice[1] = 2;
+        }
+
+        //CHECK FOR DOUBLES
         rolledADouble = rolledDice[0] == rolledDice[1];
+        //THROW 3 TIMES IN A ROW -> JAIL -> END TURN
 
-        Debug.Log($"Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
+        //IS IN JAIL ALREADY
+        if(playerList[currentPlayer].IsInJail)
+        {
+            playerList[currentPlayer].IncreaseNumTurnsInJail();
+            if (rolledADouble)
+            {
+                playerList[currentPlayer].SetOutOfJail();
+                doubleRollCount++;
+                //MOVE PLAYER
+            }
+            else if (playerList[currentPlayer].NumTurnsInJail >= maxTurnsInJail)
+            {
+                //ALLOWED TO LEAVE
+                playerList[currentPlayer].SetOutOfJail();
+            }
+            else
+            {
+                allowedToMove = false;
+            }
+        }
+        else
+        {
+            //RESET DOUBLE ROLL COUNT
+            if (!rolledADouble)
+            {
+                doubleRollCount = 0;
+            }
+            else
+            {
+                doubleRollCount++;
+                if(doubleRollCount >= 3)
+                {
+                    //MOVE TO JAIL
+                    int indexOnBoard = MonopolyBoard.instance.route.IndexOf(playerList[currentPlayer].MyMonopolyNode);
+                    playerList[currentPlayer].GoToJail(indexOnBoard);
+                    rolledADouble = false;
+                    return;
+                }
+            }
+        }
 
-        StartCoroutine(DelayBeforMove(rolledDice[0] + rolledDice[1]));
+        //LEAVE JAIL
+
+        //MOVE IF ALLOWED
+        if(allowedToMove)
+        {
+            StartCoroutine(DelayBeforMove(rolledDice[0] + rolledDice[1]));
+        }
+        else
+        {
+            //SWITCH PLAYER
+            Debug.Log("We are not allowed to move");
+            SwitchPlayers();
+        }
+
+        //SHOW OR HIDE UI
     }
 
     IEnumerator DelayBeforMove(int rolledDice)
     {
         yield return new WaitForSeconds(2f);
 
-        gameBoard.MovePlayerToken(rolledDice, playerList[currentPlayerIndex]);
+        gameBoard.MovePlayerToken(rolledDice, playerList[currentPlayer]);
     }
 
     public void SwitchPlayers(){
-        currentPlayerIndex++;
-        if(currentPlayerIndex >= playerList.Count) {
-            currentPlayerIndex = 0;
+        currentPlayer++;
+        doubleRollCount = 0;
+        if (currentPlayer >= playerList.Count) {
+            currentPlayer = 0;
         }
 
-        if(playerList[currentPlayerIndex].playerType == Player.PlayerType.AI) {
+        if(playerList[currentPlayer].playerType == Player.PlayerType.AI) {
             RollDice();
         }
     }

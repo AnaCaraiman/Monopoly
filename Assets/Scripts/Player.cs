@@ -32,7 +32,7 @@ public class Player
     //RETURN SOME INFOS
     public bool IsInJail => isInJail;
     public GameObject MyToken => myToken;
-    public MonopolyNode CurrentNode => currentNode;
+    public MonopolyNode MyMonopolyNode => currentNode;
 
     public void InitializePlayer(MonopolyNode startingNode, int startMoney, PlayerInfo playerInfo, GameObject token)
     {
@@ -105,4 +105,47 @@ public class Player
         //UPDATE UI
         myInfo.SetPlayerCash(money);
     }
+
+    //--------------------------------JAIL--------------------------------------
+    public void GoToJail(int indexOnBoard)
+    {
+        isInJail = true;
+        Debug.Log($"{name} is sent to jail!");
+
+        //REPOSITION PLAYER 
+        //myToken.transform.position = MonopolyBoard.instance.route[10].transform.position;
+        //currentNode = MonopolyBoard.instance.route[10];
+        MonopolyBoard.instance.MovePlayerToken(CalculateDistanceFromJail(indexOnBoard), this);
+    }
+
+    public void SetOutOfJail()
+    {
+        isInJail = false;
+        //RESET TURNS IN JAIL
+        numTurnsInJail = 0;
+    }
+
+    int CalculateDistanceFromJail(int indexOnBoard)
+    {
+        int result = 0;
+        int indexOfJail = 10;
+        if (indexOnBoard > indexOfJail)
+        {
+           result = (indexOnBoard - indexOfJail) * -1;
+        }
+        else
+        {
+            result = indexOfJail - indexOnBoard;
+        }
+
+        return result;
+    }
+
+    public int NumTurnsInJail => numTurnsInJail;
+
+    public void IncreaseNumTurnsInJail()
+    {
+        numTurnsInJail++;
+    }
+
 }
