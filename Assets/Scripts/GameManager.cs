@@ -63,15 +63,65 @@ public class GameManager : MonoBehaviour
 
     public void RollDice()
     {
+        bool allowedToMove = true;
+        //reset last roll
         rolledDice = new int[2];
         rolledDice[0] = Random.Range(1, 7);
         rolledDice[1] = Random.Range(1, 7);
-
+        //chech for double
         rolledADouble = rolledDice[0] == rolledDice[1];
+        //throw 3 times in a row(double) -> JAIL ANYHOW -> END TURN
+
+        //IS IN JAIL ALREADY
+        if (playerList[currentPlayerIndex].IsInJail)
+        {
+            if(rolledADouble)
+            {
+                playerList[currentPlayerIndex].SetOutOfJail();
+                //MOVE THE PLAYER
+
+            }
+            else
+            {
+                allowedToMove = false;
+            }
+        }
+        else
+        {
+            //RESET DOUBLE ROLLS
+            if(!rolledADouble)
+            {
+                doubleRollCount = 0;
+            }
+            else
+            {
+                doubleRollCount++;
+                if(doubleRollCount >= 3)
+                {
+                    //MOVE TO JAIL
+                    
+                    
+                    return;
+                }
+            }
+        }
+
+        //CAN LEAVE JAIL
+
+        //test dice
+        rolledDice[0] = 15;
+        rolledDice[1] = 15;
+        if(allowedToMove)
+        {
+            StartCoroutine(DelayBeforMove(rolledDice[0] + rolledDice[1]));
+        }
+        else
+        {
+            //SWITCH PLAYER
+        }
 
         Debug.Log($"Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
 
-        StartCoroutine(DelayBeforMove(rolledDice[0] + rolledDice[1]));
     }
 
     IEnumerator DelayBeforMove(int rolledDice)

@@ -163,6 +163,7 @@ public class MonopolyNode : MonoBehaviour
     public void PlayerLandedOnNode(Player currentPlayer)
     {
         bool playerIsHuman = currentPlayer.playerType == Player.PlayerType.Human;
+        bool continueTurn = true; 
         //check for node type and act
 
         switch (monopolyNodeType)
@@ -342,7 +343,8 @@ public class MonopolyNode : MonoBehaviour
 
                 break;
             case MonopolyNodeType.GoToJail:
-
+                currentPlayer.GoToJail();
+                continueTurn = false;
                 break;
             case MonopolyNodeType.Chance:
 
@@ -350,6 +352,11 @@ public class MonopolyNode : MonoBehaviour
             case MonopolyNodeType.CommunityChest:
 
                 break;
+        }
+        //STOP HERE IF NEEDED
+        if(!continueTurn)
+        {
+            return;
         }
 
         //continue

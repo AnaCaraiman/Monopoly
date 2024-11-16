@@ -105,4 +105,21 @@ public class Player
         //UPDATE UI
         myInfo.SetPlayerCash(money);
     }
+
+    public void GoToJail()
+    {
+        isInJail = true;
+        //REPOSITION PLAYER
+        Debug.Log("Player is going to jail.");
+        //myToken.transform.position = MonopolyBoard.instance.route[10].transform.position;
+        //currentNode = MonopolyBoard.instance.route[10];
+        MonopolyBoard.instance.MovePlayerToken(-20, this);
+
+    }
+
+    public void SetOutOfJail()
+    {
+        isInJail = false;
+
+    }
 }
