@@ -44,6 +44,10 @@ public class MonopolyNode : MonoBehaviour
     [SerializeField] GameObject ownerBar;
     [SerializeField] TMP_Text ownerText;
     Player owner;
+    
+    //MESSAGE SYSTEM
+    public delegate void UpdateMessage(string message);
+    public static UpdateMessage OnUpdateMessage;
 
     public Player Owner => owner;
     public void SetOwner(Player newOwner)

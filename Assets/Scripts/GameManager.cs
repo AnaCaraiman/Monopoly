@@ -12,25 +12,33 @@ public class GameManager : MonoBehaviour
 
     [Header("Globla Game Settings")] [SerializeField]
     private int maxTurnsInJail = 3;
+
     [SerializeField] private int startMoney = 1500;
     [SerializeField] private int goMoney = 500;
     [SerializeField] private float secondsBeetweenTurns = 3f;
-    
+
     [Header("Player Info")] [SerializeField]
     GameObject playerInfoPrefab;
+
     [SerializeField] private Transform playerPanel; // Where the player info will be displayed
     [SerializeField] private List<GameObject> playerTokenList = new List<GameObject>();
 
     private int[] rolledDice;
     private bool rolledADouble;
     public bool RolledADouble => rolledADouble;
+
     private int doubleRollCount;
+
     //tax pool
     int taxPool = 0;
 
     public int GetGoMoney => goMoney;
     public float SecondsBeetweenTurns => secondsBeetweenTurns;
-    
+
+    //MESSAGE SYSTEM
+    public delegate void UpdateMessage(string message);
+    public static UpdateMessage OnUpdateMessage;
+
 
     //DEBUG
     public bool alwaysRollDouble = false;
@@ -43,10 +51,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Initialize();
-        if(playerList[currentPlayer].playerType == Player.PlayerType.AI) {
+        if (playerList[currentPlayer].playerType == Player.PlayerType.AI)
+        {
             RollDice();
         }
-        else {
+        else
+        {
             //
         }
     }
@@ -90,7 +100,7 @@ public class GameManager : MonoBehaviour
         //THROW 3 TIMES IN A ROW -> JAIL -> END TURN
 
         //IS IN JAIL ALREADY
-        if(playerList[currentPlayer].IsInJail)
+        if (playerList[currentPlayer].IsInJail)
         {
             playerList[currentPlayer].IncreaseNumTurnsInJail();
             if (rolledADouble)
@@ -119,11 +129,14 @@ public class GameManager : MonoBehaviour
             else
             {
                 doubleRollCount++;
-                if(doubleRollCount >= 3)
+                if (doubleRollCount >= 3)
                 {
                     //MOVE TO JAIL
                     int indexOnBoard = MonopolyBoard.instance.route.IndexOf(playerList[currentPlayer].MyMonopolyNode);
                     playerList[currentPlayer].GoToJail(indexOnBoard);
+                    
+                    OnUpdateMessage.Invoke($"{playerList[currentPlayer].name} rolled <b>3 doubles</b> in a row and <b><color=red>is sent to jail!</color></b>");
+                    
                     rolledADouble = false;
                     return;
                 }
@@ -133,7 +146,7 @@ public class GameManager : MonoBehaviour
         //LEAVE JAIL
 
         //MOVE IF ALLOWED
-        if(allowedToMove)
+        if (allowedToMove)
         {
             StartCoroutine(DelayBeforMove(rolledDice[0] + rolledDice[1]));
         }
@@ -152,21 +165,24 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(secondsBeetweenTurns);
         gameBoard.MovePlayerToken(rolledDice, playerList[currentPlayer]);
     }
-    
+
     IEnumerator DeleyBeforeSwitchPlayer()
     {
         yield return new WaitForSeconds(secondsBeetweenTurns);
         SwitchPlayers();
     }
 
-    public void SwitchPlayers(){
+    public void SwitchPlayers()
+    {
         currentPlayer++;
         doubleRollCount = 0;
-        if (currentPlayer >= playerList.Count) {
+        if (currentPlayer >= playerList.Count)
+        {
             currentPlayer = 0;
         }
 
-        if(playerList[currentPlayer].playerType == Player.PlayerType.AI) {
+        if (playerList[currentPlayer].playerType == Player.PlayerType.AI)
+        {
             RollDice();
         }
     }
@@ -184,5 +200,4 @@ public class GameManager : MonoBehaviour
         taxPool = 0;
         return currentTaxCollected;
     }
-   
 }
