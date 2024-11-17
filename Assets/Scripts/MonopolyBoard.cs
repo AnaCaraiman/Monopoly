@@ -53,18 +53,17 @@ public class MonopolyBoard : MonoBehaviour
 
     public void MovePlayerToken(int steps,Player player)
     {
-        StartCoroutine(MovePlayerInStep(steps, player));
+        StartCoroutine(MovePlayerInSteps(steps, player));
     }
 
-    IEnumerator MovePlayerInStep(int steps, Player player)
+    IEnumerator MovePlayerInSteps(int steps, Player player)
     {
         int stepsLeft = steps;
         GameObject tokenToMove = player.MyToken;
-        int indexOnBoard = route.IndexOf(player.CurrentNode);
+        int indexOnBoard = route.IndexOf(player.MyMonopolyNode);
         bool moveOverGo = false;
         bool isMovingForward = steps > 0;
-
-        if(isMovingForward)
+        if (isMovingForward)
         {
             while (stepsLeft > 0)
             {
@@ -110,7 +109,6 @@ public class MonopolyBoard : MonoBehaviour
             }
         }
 
-        
         if(moveOverGo){
             player.CollectMoney(GameManager.instance.GetGoMoney);
         }
