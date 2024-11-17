@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     private int maxTurnsInJail = 3;
     [SerializeField] private int startMoney = 1500;
     [SerializeField] private int goMoney = 500;
-
+    [SerializeField] private float secondsBeetweenTurns = 3f;
+    
     [Header("Player Info")] [SerializeField]
     GameObject playerInfoPrefab;
     [SerializeField] private Transform playerPanel; // Where the player info will be displayed
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     int taxPool = 0;
 
     public int GetGoMoney => goMoney;
+    public float SecondsBeetweenTurns => secondsBeetweenTurns;
     
 
     //DEBUG
@@ -139,7 +141,7 @@ public class GameManager : MonoBehaviour
         {
             //SWITCH PLAYER
             Debug.Log("We are not allowed to move");
-            SwitchPlayers();
+            StartCoroutine(DeleyBeforeSwitchPlayer());
         }
 
         //SHOW OR HIDE UI
@@ -147,9 +149,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DelayBeforMove(int rolledDice)
     {
-        yield return new WaitForSeconds(2f);
-
+        yield return new WaitForSeconds(secondsBeetweenTurns);
         gameBoard.MovePlayerToken(rolledDice, playerList[currentPlayer]);
+    }
+    
+    IEnumerator DeleyBeforeSwitchPlayer()
+    {
+        yield return new WaitForSeconds(secondsBeetweenTurns);
+        SwitchPlayers();
     }
 
     public void SwitchPlayers(){

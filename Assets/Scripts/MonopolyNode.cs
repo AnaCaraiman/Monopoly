@@ -362,7 +362,7 @@ public class MonopolyNode : MonoBehaviour
         //continue
         if (!playerIsHuman)
         {
-            Invoke("ContinueGame", 2f);
+            Invoke("ContinueGame", GameManager.instance.SecondsBeetweenTurns);
         }
         else
         {
