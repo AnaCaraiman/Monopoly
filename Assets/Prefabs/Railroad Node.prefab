@@ -181,18 +181,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monopolyNodeType: 2
+  propertyColorField: {fileID: 0}
   name: 
   nameText: {fileID: 0}
-  price: 0
-  priceText: {fileID: 0}
+  price: 200
+  priceText: {fileID: 8742771556495954109}
   calculateRentAuto: 1
   currentRent: 0
-  baseRent: 0
+  baseRent: 25
   rentWithHouses: 
   mortgageImage: {fileID: 4387329037295476983}
   propertyImage: {fileID: 4158136332091626748}
   isMortgaged: 0
-  mortgageValue: 0
+  mortgageValue: 100
   ownerBar: {fileID: 3918171999879786405}
   ownerText: {fileID: 4036777871536129557}
 --- !u!1 &2127441288286176450
@@ -260,7 +261,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Price
+  m_text: $ 200
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -528,7 +529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8706381013185369699
 RectTransform:
   m_ObjectHideFlags: 0
@@ -679,7 +680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1960929389679636900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -907,7 +908,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Owner
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
