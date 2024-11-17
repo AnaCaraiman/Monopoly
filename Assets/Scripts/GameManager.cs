@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
             if (rolledADouble)
             {
                 playerList[currentPlayer].SetOutOfJail();
+                OnUpdateMessage.Invoke($"{playerList[currentPlayer].name} rolled a <b>double</b> and <b><color=green>is out of jail!</color></b>");
                 doubleRollCount++;
                 //MOVE PLAYER
             }
@@ -113,6 +114,7 @@ public class GameManager : MonoBehaviour
             {
                 //ALLOWED TO LEAVE
                 playerList[currentPlayer].SetOutOfJail();
+                OnUpdateMessage.Invoke($"{playerList[currentPlayer].name} has been in jail for <b>{maxTurnsInJail} turns</b> and <b><color=green>is out of jail!</color></b>");
             }
             else
             {
@@ -148,12 +150,13 @@ public class GameManager : MonoBehaviour
         //MOVE IF ALLOWED
         if (allowedToMove)
         {
+            OnUpdateMessage.Invoke($"{playerList[currentPlayer].name} rolled a <b>{rolledDice[0] + rolledDice[1]}</b> and is moving...");
             StartCoroutine(DelayBeforMove(rolledDice[0] + rolledDice[1]));
         }
         else
         {
             //SWITCH PLAYER
-            Debug.Log("We are not allowed to move");
+            OnUpdateMessage.Invoke($"{playerList[currentPlayer].name} rolled a <b>{rolledDice[0]} & {rolledDice[1]}</b> and <b><color=red>is still in jail!</color></b>");
             StartCoroutine(DeleyBeforeSwitchPlayer());
         }
 
