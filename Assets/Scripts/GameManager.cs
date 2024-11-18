@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private int[] rolledDice;
     private bool rolledADouble;
     public bool RolledADouble => rolledADouble;
+    public void ResetRolledADouble() => rolledADouble = false;
 
     private int doubleRollCount;
 
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     public int GetGoMoney => goMoney;
     public float SecondsBeetweenTurns => secondsBeetweenTurns;
+    public List<Player> GetPlayers => playerList;
 
     //MESSAGE SYSTEM
     public delegate void UpdateMessage(string message);
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
 
 
     //DEBUG
-    public bool alwaysRollDouble = false;
+    public bool alwaysRollDouble = true;
 
     void Awake()
     {
@@ -82,8 +84,10 @@ public class GameManager : MonoBehaviour
         bool allowedToMove = true;
         //RESET LAST ROLL
         rolledDice = new int[2];
-        rolledDice[0] = Random.Range(1, 7);
-        rolledDice[1] = Random.Range(1, 7);
+        //rolledDice[0] = Random.Range(1, 7);
+        //rolledDice[1] = Random.Range(1, 7);
+        rolledDice[0] = 1;
+        rolledDice[1] = 1;
 
         Debug.Log($"{playerList[currentPlayer].name} Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
 
@@ -91,8 +95,8 @@ public class GameManager : MonoBehaviour
         //DEBUG
         if (alwaysRollDouble)
         {
-            rolledDice[0] = 2;
-            rolledDice[1] = 2;
+            //rolledDice[0] = 1;
+            //rolledDice[1] = 1;
         }
 
         //CHECK FOR DOUBLES
