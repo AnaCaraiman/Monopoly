@@ -56,6 +56,31 @@ public class MonopolyBoard : MonoBehaviour
         StartCoroutine(MovePlayerInSteps(steps, player));
     }
 
+    public void MovePlayerToken(MonopolyNodeType type, Player player)
+    {
+        int indexOfNextNodeType = -1; //index to find
+        int indexOnBoard = route.IndexOf(player.MyMonopolyNode); //position of player
+        int startSearchIndex = (indexOnBoard+1) % route.Count;
+        int nodeSearches = 0; //amount of fields searched
+
+        while (indexOfNextNodeType == -1 && nodeSearches < route.Count)
+        {
+            if (route[startSearchIndex].monopolyNodeType == type) //found the desired type
+            {
+                indexOfNextNodeType = startSearchIndex;
+            }
+            startSearchIndex = (startSearchIndex + 1) % route.Count;
+            nodeSearches++;
+        }
+        if (indexOfNextNodeType == -1)
+        {
+            Debug.LogError("Node not found");
+            return;
+        }
+
+        StartCoroutine(MovePlayerInSteps(nodeSearches, player));
+    }
+
     IEnumerator MovePlayerInSteps(int steps, Player player)
     {
         int stepsLeft = steps;
