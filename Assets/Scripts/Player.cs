@@ -4,6 +4,7 @@ using UnityEngine;
 
 using System.Linq;
 using static UnityEngine.UI.GridLayoutGroup;
+using UnityEditor;
 
 [System.Serializable]
 public class Player
@@ -33,6 +34,11 @@ public class Player
     public bool IsInJail => isInJail;
     public GameObject MyToken => myToken;
     public MonopolyNode MyMonopolyNode => currentNode;
+    public int ReadMoney => money;
+    
+    //MESSAGE SYSTEM
+    public delegate void UpdateMessage(string message);
+    public static UpdateMessage OnUpdateMessage;
 
     public void InitializePlayer(MonopolyNode startingNode, int startMoney, PlayerInfo playerInfo, GameObject token)
     {
@@ -116,6 +122,7 @@ public class Player
         //myToken.transform.position = MonopolyBoard.instance.route[10].transform.position;
         //currentNode = MonopolyBoard.instance.route[10];
         MonopolyBoard.instance.MovePlayerToken(CalculateDistanceFromJail(indexOnBoard), this);
+        GameManager.instance.ResetRolledADouble();
     }
 
     public void SetOutOfJail()
@@ -146,6 +153,28 @@ public class Player
     public void IncreaseNumTurnsInJail()
     {
         numTurnsInJail++;
+    }
+
+    //STREET REPAIRS
+    public int[] CountHousesAndHotels()
+    {
+        int houses = 0;  //GOES TO INDEX 0
+        int hotels = 0;  //GOES TO INDEX 1
+
+        foreach (var node in myMonopolyNodes)
+        {
+            if(node.NumberOfHouses != 5)
+            {
+                houses += node.NumberOfHouses;
+            }
+            else
+            {
+                hotels += 1;
+            }
+        }
+
+        int[] allBuildings = new int[] { houses, hotels };
+        return allBuildings;
     }
 
 }
