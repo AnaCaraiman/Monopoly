@@ -176,5 +176,27 @@ public class Player
         int[] allBuildings = new int[] { houses, hotels };
         return allBuildings;
     }
+    
+    //--------------------------------CHECK IF PLAYER HAS A PROPERTY SET--------------------------------------
+    void CheckIfPlayerHasASet()
+    {
+        foreach (var node in myMonopolyNodes)
+        {
+            var (list, allSame) = MonopolyBoard.instance.PlayerHasAllNodesOfSet(node);
+            List<MonopolyNode> nodeSets = list;
+            if (nodeSets != null)
+            {
+                bool hasMordgadedNode = nodeSets.Any(_node => _node.IsMortgaged) ? true : false;
+                if (!hasMordgadedNode)
+                {
+                    if (nodeSets[0].monopolyNodeType == MonopolyNodeType.Property)
+                    {
+                        //WE COULD BUILD A HOUSE ON THIS SET
+                    }
+                }
+            }
+
+        }
+    }
 
 }
