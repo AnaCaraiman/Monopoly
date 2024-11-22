@@ -237,6 +237,8 @@ public class Player
         {
             if (node.NumberOfHouses == minHouses && node.NumberOfHouses < 5 && CanAffordHouse(node.houseCost))
             {
+                Debug.Log($"{name} is building a house on {node.name} & {node.price}");
+                OnUpdateMessage.Invoke($"{name} is building a house on {node.name}");
                 node.BuildHouseOrHotel();
                 PayMoney(node.houseCost);
             }
