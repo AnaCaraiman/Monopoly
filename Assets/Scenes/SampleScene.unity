@@ -856,7 +856,7 @@ PrefabInstance:
     - target: {fileID: 8474544773805275356, guid: eda60d551c646544f9add14d5d803f07,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8552082726317182071, guid: eda60d551c646544f9add14d5d803f07,
         type: 3}
@@ -908,6 +908,11 @@ PrefabInstance:
         type: 3}
       propertyPath: basePrice
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
+      propertyPath: houseCost
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
@@ -1052,7 +1057,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1428,11 +1433,14 @@ MonoBehaviour:
   name: 
   nameText: {fileID: 0}
   price: 0
+  houseCost: 0
   priceText: {fileID: 0}
   calculateRentAuto: 0
   currentRent: 0
   baseRent: 0
   rentWithHouses: 
+  houses: []
+  hotel: {fileID: 0}
   mortgageImage: {fileID: 0}
   propertyImage: {fileID: 0}
   isMortgaged: 0
@@ -1758,11 +1766,14 @@ MonoBehaviour:
   name: 
   nameText: {fileID: 0}
   price: 0
+  houseCost: 0
   priceText: {fileID: 0}
   calculateRentAuto: 0
   currentRent: 0
   baseRent: 0
   rentWithHouses: 
+  houses: []
+  hotel: {fileID: 0}
   mortgageImage: {fileID: 0}
   propertyImage: {fileID: 0}
   isMortgaged: 0
@@ -2149,6 +2160,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: mortgageValue
       value: 150
       objectReference: {fileID: 0}
@@ -2285,7 +2301,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2842,6 +2858,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: mortgageValue
       value: 675
       objectReference: {fileID: 0}
@@ -2978,7 +2999,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3132,6 +3153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: mortgageValue
       value: 240
       objectReference: {fileID: 0}
@@ -3268,7 +3294,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3352,7 +3378,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0, guid: 9f1a070e4a13a0f12830f6152b86e7aa, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3618,7 +3644,7 @@ PrefabInstance:
     - target: {fileID: 3918171999879786405, guid: a110d498550b3f54699bec11358e52eb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3741,6 +3767,11 @@ PrefabInstance:
         type: 3}
       propertyPath: basePrice
       value: 660
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
+      propertyPath: houseCost
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
@@ -3880,7 +3911,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3927,6 +3958,11 @@ PrefabInstance:
         type: 3}
       propertyPath: basePrice
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
+      propertyPath: houseCost
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
@@ -4066,7 +4102,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4252,6 +4288,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: mortgageValue
       value: 270
       objectReference: {fileID: 0}
@@ -4388,7 +4429,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4556,6 +4597,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: mortgageValue
       value: 120
       objectReference: {fileID: 0}
@@ -4692,7 +4738,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4876,6 +4922,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: mortgageValue
       value: 180
       objectReference: {fileID: 0}
@@ -5012,7 +5063,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5153,6 +5204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: mortgageValue
       value: 210
       objectReference: {fileID: 0}
@@ -5289,7 +5345,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5431,6 +5487,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: owner.name
       value: 
       objectReference: {fileID: 0}
@@ -5552,7 +5613,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5679,7 +5740,7 @@ PrefabInstance:
     - target: {fileID: 3918171999879786405, guid: a110d498550b3f54699bec11358e52eb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5801,6 +5862,11 @@ PrefabInstance:
         type: 3}
       propertyPath: basePrice
       value: 420
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
+      propertyPath: houseCost
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
@@ -5940,7 +6006,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6830,6 +6896,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: currentRent
       value: 0
       objectReference: {fileID: 0}
@@ -6971,7 +7042,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7125,6 +7196,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: mortgageValue
       value: 750
       objectReference: {fileID: 0}
@@ -7261,7 +7337,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7308,6 +7384,11 @@ PrefabInstance:
         type: 3}
       propertyPath: basePrice
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
+      propertyPath: houseCost
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
@@ -7427,7 +7508,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8238,6 +8319,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: mortgageValue
       value: 330
       objectReference: {fileID: 0}
@@ -8374,7 +8460,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8605,11 +8691,14 @@ MonoBehaviour:
   name: 
   nameText: {fileID: 0}
   price: 0
+  houseCost: 0
   priceText: {fileID: 0}
   calculateRentAuto: 0
   currentRent: 0
   baseRent: 0
   rentWithHouses: 
+  houses: []
+  hotel: {fileID: 0}
   mortgageImage: {fileID: 0}
   propertyImage: {fileID: 0}
   isMortgaged: 0
@@ -8667,11 +8756,14 @@ MonoBehaviour:
   name: 
   nameText: {fileID: 0}
   price: 0
+  houseCost: 0
   priceText: {fileID: 0}
   calculateRentAuto: 0
   currentRent: 0
   baseRent: 0
   rentWithHouses: 
+  houses: []
+  hotel: {fileID: 0}
   mortgageImage: {fileID: 0}
   propertyImage: {fileID: 0}
   isMortgaged: 0
@@ -8700,6 +8792,11 @@ PrefabInstance:
         type: 3}
       propertyPath: basePrice
       value: 840
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
+      propertyPath: houseCost
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
@@ -8839,7 +8936,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9009,7 +9106,7 @@ PrefabInstance:
     - target: {fileID: 3918171999879786405, guid: a110d498550b3f54699bec11358e52eb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9056,6 +9153,11 @@ PrefabInstance:
         type: 3}
       propertyPath: basePrice
       value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
+      propertyPath: houseCost
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
@@ -9195,7 +9297,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9242,6 +9344,11 @@ PrefabInstance:
         type: 3}
       propertyPath: basePrice
       value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
+      propertyPath: houseCost
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
@@ -9381,7 +9488,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9699,6 +9806,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: mortgageValue
       value: 390
       objectReference: {fileID: 0}
@@ -9835,7 +9947,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10475,6 +10587,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: mortgageValue
       value: 300
       objectReference: {fileID: 0}
@@ -10611,7 +10728,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10702,7 +10819,7 @@ PrefabInstance:
     - target: {fileID: 3918171999879786405, guid: a110d498550b3f54699bec11358e52eb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10793,7 +10910,7 @@ PrefabInstance:
     - target: {fileID: 8474544773805275356, guid: eda60d551c646544f9add14d5d803f07,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8552082726317182071, guid: eda60d551c646544f9add14d5d803f07,
         type: 3}
@@ -10950,6 +11067,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
+      propertyPath: houseCost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -5156486336515902019, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
+        type: 3}
       propertyPath: isMortgaged
       value: 0
       objectReference: {fileID: 0}
@@ -11091,7 +11213,7 @@ PrefabInstance:
     - target: {fileID: 7478521123610688101, guid: 2b6557f23aa4c5c42b13b34e2bbe2302,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
