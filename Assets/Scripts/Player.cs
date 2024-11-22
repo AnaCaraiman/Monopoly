@@ -49,10 +49,15 @@ public class Player
         myToken = token;
     }
 
-    public void SetMyCurrentNode(MonopolyNode node)
+    public void SetMyCurrentNode(MonopolyNode newNode)
     {
-        currentNode = node;
-        node.PlayerLandedOnNode(this);
+        currentNode = newNode;
+        newNode.PlayerLandedOnNode(this);
+        //IF ITS AI PLAYER
+        if (playerType == PlayerType.AI)
+        {
+            CheckIfPlayerHasASet();
+        }
     }
 
     public void CollectMoney(int amount)
@@ -185,6 +190,12 @@ public class Player
         foreach (var node in myMonopolyNodes)
         {
             var (list, allSame) = MonopolyBoard.instance.PlayerHasAllNodesOfSet(node);
+
+            if (!allSame)
+            {
+                continue;
+            }
+
             List<MonopolyNode> nodeSets = list;
             if (nodeSets != null)
             {
@@ -194,6 +205,7 @@ public class Player
                     if (nodeSets[0].monopolyNodeType == MonopolyNodeType.Property)
                     {
                         //WE COULD BUILD A HOUSE ON THIS SET
+                        BuildHousesOrHotelEvenly(nodeSets);
                     }
                 }
             }

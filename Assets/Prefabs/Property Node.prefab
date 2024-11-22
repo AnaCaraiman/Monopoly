@@ -186,11 +186,18 @@ MonoBehaviour:
   name: Whatever Road
   nameText: {fileID: 1149205669012679299}
   price: 0
+  houseCost: 0
   priceText: {fileID: 5936294174777621444}
   calculateRentAuto: 1
   currentRent: 0
   baseRent: 0
   rentWithHouses: 
+  houses:
+  - {fileID: 8045492294935528559}
+  - {fileID: 3447645242837837553}
+  - {fileID: 5291848371501832093}
+  - {fileID: 2201059921802025764}
+  hotel: {fileID: 4208414714980790088}
   mortgageImage: {fileID: 1824169680789106479}
   propertyImage: {fileID: 8258443266199573970}
   isMortgaged: 0
@@ -1154,6 +1161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1465e53c2e4d1868944f68b8492252f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1162,6 +1173,11 @@ PrefabInstance:
 --- !u!4 &1567372494726988190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1465e53c2e4d1868944f68b8492252f, type: 3}
+  m_PrefabInstance: {fileID: 1318100619782186613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2201059921802025764 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d1465e53c2e4d1868944f68b8492252f, type: 3}
   m_PrefabInstance: {fileID: 1318100619782186613}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2529077701628074912
@@ -1228,6 +1244,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1465e53c2e4d1868944f68b8492252f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1236,6 +1256,11 @@ PrefabInstance:
 --- !u!4 &2635643413367258187 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1465e53c2e4d1868944f68b8492252f, type: 3}
+  m_PrefabInstance: {fileID: 2529077701628074912}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3447645242837837553 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d1465e53c2e4d1868944f68b8492252f, type: 3}
   m_PrefabInstance: {fileID: 2529077701628074912}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3937873627172164121
@@ -1302,6 +1327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotel
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e6ea64f409ade032953801909d8b169, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1310,6 +1339,11 @@ PrefabInstance:
 --- !u!4 &3543376667760440818 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e6ea64f409ade032953801909d8b169, type: 3}
+  m_PrefabInstance: {fileID: 3937873627172164121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4208414714980790088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e6ea64f409ade032953801909d8b169, type: 3}
   m_PrefabInstance: {fileID: 3937873627172164121}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5021801517256387276
@@ -1376,6 +1410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1465e53c2e4d1868944f68b8492252f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1384,6 +1422,11 @@ PrefabInstance:
 --- !u!4 &4772615638095547687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1465e53c2e4d1868944f68b8492252f, type: 3}
+  m_PrefabInstance: {fileID: 5021801517256387276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5291848371501832093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d1465e53c2e4d1868944f68b8492252f, type: 3}
   m_PrefabInstance: {fileID: 5021801517256387276}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7162479655864990014
@@ -1450,6 +1493,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1465e53c2e4d1868944f68b8492252f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1458,5 +1505,10 @@ PrefabInstance:
 --- !u!4 &7272332844560948949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1465e53c2e4d1868944f68b8492252f, type: 3}
+  m_PrefabInstance: {fileID: 7162479655864990014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8045492294935528559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d1465e53c2e4d1868944f68b8492252f, type: 3}
   m_PrefabInstance: {fileID: 7162479655864990014}
   m_PrefabAsset: {fileID: 0}
