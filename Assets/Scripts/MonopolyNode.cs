@@ -468,6 +468,7 @@ public class MonopolyNode : MonoBehaviour
     void VisualizeHouses()
     {
         // change by tavi
+        //TODO - verify if the houses are active or not
         switch (numberOfHouses)
         {
             case 0:
