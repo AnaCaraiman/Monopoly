@@ -28,6 +28,7 @@ public class MonopolyNode : MonoBehaviour
     [SerializeField] TMP_Text nameText;
     [Header("Property Price")]
     public int price;
+    public int houseCost;
     [SerializeField] TMP_Text priceText;
     [Header("Property Rent")]
     [SerializeField] bool calculateRentAuto;
