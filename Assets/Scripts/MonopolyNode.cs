@@ -36,6 +36,9 @@ public class MonopolyNode : MonoBehaviour
     [SerializeField] internal List<int> rentWithHouses = new List<int>();
     int numberOfHouses;
     public int NumberOfHouses => numberOfHouses;
+    [SerializeField] private GameObject[] houses;
+    [SerializeField] private GameObject hotel;
+    
     [Header("Property Mortgage")]
     [SerializeField] GameObject mortgageImage;
     [SerializeField] GameObject propertyImage;
@@ -159,7 +162,7 @@ public class MonopolyNode : MonoBehaviour
     {
         if(ownerBar!=null)
         {
-            if(owner != null)
+            if(owner != null && owner.name != "")
             {
                 ownerBar.SetActive(true);
                 ownerText.text = owner.name;
@@ -459,5 +462,79 @@ public class MonopolyNode : MonoBehaviour
         result = baseRent * (int)Mathf.Pow(2, amount-1);
 
         return result;
+    }
+    
+    void VisualizeHouses()
+    {
+        // change by tavi
+        switch (numberOfHouses)
+        {
+            case 0:
+                foreach (var item in houses)
+                {
+                    item.SetActive(false);
+                }
+                hotel.SetActive(false);
+                break;
+            case 1:
+                houses[0].SetActive(true);
+                break;
+            case 2:
+                houses[1].SetActive(true);
+                break;
+            case 3:
+                houses[2].SetActive(true);
+                break;
+            case 4:
+                houses[3].SetActive(true);
+                break;
+            case 5:
+                hotel.SetActive(true);
+                break;
+                
+            
+        }
+    }
+    
+    public void BuildHouseOrHotel()
+    {
+        if( monopolyNodeType == MonopolyNodeType.Property && numberOfHouses < 5)
+        {
+            numberOfHouses++;
+            VisualizeHouses();
+        }
+    }
+    
+    public void SellHouseOrHotel()
+    {
+        if( monopolyNodeType == MonopolyNodeType.Property && numberOfHouses > 0)
+        {
+            numberOfHouses--;
+            VisualizeHouses();
+        }
+    }
+    
+    public void ResetNode()
+    {
+        //IF IS MORTEGAGED
+        if (isMortgaged)
+        {
+            propertyImage.SetActive(true);
+            mortgageImage.SetActive(false);
+            isMortgaged = false;
+            //UnMortgageProperty();
+        }
+        //RESET HOUSES AND HOTEL
+        if(monopolyNodeType == MonopolyNodeType.Property)
+        {
+            numberOfHouses = 0;
+            VisualizeHouses();
+        }
+        //RESET THE OWNER
+        //REMOVE PROPERTY FROM OWNER
+        owner.name = "";
+        
+        //UPDATE UI
+        OnOwnerUpdated();
     }
 }
