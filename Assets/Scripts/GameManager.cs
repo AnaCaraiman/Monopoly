@@ -84,11 +84,12 @@ public class GameManager : MonoBehaviour
         bool allowedToMove = true;
         //RESET LAST ROLL
         rolledDice = new int[2];
+
         rolledDice[0] = Random.Range(1, 7);
         rolledDice[1] = Random.Range(1, 7);
         // rolledDice[0] = 36;
         // rolledDice[1] = 0;
-        
+
         Debug.Log($"{playerList[currentPlayer].name} Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
         
         //DEBUG
