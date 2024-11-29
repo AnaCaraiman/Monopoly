@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using System.Linq;
 using static UnityEngine.UI.GridLayoutGroup;
 using UnityEditor;
@@ -35,9 +34,10 @@ public class Player
     public GameObject MyToken => myToken;
     public MonopolyNode MyMonopolyNode => currentNode;
     public int ReadMoney => money;
-    
+
     //MESSAGE SYSTEM
     public delegate void UpdateMessage(string message);
+
     public static UpdateMessage OnUpdateMessage;
 
     public void InitializePlayer(MonopolyNode startingNode, int startMoney, PlayerInfo playerInfo, GameObject token)
@@ -46,18 +46,23 @@ public class Player
         money = startMoney;
         myInfo = playerInfo;
         myInfo.SetPlayerNameAndCash(name, money);
-        myToken = token;    
+        myToken = token;
     }
 
-    public void SetMyCurrentNode(MonopolyNode node)
+    public void SetMyCurrentNode(MonopolyNode newNode)
     {
-        currentNode = node;
-        node.PlayerLandedOnNode(this);
+        currentNode = newNode;
+        newNode.PlayerLandedOnNode(this);
+        //IF ITS AI PLAYER
+        if (playerType == PlayerType.AI)
+        {
+            CheckIfPlayerHasASet();
+        }
     }
 
     public void CollectMoney(int amount)
     {
-        money+=amount;
+        money += amount;
         myInfo.SetPlayerCash(money);
     }
 
@@ -82,18 +87,19 @@ public class Player
     {
         //NULL REFERENCE EXCEPTION SOLVED
         myMonopolyNodes = myMonopolyNodes
-        .Where(_node => _node != null)
-        .OrderBy(_node => _node.price)
-        .ToList();
+            .Where(_node => _node != null)
+            .OrderBy(_node => _node.price)
+            .ToList();
     }
 
     internal void PayRent(int rentAmount, Player owner)
     {
         //DON'T HAVE ENOUGH MONEY
-        if(money < rentAmount)
+        if (money < rentAmount)
         {
             //HANDLE INSUFFICIENT FUNDS > AI
         }
+
         money -= rentAmount;
         owner.CollectMoney(rentAmount);
         //UPDATE UI
@@ -106,6 +112,7 @@ public class Player
         {
             //HANDLE INSUFFICIENT FUNDS > AI
         }
+
         money -= amount;
 
         //UPDATE UI
@@ -138,7 +145,7 @@ public class Player
         int indexOfJail = 10;
         if (indexOnBoard > indexOfJail)
         {
-           result = (indexOnBoard - indexOfJail) * -1;
+            result = (indexOnBoard - indexOfJail) * -1;
         }
         else
         {
@@ -158,12 +165,12 @@ public class Player
     //STREET REPAIRS
     public int[] CountHousesAndHotels()
     {
-        int houses = 0;  //GOES TO INDEX 0
-        int hotels = 0;  //GOES TO INDEX 1
+        int houses = 0; //GOES TO INDEX 0
+        int hotels = 0; //GOES TO INDEX 1
 
         foreach (var node in myMonopolyNodes)
         {
-            if(node.NumberOfHouses != 5)
+            if (node.NumberOfHouses != 5)
             {
                 houses += node.NumberOfHouses;
             }
@@ -177,4 +184,76 @@ public class Player
         return allBuildings;
     }
 
+    //--------------------------------CHECK IF PLAYER HAS A PROPERTY SET--------------------------------------
+    void CheckIfPlayerHasASet()
+    {
+        foreach (var node in myMonopolyNodes)
+        {
+            var (list, allSame) = MonopolyBoard.instance.PlayerHasAllNodesOfSet(node);
+
+            if (!allSame)
+            {
+                continue;
+            }
+
+            List<MonopolyNode> nodeSets = list;
+            if (nodeSets != null)
+            {
+                bool hasMordgadedNode = nodeSets.Any(_node => _node.IsMortgaged) ? true : false;
+                if (!hasMordgadedNode)
+                {
+                    if (nodeSets[0].monopolyNodeType == MonopolyNodeType.Property)
+                    {
+                        //WE COULD BUILD A HOUSE ON THIS SET
+                        BuildHousesOrHotelEvenly(nodeSets);
+                    }
+                }
+            }
+        }
+    }
+
+    //--------------------------------BUILD HOUSES EVENLY ON NODE SETS--------------------------------------
+    void BuildHousesOrHotelEvenly(List<MonopolyNode> nodesToBuildOn)
+    {
+        int minHouses = int.MaxValue;
+        int maxHouses = int.MinValue;
+        //GET MIN AND MAX NUMBER OF HOUSES CURRENTLY ON THE PROPERTIES
+        foreach (var node in nodesToBuildOn)
+        {
+            int numberOfHouses = node.NumberOfHouses;
+            if (numberOfHouses < minHouses)
+            {
+                minHouses = numberOfHouses;
+            }
+
+            if (numberOfHouses > maxHouses)
+            {
+                maxHouses = numberOfHouses;
+            }
+        }
+
+        //BUY HOUSES ON THE PROPERTIES FOR MAX ALLOWED ON THE PROPERTIES
+        foreach (var node in nodesToBuildOn)
+        {
+            if (node.NumberOfHouses == minHouses && node.NumberOfHouses < 5 && CanAffordHouse(node.houseCost))
+            {
+                Debug.Log($"{name} is building a house on {node.name} & {node.price}");
+                OnUpdateMessage.Invoke($"{name} is building a house on {node.name}");
+                node.BuildHouseOrHotel();
+                PayMoney(node.houseCost);
+            }
+        }
+    }
+
+    //--------------------------------HOUSES AND HOTELS - CAN AFFORD AND COUNT--------------------------------------
+    bool CanAffordHouse(int price)
+    {
+        if (playerType == PlayerType.AI)
+        {
+            return (money - aiMoneySavity) >= price;
+        }
+
+        //HUMAN ONLY
+        return money >= price;
+    }
 }

@@ -84,21 +84,20 @@ public class GameManager : MonoBehaviour
         bool allowedToMove = true;
         //RESET LAST ROLL
         rolledDice = new int[2];
-        //rolledDice[0] = Random.Range(1, 7);
-        //rolledDice[1] = Random.Range(1, 7);
-        rolledDice[0] = 36;
-        rolledDice[1] = 0;
+
+        rolledDice[0] = Random.Range(1, 7);
+        rolledDice[1] = Random.Range(1, 7);
+        // rolledDice[0] = 36;
+        // rolledDice[1] = 0;
 
         Debug.Log($"{playerList[currentPlayer].name} Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
-
-
+        
         //DEBUG
         if (alwaysRollDouble)
         {
-            //rolledDice[0] = 1;
-            //rolledDice[1] = 1;
+            rolledDice[0] = 1;
+            rolledDice[1] = 1;
         }
-
         //CHECK FOR DOUBLES
         rolledADouble = rolledDice[0] == rolledDice[1];
         //THROW 3 TIMES IN A ROW -> JAIL -> END TURN
