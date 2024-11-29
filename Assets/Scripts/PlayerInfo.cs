@@ -7,6 +7,7 @@ public class PlayerInfo : MonoBehaviour
 {
     [SerializeField] private TMP_Text playerNameText;
     [SerializeField] private TMP_Text playerCashText;
+    [SerializeField] GameObject activePlayerArrow;
 
     public void SetPlayerName(string playerName)
     {
@@ -24,4 +25,8 @@ public class PlayerInfo : MonoBehaviour
         SetPlayerCash(currentCash);
     }
     
+    public void ActivateArrow(bool active)
+    {
+        activePlayerArrow.SetActive(active);
+    }
 }
