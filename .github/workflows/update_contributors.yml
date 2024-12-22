@@ -15,16 +15,16 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: Get Pull Request Info
-        id: pr-info  
+        id: pr-info
         uses: actions/github-script@v6
         with:
           script: |
             const pr = context.payload.pull_request;
-            return {
-              author: pr.user.login,
-              date: new Date().toISOString().split('T')[0]
-            };
-
+            const author = pr.user.login;
+            const date = new Date().toISOString().split('T')[0];
+            echo::set-output name=author::${author}
+            echo::set-output name=date::${date}
+            
       - name: Update contributors log
         run: |
           echo "- Updating contributors_log.md"
