@@ -1,0 +1,37 @@
+name: Update Contributors Log
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  update-log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get Pull Request Info
+        id: pr-info
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            return { 
+              author: pr.user.login, 
+              date: new Date().toISOString().split('T')[0]
+            };
+
+      - name: Update contributors log
+        run: |
+          echo "- Updating contributors_log.md"
+          echo "${{ steps.pr-info.outputs.author }} - ${{ steps.pr-info.outputs.date }}" >> contributors_log.md
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add contributors_log.md
+          git commit -m "Update contributors log for PR by ${{ steps.pr-info.outputs.author }}"
+          git push origin dev

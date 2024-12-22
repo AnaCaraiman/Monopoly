@@ -966,11 +966,14 @@ MonoBehaviour:
   name: 
   nameText: {fileID: 0}
   price: 150
+  houseCost: 0
   priceText: {fileID: 1565536528265635307}
   calculateRentAuto: 0
   currentRent: 0
   baseRent: 0
   rentWithHouses: 
+  houses: []
+  hotel: {fileID: 0}
   mortgageImage: {fileID: 419537603612841938}
   propertyImage: {fileID: 3375998969677533764}
   isMortgaged: 0
