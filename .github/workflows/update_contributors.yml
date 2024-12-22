@@ -17,11 +17,8 @@ jobs:
       - name: Get Pull Request Info
         id: pr-info
         run: |
-          const pr = context.payload.pull_request;
-          const author = pr.user.login;
-          const date = new Date().toISOString().split('T')[0];
-          echo::set-output name=author::${author}
-          echo::set-output name=date::${date}
+          echo "::set-output name=author::$(jq -r '.pull_request.user.login' $GITHUB_EVENT_PATH)"
+          echo "::set-output name=date::$(jq -r '.pull_request.created_at' $GITHUB_EVENT_PATH)"
 
       - name: Update contributors log
         run: |
