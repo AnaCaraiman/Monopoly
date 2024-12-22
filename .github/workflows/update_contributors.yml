@@ -17,8 +17,8 @@ jobs:
       - name: Get Pull Request Info
         id: pr-info
         run: |
-          echo "::set-output name=author::$(jq -r '.pull_request.user.login' $GITHUB_EVENT_PATH)"
-          echo "::set-output name=date::$(jq -r '.pull_request.created_at' $GITHUB_EVENT_PATH)"
+          echo "{author}={jq -r '.pull_request.user.login'}" >> $GITHUB_OUTPUT
+          echo "{date}={jq -r '.pull_request.created_at'}" >> $GITHUB_OUTPUT
 
       - name: Update contributors log
         run: |
