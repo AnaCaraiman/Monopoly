@@ -25,7 +25,7 @@ jobs:
       - name: Update contributors log
         run: |
           echo "- Updating contributors_log.md"
-          echo "- ${{ steps.pr-info.output.author }} - ${{ steps.pr-info.output.date }}" >> contributors_log.md
+          echo "${{ steps.pr-info.outputs.author }} - ${{ steps.pr-info.outputs.date }}" >> contributors_log.md
 
       - name: Commit and push changes
         run: |
