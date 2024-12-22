@@ -22,6 +22,9 @@ jobs:
               author: pr.user.login, 
               date: new Date().toISOString().split('T')[0]
             };
+        outputs:
+          author: ${{ steps.github-script.outputs.author }}
+          date: ${{ steps.github-script.outputs.date }}
 
       - name: Update contributors log
         run: |
