@@ -33,4 +33,4 @@ jobs:
           git config user.email "octavian-andrei.macelaru@s.unibuc.com"
           git add contributors_log.md
           git commit -m "Update contributors log for PR by ${{ steps.pr-info.outputs.author }}"
-          git push origin dev
+          git push origin ${{ github.head_ref }}
