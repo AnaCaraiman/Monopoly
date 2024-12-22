@@ -29,8 +29,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "omacelaru"
+          git config user.email "octavian-andrei.macelaru@s.unibuc.com"
           git add contributors_log.md
           git commit -m "Update contributors log for PR by ${{ steps.pr-info.outputs.author }}"
-          git push origin ${{ github.head_ref }}
+          git push origin dev
