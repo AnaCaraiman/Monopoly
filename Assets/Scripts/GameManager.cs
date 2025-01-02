@@ -214,6 +214,24 @@ public class GameManager : MonoBehaviour
         return currentTaxCollected;
     }
 
+    public void RemovePlayer(Player player)
+    {
+        playerList.Remove(player);
+        //check for game over
+        CheckForGameOver();
+    }
+
+    void CheckForGameOver()
+    {
+        if(playerList.Count == 1)
+        {
+            Debug.Log(playerList[0].name + "IS THE WINNER!");
+            OnUpdateMessage.Invoke(playerList[0].name + "IS THE WINNER!");
+            //STOP THE GAME LOOP ANYHOW
+
+            //SHOW UI
+        }
+    }
     void DeactivateArrows()
     {
         foreach (Player player in playerList)
