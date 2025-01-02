@@ -43,9 +43,12 @@ public class GameManager : MonoBehaviour
     public delegate void UpdateMessage(string message);
     public static UpdateMessage OnUpdateMessage;
 
+    //HUMAN INOUT PANEL
+    public delegate void ShowHumanPanel(bool activatePanel, bool activateRollDice, bool activateEndTurn);
+    public static ShowHumanPanel OnShowHumanPanel;
 
     //DEBUG
-    public bool alwaysRollDouble = true;
+    public bool alwaysRollDouble = false;
 
     void Awake()
     {
@@ -80,6 +83,15 @@ public class GameManager : MonoBehaviour
             playerList[i].InitializePlayer(gameBoard.route[0], startMoney, playerInfoComponent, newToken);
         }
         playerList[currentPlayer].ActivateSelector(true);
+
+        if (playerList[currentPlayer].playerType == Player.PlayerType.Human)
+        { 
+            OnShowHumanPanel.Invoke(true, true, false);
+        }
+        else
+        {
+            OnShowHumanPanel.Invoke(false, false, false);
+        }
     }
 
     public void RollDice()
@@ -88,10 +100,10 @@ public class GameManager : MonoBehaviour
         //RESET LAST ROLL
         rolledDice = new int[2];
 
-        rolledDice[0] = Random.Range(1, 7);
-        rolledDice[1] = Random.Range(1, 7);
-        // rolledDice[0] = 36;
-        // rolledDice[1] = 0;
+        //rolledDice[0] = Random.Range(1, 7);
+        //rolledDice[1] = Random.Range(1, 7);
+         rolledDice[0] = 1;
+         rolledDice[1] = 1;
 
         Debug.Log($"{playerList[currentPlayer].name} Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
 
@@ -167,6 +179,10 @@ public class GameManager : MonoBehaviour
         }
 
         //SHOW OR HIDE UI
+        if (playerList[currentPlayer].playerType == Player.PlayerType.Human)
+        {
+            OnShowHumanPanel.Invoke(true, false, false);
+        }
     }
 
     IEnumerator DelayBeforMove(int rolledDice)
@@ -197,7 +213,14 @@ public class GameManager : MonoBehaviour
         if (playerList[currentPlayer].playerType == Player.PlayerType.AI)
         {
             RollDice();
+            OnShowHumanPanel.Invoke(false, false, false);
         }
+        else //if human - show ui
+        {
+            OnShowHumanPanel.Invoke(true, true, false);
+        }
+
+        
     }
 
     public int[] LastRolledDice => rolledDice;

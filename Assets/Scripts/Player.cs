@@ -57,8 +57,12 @@ public class Player
         //IF ITS AI PLAYER
         if (playerType == PlayerType.AI)
         {
+            //check if can build houses
             CheckIfPlayerHasASet();
+            //check for unmortgaged properties
+            //UnMortgageProperty();
         }
+        
     }
 
     public void CollectMoney(int amount)
