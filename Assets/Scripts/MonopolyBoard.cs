@@ -59,7 +59,9 @@ public class MonopolyBoard : MonoBehaviour
     {
         int indexOfNextNodeType = -1; //index to find
         int indexOnBoard = route.IndexOf(player.MyMonopolyNode); //position of player
+
         int startSearchIndex = (indexOnBoard + 1) % route.Count;
+        
         int nodeSearches = 0; //amount of fields searched
 
         while (indexOfNextNodeType == -1 && nodeSearches < route.Count)
@@ -72,6 +74,7 @@ public class MonopolyBoard : MonoBehaviour
             startSearchIndex = (startSearchIndex + 1) % route.Count;
             nodeSearches++;
         }
+
 
         if (indexOfNextNodeType == -1)
         {

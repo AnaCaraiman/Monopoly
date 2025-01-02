@@ -47,6 +47,7 @@ public class Player
         myInfo = playerInfo;
         myInfo.SetPlayerNameAndCash(name, money);
         myToken = token;
+        myInfo.ActivateArrow(false);
     }
 
     public void SetMyCurrentNode(MonopolyNode newNode)
@@ -56,8 +57,12 @@ public class Player
         //IF ITS AI PLAYER
         if (playerType == PlayerType.AI)
         {
+            //check if can build houses
             CheckIfPlayerHasASet();
+            //check for unmortgaged properties
+            //UnMortgageProperty();
         }
+        
     }
 
     public void CollectMoney(int amount)
@@ -255,5 +260,10 @@ public class Player
 
         //HUMAN ONLY
         return money >= price;
+    }
+
+    public void ActivateSelector(bool active)
+    {
+        myInfo.ActivateArrow(active);
     }
 }

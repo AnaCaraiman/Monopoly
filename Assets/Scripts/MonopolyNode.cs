@@ -57,21 +57,21 @@ public class MonopolyNode : MonoBehaviour
 
     //MESSAGE SYSTEM
     public delegate void UpdateMessage(string message);
-
     public static UpdateMessage OnUpdateMessage;
 
     //DRAG A COMMUNITY CARD
     public delegate void DrawCommunityCard(Player player);
-
     public static DrawCommunityCard OnDrawCommunityCard;
 
     //DRAG A CHANCE CARD
     public delegate void DrawChanceCard(Player player);
-
     public static DrawCommunityCard OnDrawChanceCard;
 
-    public Player Owner => owner;
+    //HUMAN INOUT PANEL
+    public delegate void ShowHumanPanel(bool activatePanel, bool activateRollDice, bool activateEndTurn);
+    public static ShowHumanPanel OnShowHumanPanel;
 
+    public Player Owner => owner;
     public void SetOwner(Player newOwner)
     {
         owner = newOwner;
@@ -404,6 +404,8 @@ public class MonopolyNode : MonoBehaviour
         }
         else
         {
+            //SHOW UI
+            OnShowHumanPanel.Invoke(true, GameManager.instance.RolledADouble, !GameManager.instance.RolledADouble);
         }
     }
 
