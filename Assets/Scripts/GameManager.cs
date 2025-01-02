@@ -10,14 +10,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Player> playerList = new List<Player>();
     [SerializeField] private int currentPlayer;
 
-    [Header("Globla Game Settings")] [SerializeField]
+    [Header("Globla Game Settings")]
+    [SerializeField]
     private int maxTurnsInJail = 3;
 
     [SerializeField] private int startMoney = 1500;
     [SerializeField] private int goMoney = 500;
     [SerializeField] private float secondsBeetweenTurns = 3f;
 
-    [Header("Player Info")] [SerializeField]
+    [Header("Player Info")]
+    [SerializeField]
     GameObject playerInfoPrefab;
 
     [SerializeField] private Transform playerPanel; // Where the player info will be displayed
@@ -77,6 +79,7 @@ public class GameManager : MonoBehaviour
                 Quaternion.identity);
             playerList[i].InitializePlayer(gameBoard.route[0], startMoney, playerInfoComponent, newToken);
         }
+        playerList[currentPlayer].ActivateSelector(true);
     }
 
     public void RollDice()
@@ -84,13 +87,14 @@ public class GameManager : MonoBehaviour
         bool allowedToMove = true;
         //RESET LAST ROLL
         rolledDice = new int[2];
+
         rolledDice[0] = Random.Range(1, 7);
         rolledDice[1] = Random.Range(1, 7);
         // rolledDice[0] = 36;
         // rolledDice[1] = 0;
-        
+
         Debug.Log($"{playerList[currentPlayer].name} Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
-        
+
         //DEBUG
         if (alwaysRollDouble)
         {
@@ -138,9 +142,9 @@ public class GameManager : MonoBehaviour
                     //MOVE TO JAIL
                     int indexOnBoard = MonopolyBoard.instance.route.IndexOf(playerList[currentPlayer].MyMonopolyNode);
                     playerList[currentPlayer].GoToJail(indexOnBoard);
-                    
+
                     OnUpdateMessage.Invoke($"{playerList[currentPlayer].name} rolled <b>3 doubles</b> in a row and <b><color=red>is sent to jail!</color></b>");
-                    
+
                     rolledADouble = false;
                     return;
                 }
@@ -180,11 +184,15 @@ public class GameManager : MonoBehaviour
     public void SwitchPlayers()
     {
         currentPlayer++;
+
         doubleRollCount = 0;
         if (currentPlayer >= playerList.Count)
         {
             currentPlayer = 0;
         }
+
+        DeactivateArrows();
+        playerList[currentPlayer].ActivateSelector(true);
 
         if (playerList[currentPlayer].playerType == Player.PlayerType.AI)
         {
@@ -204,5 +212,31 @@ public class GameManager : MonoBehaviour
         int currentTaxCollected = taxPool;
         taxPool = 0;
         return currentTaxCollected;
+    }
+
+    public void RemovePlayer(Player player)
+    {
+        playerList.Remove(player);
+        //check for game over
+        CheckForGameOver();
+    }
+
+    void CheckForGameOver()
+    {
+        if(playerList.Count == 1)
+        {
+            Debug.Log(playerList[0].name + "IS THE WINNER!");
+            OnUpdateMessage.Invoke(playerList[0].name + "IS THE WINNER!");
+            //STOP THE GAME LOOP ANYHOW
+
+            //SHOW UI
+        }
+    }
+    void DeactivateArrows()
+    {
+        foreach (Player player in playerList)
+        {
+            player.ActivateSelector(false);
+        }
     }
 }
