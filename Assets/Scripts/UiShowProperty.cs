@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UiShowProperty : MonoBehaviour
 {
     MonopolyNode nodeReference;
+    Player playerReference;
 
     [Header("Buy Property UI")]
     [SerializeField] GameObject propertyUiPanel;
@@ -29,9 +30,24 @@ public class UiShowProperty : MonoBehaviour
     [SerializeField] TMP_Text properrtyPriceText;
     [SerializeField] TMP_Text playerMoneyText;
 
+    void OnEnable()
+    {
+        MonopolyNode.OnShowPropertyBuyPanel += ShowBuyPropertyUi;
+    }
+    void OnDisable()
+    {
+        MonopolyNode.OnShowPropertyBuyPanel -= ShowBuyPropertyUi;
+    }
+
+    void Start()
+    {
+        propertyUiPanel.SetActive(false);
+    }
+
     void ShowBuyPropertyUi(MonopolyNode node, Player currentPlayer)
     {
         nodeReference = node;
+        playerReference = currentPlayer;
         //TOP PANEL CONTENT
         propertyNameText.text = node.name;
         colorField.color = node.propertyColorField.color;
@@ -60,5 +76,25 @@ public class UiShowProperty : MonoBehaviour
 
         //SHOW THE PANEL
         propertyUiPanel.SetActive(true);
+    }
+
+    public void BuyPropertyButton() //this is called from the buy button
+    {
+        //tell the player to buy the property
+        playerReference.BuyProperty(nodeReference);
+        //maybe close the property card
+
+
+        //make the button not interactable anumore
+        buyPropertyButton.interactable = false;
+    }
+
+    public void ClosePropertyButton() //this is called from the buy button
+    {
+        //close the panel
+        propertyUiPanel.SetActive(false);
+        //clear node reference
+        nodeReference = null;
+        playerReference = null;
     }
 }
