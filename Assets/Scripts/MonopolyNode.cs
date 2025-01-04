@@ -75,6 +75,10 @@ public class MonopolyNode : MonoBehaviour
     public delegate void ShowPropertyBuyPanel(MonopolyNode node, Player player);
     public static ShowPropertyBuyPanel OnShowPropertyBuyPanel;
 
+    //RAILROAD BUY PANEL
+    public delegate void ShowRailroadBuyPanel(MonopolyNode node, Player player);
+    public static ShowRailroadBuyPanel OnShowRailroadBuyPanel;
+
     public Player Owner => owner;
     public void SetOwner(Player newOwner)
     {
@@ -358,7 +362,8 @@ public class MonopolyNode : MonoBehaviour
                     }
                     else if (owner == null)
                     {
-                        //SHOW BUY INTERFACE FOR PROPERTY
+                        //SHOW BUY INTERFACE FOR RAILROAD
+                        OnShowRailroadBuyPanel.Invoke(this, currentPlayer);
                     }
                     else
                     {

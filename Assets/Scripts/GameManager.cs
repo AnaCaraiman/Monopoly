@@ -48,7 +48,10 @@ public class GameManager : MonoBehaviour
     public static ShowHumanPanel OnShowHumanPanel;
 
     //DEBUG
-    public bool alwaysRollDouble = false;
+    [SerializeField] bool alwaysRollDouble = false;
+    [SerializeField] bool forceDiceRolls;
+    [SerializeField] int dice1;
+    [SerializeField] int dice2;
 
     void Awake()
     {
@@ -113,6 +116,13 @@ public class GameManager : MonoBehaviour
             rolledDice[0] = 1;
             rolledDice[1] = 1;
         }
+
+        if (forceDiceRolls)
+        {
+            rolledDice[0] = dice1;
+            rolledDice[1] = dice2;
+        }
+
         //CHECK FOR DOUBLES
         rolledADouble = rolledDice[0] == rolledDice[1];
         //THROW 3 TIMES IN A ROW -> JAIL -> END TURN
