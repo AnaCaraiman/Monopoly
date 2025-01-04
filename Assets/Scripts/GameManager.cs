@@ -105,8 +105,8 @@ public class GameManager : MonoBehaviour
 
         rolledDice[0] = Random.Range(1, 7);
         rolledDice[1] = Random.Range(1, 7);
-         //rolledDice[0] = 1;
-         //rolledDice[1] = 2;
+        //rolledDice[0] = 3;
+        //rolledDice[1] = 2;
 
         Debug.Log($"{playerList[currentPlayer].name} Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
 
