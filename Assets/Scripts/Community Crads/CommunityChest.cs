@@ -6,7 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using System.Net.Sockets;
 using UnityEngine.UI;
-public class CommunityCard : MonoBehaviour
+public class CommunityChest : MonoBehaviour
 {
     [SerializeField] List<SCR_CommunityCard> cards = new List<SCR_CommunityCard>();
     [SerializeField] TMP_Text cardText;
@@ -19,6 +19,10 @@ public class CommunityCard : MonoBehaviour
     //CURRENT CARD AND CURRENT PLAYER
     SCR_CommunityCard pickedCard;
     Player currentPlayer;
+
+    //HUMAN INOUT PANEL
+    public delegate void ShowHumanPanel(bool activatePanel, bool activateRollDice, bool activateEndTurn);
+    public static ShowHumanPanel OnShowHumanPanel;
 
     private void OnEnable()
     {
@@ -165,8 +169,11 @@ public class CommunityCard : MonoBehaviour
             }
         }
         else //HUMAN INPUT
-        { 
-            
+        {
+            if (!isMoving)
+            {
+                OnShowHumanPanel.Invoke(true, GameManager.instance.RolledADouble, !GameManager.instance.RolledADouble);
+            }
         }
     }
 }

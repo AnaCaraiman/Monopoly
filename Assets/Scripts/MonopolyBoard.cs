@@ -4,7 +4,6 @@ using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-
 using System.Linq;
 
 public class MonopolyBoard : MonoBehaviour
@@ -29,8 +28,8 @@ public class MonopolyBoard : MonoBehaviour
 
     void OnValidate()
     {
-        route.Clear();  
-        foreach(Transform node in transform.GetComponentInChildren<Transform>())
+        route.Clear();
+        foreach (Transform node in transform.GetComponentInChildren<Transform>())
         {
             route.Add(node.GetComponent<MonopolyNode>());
         }
@@ -38,20 +37,20 @@ public class MonopolyBoard : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(route.Count > 1) 
+        if (route.Count > 1)
         {
             for (int i = 0; i < route.Count; i++)
             {
                 Vector3 current = route[i].transform.position;
-                Vector3 next = (i + 1 < route.Count) ? route[i+1].transform.position : current;
+                Vector3 next = (i + 1 < route.Count) ? route[i + 1].transform.position : current;
 
                 Gizmos.color = Color.green;
                 Gizmos.DrawLine(current, next);
-            }    
+            }
         }
     }
 
-    public void MovePlayerToken(int steps,Player player)
+    public void MovePlayerToken(int steps, Player player)
     {
         StartCoroutine(MovePlayerInSteps(steps, player));
     }
@@ -60,7 +59,9 @@ public class MonopolyBoard : MonoBehaviour
     {
         int indexOfNextNodeType = -1; //index to find
         int indexOnBoard = route.IndexOf(player.MyMonopolyNode); //position of player
-        int startSearchIndex = (indexOnBoard+1) % route.Count;
+
+        int startSearchIndex = (indexOnBoard + 1) % route.Count;
+        
         int nodeSearches = 0; //amount of fields searched
 
         while (indexOfNextNodeType == -1 && nodeSearches < route.Count)
@@ -69,9 +70,12 @@ public class MonopolyBoard : MonoBehaviour
             {
                 indexOfNextNodeType = startSearchIndex;
             }
+
             startSearchIndex = (startSearchIndex + 1) % route.Count;
             nodeSearches++;
         }
+
+
         if (indexOfNextNodeType == -1)
         {
             Debug.LogError("Node not found");
@@ -134,17 +138,18 @@ public class MonopolyBoard : MonoBehaviour
             }
         }
 
-        if(moveOverGo){
+        if (moveOverGo)
+        {
             player.CollectMoney(GameManager.instance.GetGoMoney);
         }
 
         player.SetMyCurrentNode(route[indexOnBoard]);
-
     }
 
     bool MoveToNextNode(GameObject tokenToMove, Vector3 endPos, float speed)
     {
-        return endPos != (tokenToMove.transform.position = Vector3.MoveTowards(tokenToMove.transform.position, endPos, speed * Time.deltaTime));
+        return endPos != (tokenToMove.transform.position =
+            Vector3.MoveTowards(tokenToMove.transform.position, endPos, speed * Time.deltaTime));
     }
 
     public (List<MonopolyNode> list, bool allSame) PlayerHasAllNodesOfSet(MonopolyNode node)
@@ -159,6 +164,7 @@ public class MonopolyBoard : MonoBehaviour
                 return (nodeSet.nodesInSetList, allSame);
             }
         }
+
         return (null, allSame);
     }
 }
