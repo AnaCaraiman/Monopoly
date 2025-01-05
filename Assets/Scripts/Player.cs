@@ -344,7 +344,7 @@ public class Player
     }
 
     //--------------------------------BUILD HOUSES EVENLY ON NODE SETS--------------------------------------
-    void BuildHousesOrHotelEvenly(List<MonopolyNode> nodesToBuildOn)
+    internal void BuildHousesOrHotelEvenly(List<MonopolyNode> nodesToBuildOn)
     {
         int minHouses = int.MaxValue;
         int maxHouses = int.MinValue;
@@ -376,8 +376,26 @@ public class Player
         }
     }
 
+    internal void SellHouseEvenly(List<MonopolyNode> nodesToSellFrom)
+    {
+        int minHouses = int.MaxValue;
+        foreach (var node in nodesToSellFrom)
+        {
+            minHouses = Mathf.Min(minHouses, node.NumberOfHouses);  
+        }
+        //SELL HOUSE
+        for (int i = nodesToSellFrom.Count - 1; i >= 0; i--)
+        {
+            if(nodesToSellFrom[i].NumberOfHouses > minHouses)
+            {
+                CollectMoney(nodesToSellFrom[i].SellHouseOrHotel());
+                break;
+            }
+        }
+    }
+
     //--------------------------------HOUSES AND HOTELS - CAN AFFORD AND COUNT--------------------------------------
-    bool CanAffordHouse(int price)
+    public bool CanAffordHouse(int price)
     {
         if (playerType == PlayerType.AI)
         {
