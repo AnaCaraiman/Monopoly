@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1737434292329831558}
   - component: {fileID: 8046704651356154041}
   m_Layer: 5
-  m_Name: Buy House Button (1)
+  m_Name: Sell House Button (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 2575260838016531437}
   - component: {fileID: 2498613080079535051}
   - component: {fileID: 7489039701339671213}
+  - component: {fileID: 873249120506628567}
   m_Layer: 5
   m_Name: Property Prefab
   m_TagString: Untagged
@@ -274,6 +275,24 @@ MonoBehaviour:
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &873249120506628567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749536537560206861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e4dfb4a7aa2be54a87d12b19fc55c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardHolder: {fileID: 3950676395454335061}
+  cardPrefab: {fileID: 2517421572796607631, guid: ec055811e0f76b141b1581acd476032b, type: 3}
+  buyHouseButton: {fileID: 4860570558290460125}
+  sellHouseButton: {fileID: 1737434292329831558}
+  buyHousePriceText: {fileID: 830441226866061163}
+  sellHousePriceText: {fileID: 3784884948170348926}
 --- !u!1 &1926986567341103976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,7 +1040,7 @@ GameObject:
   - component: {fileID: 3917534936945385216}
   - component: {fileID: 830441226866061163}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Price Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1260,7 +1279,7 @@ GameObject:
   - component: {fileID: 3183406572508546252}
   - component: {fileID: 3784884948170348926}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Sell Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

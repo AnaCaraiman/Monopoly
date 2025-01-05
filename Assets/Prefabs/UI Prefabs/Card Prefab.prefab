@@ -270,7 +270,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1776234613652303891}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3301736771513651044}
+        m_TargetAssemblyTypeName: ManageCardUi, Assembly-CSharp
+        m_MethodName: MortgageButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2517421572796607631
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +294,7 @@ GameObject:
   - component: {fileID: 3577109444604939275}
   - component: {fileID: 4000260317474112507}
   - component: {fileID: 1298203459214449780}
+  - component: {fileID: 3301736771513651044}
   m_Layer: 5
   m_Name: Card Prefab
   m_TagString: Untagged
@@ -349,6 +362,29 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3301736771513651044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2517421572796607631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a656690949d285244ac9ca307f3949f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorField: {fileID: 2080188982521137333}
+  buildings:
+  - {fileID: 7312036832788785613}
+  - {fileID: 6605050136737241152}
+  - {fileID: 9025438471069700127}
+  - {fileID: 770580633768464728}
+  - {fileID: 3483424733664090201}
+  mortgageImage: {fileID: 6474464119446268}
+  mortgageValueText: {fileID: 4249189495827316062}
+  mortgageButton: {fileID: 5272569497501326279}
+  unMortgageButton: {fileID: 2485468821126368329}
 --- !u!1 &2860489375917455591
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +792,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1065600561827749856}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3301736771513651044}
+        m_TargetAssemblyTypeName: ManageCardUi, Assembly-CSharp
+        m_MethodName: UnMortgageButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6605050136737241152
 GameObject:
   m_ObjectHideFlags: 0
