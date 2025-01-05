@@ -71,10 +71,23 @@ public class MonopolyNode : MonoBehaviour
     public delegate void ShowHumanPanel(bool activatePanel, bool activateRollDice, bool activateEndTurn);
     public static ShowHumanPanel OnShowHumanPanel;
 
+    //PROPERTY BUY PANEL
+    public delegate void ShowPropertyBuyPanel(MonopolyNode node, Player player);
+    public static ShowPropertyBuyPanel OnShowPropertyBuyPanel;
+
+    //RAILROAD BUY PANEL
+    public delegate void ShowRailroadBuyPanel(MonopolyNode node, Player player);
+    public static ShowRailroadBuyPanel OnShowRailroadBuyPanel;
+
+    //UTILITY BUY PANEL
+    public delegate void ShowUtilityBuyPanel(MonopolyNode node, Player player);
+    public static ShowUtilityBuyPanel OnShowUtilityBuyPanel;
+
     public Player Owner => owner;
     public void SetOwner(Player newOwner)
     {
         owner = newOwner;
+        OnOwnerUpdated();
     }
 
     void OnValidate()
@@ -237,8 +250,9 @@ public class MonopolyNode : MonoBehaviour
                     if (owner != null && owner != currentPlayer && !isMortgaged)
                     {
                         //PAY RENT TO SOMEBODY
-
-                        //CALCUATE RENT
+                        int rentToPay = CalculatePropertyRent();
+                        //PAY RENT TO OWNER
+                        currentPlayer.PayRent(rentToPay, owner);
 
                         //PAY RENT TO OWNER
 
@@ -247,6 +261,7 @@ public class MonopolyNode : MonoBehaviour
                     else if (owner == null)
                     {
                         //SHOW BUY INTERFACE FOR PROPERTY
+                        OnShowPropertyBuyPanel.Invoke(this, currentPlayer);
                     }
                     else
                     {
@@ -290,17 +305,18 @@ public class MonopolyNode : MonoBehaviour
                     //IF IT IS OWNED AND WE ARE NOT OWNER AND IS NOT MORTGAGED
                     if (owner != null && owner != currentPlayer && !isMortgaged)
                     {
-                        //PAY RENT TO SOMEBODY
-
                         //CALCUATE RENT
-
+                        int rentToPay = CalculateUtilityRent();
+                        currentRent = rentToPay;
                         //PAY RENT TO OWNER
+                        currentPlayer.PayRent(rentToPay, owner);
 
                         //SHOW A MESSAGE
                     }
                     else if (owner == null)
                     {
                         //SHOW BUY INTERFACE FOR PROPERTY
+                        OnShowUtilityBuyPanel.Invoke(this, currentPlayer);
                     }
                     else
                     {
@@ -342,16 +358,17 @@ public class MonopolyNode : MonoBehaviour
                     if (owner != null && owner != currentPlayer && !isMortgaged)
                     {
                         //PAY RENT TO SOMEBODY
-
-                        //CALCUATE RENT
-
+                        int rentToPay = CalculateRailroadRent();
+                        currentRent = rentToPay;
                         //PAY RENT TO OWNER
+                        currentPlayer.PayRent(rentToPay, owner);
 
                         //SHOW A MESSAGE
                     }
                     else if (owner == null)
                     {
-                        //SHOW BUY INTERFACE FOR PROPERTY
+                        //SHOW BUY INTERFACE FOR RAILROAD
+                        OnShowRailroadBuyPanel.Invoke(this, currentPlayer);
                     }
                     else
                     {
@@ -552,13 +569,15 @@ public class MonopolyNode : MonoBehaviour
         }
     }
 
-    public void SellHouseOrHotel()
+    public int SellHouseOrHotel()
     {
         if (monopolyNodeType == MonopolyNodeType.Property && numberOfHouses > 0)
         {
             numberOfHouses--;
             VisualizeHouses();
+            return houseCost / 2;
         }
+        return 0;
     }
 
     public void ResetNode()
@@ -580,6 +599,7 @@ public class MonopolyNode : MonoBehaviour
         }
 
         //RESET THE OWNER
+        owner.RemoveProperty(this);
         //REMOVE PROPERTY FROM OWNER
         owner.name = "";
 

@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public int GetGoMoney => goMoney;
     public float SecondsBeetweenTurns => secondsBeetweenTurns;
     public List<Player> GetPlayers => playerList;
+    public Player GetCurrentPlayer => playerList[currentPlayer];
 
     //MESSAGE SYSTEM
     public delegate void UpdateMessage(string message);
@@ -48,7 +49,10 @@ public class GameManager : MonoBehaviour
     public static ShowHumanPanel OnShowHumanPanel;
 
     //DEBUG
-    public bool alwaysRollDouble = false;
+    [SerializeField] bool alwaysRollDouble = false;
+    [SerializeField] bool forceDiceRolls;
+    [SerializeField] int dice1;
+    [SerializeField] int dice2;
 
     void Awake()
     {
@@ -100,10 +104,10 @@ public class GameManager : MonoBehaviour
         //RESET LAST ROLL
         rolledDice = new int[2];
 
-        //rolledDice[0] = Random.Range(1, 7);
-        //rolledDice[1] = Random.Range(1, 7);
-         rolledDice[0] = 1;
-         rolledDice[1] = 1;
+        rolledDice[0] = Random.Range(1, 7);
+        rolledDice[1] = Random.Range(1, 7);
+        //rolledDice[0] = 3;
+        //rolledDice[1] = 2;
 
         Debug.Log($"{playerList[currentPlayer].name} Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
 
@@ -113,6 +117,13 @@ public class GameManager : MonoBehaviour
             rolledDice[0] = 1;
             rolledDice[1] = 1;
         }
+
+        if (forceDiceRolls)
+        {
+            rolledDice[0] = dice1;
+            rolledDice[1] = dice2;
+        }
+
         //CHECK FOR DOUBLES
         rolledADouble = rolledDice[0] == rolledDice[1];
         //THROW 3 TIMES IN A ROW -> JAIL -> END TURN

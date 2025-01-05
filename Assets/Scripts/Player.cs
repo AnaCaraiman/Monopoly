@@ -22,6 +22,7 @@ public class Player
     int numTurnsInJail;
     [SerializeField] private GameObject myToken;
     [SerializeField] private List<MonopolyNode> myMonopolyNodes = new List<MonopolyNode>();
+    public List<MonopolyNode> GetMonopolyNodes => myMonopolyNodes;
 
     // PLAYER INFO
     private PlayerInfo myInfo;
@@ -37,8 +38,11 @@ public class Player
 
     //MESSAGE SYSTEM
     public delegate void UpdateMessage(string message);
-
     public static UpdateMessage OnUpdateMessage;
+
+    //HUMAN INOUT PANEL
+    public delegate void ShowHumanPanel(bool activatePanel, bool activateRollDice, bool activateEndTurn);
+    public static ShowHumanPanel OnShowHumanPanel;
 
     public void InitializePlayer(MonopolyNode startingNode, int startMoney, PlayerInfo playerInfo, GameObject token)
     {
@@ -60,6 +64,7 @@ public class Player
             //check if can build houses
             CheckIfPlayerHasASet();
             //check for unmortgaged properties
+            UnMortgageProperties();
             //UnMortgageProperty();
         }
         
@@ -102,7 +107,16 @@ public class Player
         //DON'T HAVE ENOUGH MONEY
         if (money < rentAmount)
         {
-            //HANDLE INSUFFICIENT FUNDS > AI
+            if (playerType == PlayerType.AI)
+            {
+                //HANDLE INSUFFICIENT FUNDS > AI
+                HandleInsufficientFunds(rentAmount);
+            }
+            else
+            {
+                //disable human turn and roll dice
+                OnShowHumanPanel.Invoke(true, false, false);
+            }
         }
 
         money -= rentAmount;
@@ -113,9 +127,19 @@ public class Player
 
     internal void PayMoney(int amount)
     {
+        //dont have n\enough money
         if (money < amount)
         {
-            //HANDLE INSUFFICIENT FUNDS > AI
+            if (playerType == PlayerType.AI)
+            {
+                //HANDLE INSUFFICIENT FUNDS > AI
+                HandleInsufficientFunds(amount);
+            }
+            else
+            {
+                //disable human turn and roll dice
+                OnShowHumanPanel.Invoke(true, false, false);
+            }
         }
 
         money -= amount;
@@ -189,6 +213,91 @@ public class Player
         return allBuildings;
     }
 
+    //handle insufficient funds
+    void HandleInsufficientFunds(int amountToPay)
+    {
+        int housesToSell = 0;
+        int allHouses = 0;
+        int propertiesToMortgage = 0;
+        int allPropertiesToMortgage = 0;
+
+        //count all houses
+        foreach(var node in myMonopolyNodes)
+        {
+            allHouses += node.NumberOfHouses;
+        }
+
+        //loop through all properties and try to sell as much as needed
+        while(money < amountToPay && allHouses > 0)
+        {
+            foreach(var node in myMonopolyNodes)
+            {
+                housesToSell = node.NumberOfHouses;
+                if(housesToSell > 0)
+                {
+                    CollectMoney(node.SellHouseOrHotel());
+                    allHouses--;
+                    //do we need more money?
+                    if(money >= amountToPay)
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+
+        //MORTGAGE
+        foreach(var node in myMonopolyNodes)
+        {
+            allPropertiesToMortgage+=(!node.IsMortgaged) ? 1 : 0;
+        }
+
+        //loop through all properties and try to sell as much as needed
+        while(money < amountToPay && allPropertiesToMortgage > 0)
+        {
+            foreach(var node in myMonopolyNodes)
+            {
+                propertiesToMortgage = (!node.IsMortgaged) ? 1 : 0;
+                if(propertiesToMortgage > 0)
+                {
+                    CollectMoney(node.MortgageProperty());
+                    allPropertiesToMortgage--;
+                    //do we need more money?
+                    if(money >= amountToPay)
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+        //we go bankrupt if we reach this point
+        Bankrupt();
+
+    }
+
+    void Bankrupt()
+    {
+        //REMOVE PLAYER FROM THE GAME
+        //GameManager.instance.RemovePlayer(this);
+
+        //SEND A MESSAGE TO THE SYSTEM
+        OnUpdateMessage.Invoke($"{name} is bankrupt!");
+
+        //clear all what the player has owned
+        for (int i = myMonopolyNodes.Count - 1; i >= 0; i--)
+        {
+            myMonopolyNodes[i].ResetNode();
+        }
+
+        //remove the player from the game
+        GameManager.instance.RemovePlayer(this);
+
+    }
+
+    public void RemoveProperty(MonopolyNode node)
+    {
+        myMonopolyNodes.Remove(node);
+    }
     //--------------------------------CHECK IF PLAYER HAS A PROPERTY SET--------------------------------------
     void CheckIfPlayerHasASet()
     {
@@ -217,8 +326,26 @@ public class Player
         }
     }
 
+    void UnMortgageProperties()
+    {
+        //for AI
+        foreach (var node in myMonopolyNodes)
+        {
+            if(node.IsMortgaged)
+            {
+                int cost = node.MortgageValue + (int)(node.MortgageValue * 0.1f); //10% interest
+                //can we afford to unmortgage?
+                if(money >= aiMoneySavity + cost)
+                {
+                    PayMoney(cost);
+                    node.UnMortgageProperty();
+                }
+            }
+        }
+    }
+
     //--------------------------------BUILD HOUSES EVENLY ON NODE SETS--------------------------------------
-    void BuildHousesOrHotelEvenly(List<MonopolyNode> nodesToBuildOn)
+    internal void BuildHousesOrHotelEvenly(List<MonopolyNode> nodesToBuildOn)
     {
         int minHouses = int.MaxValue;
         int maxHouses = int.MinValue;
@@ -250,8 +377,32 @@ public class Player
         }
     }
 
+    internal void SellHouseEvenly(List<MonopolyNode> nodesToSellFrom)
+    {
+        int minHouses = int.MaxValue;
+        bool houseSold = false;
+        foreach (var node in nodesToSellFrom)
+        {
+            minHouses = Mathf.Min(minHouses, node.NumberOfHouses);  
+        }
+        //SELL HOUSE
+        for (int i = nodesToSellFrom.Count - 1; i >= 0; i--)
+        {
+            if(nodesToSellFrom[i].NumberOfHouses > minHouses)
+            {
+                CollectMoney(nodesToSellFrom[i].SellHouseOrHotel());
+                houseSold = true;
+                break;
+            }
+        }
+        if(!houseSold)
+        {
+            CollectMoney(nodesToSellFrom[nodesToSellFrom.Count-1].SellHouseOrHotel());
+        }
+    }
+
     //--------------------------------HOUSES AND HOTELS - CAN AFFORD AND COUNT--------------------------------------
-    bool CanAffordHouse(int price)
+    public bool CanAffordHouse(int price)
     {
         if (playerType == PlayerType.AI)
         {
