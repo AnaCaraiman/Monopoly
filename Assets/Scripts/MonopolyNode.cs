@@ -575,8 +575,9 @@ public class MonopolyNode : MonoBehaviour
         {
             numberOfHouses--;
             VisualizeHouses();
+            return houseCost / 2;
         }
-        return houseCost / 2;
+        return 0;
     }
 
     public void ResetNode()

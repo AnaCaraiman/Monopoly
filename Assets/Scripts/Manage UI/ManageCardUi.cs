@@ -15,11 +15,13 @@ public class ManageCardUi : MonoBehaviour
 
     Player playerReference;
     MonopolyNode nodeReference;
+    ManagePropertyUi propertyReference;
 
-    public void SetCard(MonopolyNode node, Player owner)
+    public void SetCard(MonopolyNode node, Player owner, ManagePropertyUi propertSet)
     {
         nodeReference = node;
         playerReference = owner;
+        propertyReference = propertSet;
 
         //SET COLOR
         if (node.propertyColorField != null)
@@ -47,7 +49,7 @@ public class ManageCardUi : MonoBehaviour
         //SHOW MORTGAGE IMAGE
         mortgageImage.SetActive(node.IsMortgaged);
         //TEXT UPDATE
-        mortgageValueText.text = "Mortgage Value = " + node.MortgageValue + " RON";
+        mortgageValueText.text = "Mortgage Value <br><b>$ " + node.MortgageValue + " RON";
 
         //BUTTONS
         mortgageButton.interactable = !node.IsMortgaged;
@@ -56,6 +58,15 @@ public class ManageCardUi : MonoBehaviour
 
     public void MortgageButton()
     {
+        if(!propertyReference.CheckIfMortgageAllowed())
+        {
+            //ERROR MESSAGE
+            return;
+        }
+        {
+            //ERROR MESSAGE
+            return;
+        }
         if (nodeReference.IsMortgaged)
         {
             //ERROR MESSAGE
@@ -78,5 +89,6 @@ public class ManageCardUi : MonoBehaviour
         nodeReference.UnMortgageProperty();
         mortgageImage.SetActive(false);
         mortgageButton.interactable = true;
+        unMortgageButton.interactable = false;
     }
 }
