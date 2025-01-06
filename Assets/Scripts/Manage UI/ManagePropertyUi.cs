@@ -41,6 +41,9 @@ public class ManagePropertyUi : MonoBehaviour
     {
         if (!CheckIfBuyAllowed())
         {
+            //ERROR MESSAGE
+            string message = "One or more properties are mortgaged, you can't build a house";
+            ManageUi.instance.UpdateSystemMessage(message);
             return;
         }
         if (playerReference.CanAffordHouse(nodesInSet[0].houseCost))
@@ -48,12 +51,17 @@ public class ManagePropertyUi : MonoBehaviour
             playerReference.BuildHousesOrHotelEvenly(nodesInSet);
             //UPDATE MONEY TEXT
             UpdateHouseVisuals();
+            string message = "You build a house";
+            ManageUi.instance.UpdateSystemMessage(message);
         }
         else
         {
             //CANT AFFOD HOUSE
+            string message = "You don't have enough money";
+            ManageUi.instance.UpdateSystemMessage(message);
         }
         sellHouseButton.interactable = CheckIfSellAllowed();
+        ManageUi.instance.UpdateMoneyText();
     }
 
     public void SellHouseButton()
@@ -63,6 +71,7 @@ public class ManagePropertyUi : MonoBehaviour
         UpdateHouseVisuals();
 
         sellHouseButton.interactable = CheckIfSellAllowed();
+        ManageUi.instance.UpdateMoneyText();
     }
 
     bool CheckIfSellAllowed()
@@ -95,7 +104,7 @@ public class ManagePropertyUi : MonoBehaviour
         {
             return false;
         }
-        return false;
+        return true;
     }
 
     void UpdateHouseVisuals()

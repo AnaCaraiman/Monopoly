@@ -229,7 +229,7 @@ public class Player
     }
 
     //handle insufficient funds
-    void HandleInsufficientFunds(int amountToPay)
+    public void HandleInsufficientFunds(int amountToPay)
     {
         int housesToSell = 0;
         int allHouses = 0;

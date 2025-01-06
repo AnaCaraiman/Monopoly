@@ -50,33 +50,39 @@ public class ManageCardUi : MonoBehaviour
         if(!propertyReference.CheckIfMortgageAllowed())
         {
             //ERROR MESSAGE
-            return;
-        }
-        {
-            //ERROR MESSAGE
+            string message = "You have houses on one or more properties, you can't mortgage!";
+            ManageUi.instance.UpdateSystemMessage(message);
             return;
         }
         if (nodeReference.IsMortgaged)
         {
             //ERROR MESSAGE
+            string message = "It's mortgaged already!";
+            ManageUi.instance.UpdateSystemMessage(message);
             return;
         }
+        
         playerReference.CollectMoney(nodeReference.MortgageProperty());
         mortgageImage.SetActive(true);
         mortgageButton.interactable = false;
         unMortgageButton.interactable = true;
+        ManageUi.instance.UpdateMoneyText();
     }
 
     public void UnMortgageButton()
     {
         if (!nodeReference.IsMortgaged)
         {
-            //ERROR MESSAGE
+            //ERROR MESSAGE OR SUCH
+            string message = "It's unmortgaged already!";
+            ManageUi.instance.UpdateSystemMessage(message);
             return;
         }
         if(playerReference.ReadMoney < nodeReference.MortgageValue)
         {
             //ERROR MESSAGE
+            string message = "You don't have enough money!";
+            ManageUi.instance.UpdateSystemMessage(message);
             return;
         }
         playerReference.PayMoney(nodeReference.MortgageValue);
@@ -84,6 +90,7 @@ public class ManageCardUi : MonoBehaviour
         mortgageImage.SetActive(false);
         mortgageButton.interactable = true;
         unMortgageButton.interactable = false;
+        ManageUi.instance.UpdateMoneyText();
     }
 
     public void ShowBuildings()
