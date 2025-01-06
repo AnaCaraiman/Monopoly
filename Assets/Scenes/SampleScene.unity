@@ -565,7 +565,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 32654038}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 53570157}
+        m_TargetAssemblyTypeName: ManageUi, Assembly-CSharp
+        m_MethodName: AutoHandleFunds
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &32654038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1157,6 +1169,7 @@ MonoBehaviour:
   propertyGrid: {fileID: 1581079118}
   propertySetPrefab: {fileID: 749536537560206861, guid: 5a498015367b918419a5b3fad58a94a2, type: 3}
   yourMoneyText: {fileID: 640640658}
+  systemMessageText: {fileID: 894979166}
 --- !u!1 &54597791
 GameObject:
   m_ObjectHideFlags: 0
@@ -3724,7 +3737,7 @@ MonoBehaviour:
   - {fileID: 2569138251018583920, guid: b8347be5ecb2c8d07bed282d8a5834e3, type: 3}
   - {fileID: 4500234306836694006, guid: 4db3264bf1e5f60fabcc10c6cacef6f5, type: 3}
   alwaysRollDouble: 0
-  forceDiceRolls: 0
+  forceDiceRolls: 1
   dice1: 6
   dice2: 6
 --- !u!1 &240363124
@@ -13004,7 +13017,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 877170376}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 53570157}
+        m_TargetAssemblyTypeName: ManageUi, Assembly-CSharp
+        m_MethodName: CloseManager
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &877170376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13556,7 +13581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Message here..
+  m_text: ...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13565,8 +13590,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278979597
+  m_fontColor: {r: 0.04905659, g: 0.046187244, b: 0.046187244, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -13690,7 +13715,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Collect 1000
+  m_text: Collect 500
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17813,8 +17838,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278979597
+  m_fontColor: {r: 0.04905659, g: 0.046187244, b: 0.046187244, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -30169,7 +30194,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &2035774090
 Canvas:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class ManageUi : MonoBehaviour
     Player playerReference;
     List<GameObject> propertyPrefabs = new List<GameObject>();
     [SerializeField] TMP_Text yourMoneyText;
+    [SerializeField] TMP_Text systemMessageText;
 
     private void Awake()
     {
@@ -28,18 +29,42 @@ public class ManageUi : MonoBehaviour
      public void OpenManager() // call from manage button
     {
         playerReference = GameManager.instance.GetCurrentPlayer;
+
+        CreateProperties();
+
+        managePanel.SetActive(true);
+        UpdateMoneyText();
+    }
+
+    public void CloseManager() 
+    {
+        managePanel.SetActive(false);
+        ClearProperties();
+    }
+
+    void ClearProperties()
+    {
+        for (int i = propertyPrefabs.Count - 1; i >= 0; i--)
+        {
+            Destroy(propertyPrefabs[i]);
+        }
+        propertyPrefabs.Clear();
+    }
+
+    void CreateProperties()
+    {
         //get all nodes as node sets
         List<MonopolyNode> processedSet = null;
 
-        foreach ( var node in playerReference.GetMonopolyNodes)
+        foreach (var node in playerReference.GetMonopolyNodes)
         {
             var (list, allsame) = MonopolyBoard.instance.PlayerHasAllNodesOfSet(node);
             List<MonopolyNode> nodeSet = new List<MonopolyNode>();
             nodeSet.AddRange(list);
 
-            if(nodeSet != null && list != processedSet)
+            if (nodeSet != null && list != processedSet)
             {
-                
+
                 processedSet = list;
 
                 nodeSet.RemoveAll(n => n.Owner != playerReference);
@@ -51,23 +76,31 @@ public class ManageUi : MonoBehaviour
                 propertyPrefabs.Add(newPropertySet);
             }
         }
-        managePanel.SetActive(true);
-        UpdateMoneyText();
-    }
-
-    public void CloseManager() 
-    {
-        managePanel.SetActive(false);
-        for (int i = propertyPrefabs.Count - 1; i >= 0; i--)
-        {
-            Destroy(propertyPrefabs[i]);
-        }
-        propertyPrefabs.Clear();
     }
 
     public void UpdateMoneyText()
     {
         string showMoney = (playerReference.ReadMoney >= 0) ? "<color=green>RON" + playerReference.ReadMoney : "<color=red>RON" + playerReference.ReadMoney;
         yourMoneyText.text = "<color=black>Your Money: </color>" + showMoney;
+    }
+
+    public void UpdateSystemMessage(string message)
+    {
+        systemMessageText.text = message;
+    }
+
+    public void AutoHandleFunds()//call from button
+    {
+        if(playerReference.ReadMoney > 0)
+        {
+            UpdateSystemMessage("You don't need to do that, you have enough money!");
+            return;
+        }
+        playerReference.HandleInsufficientFunds(Mathf.Abs(playerReference.ReadMoney));
+        //update the ui
+        ClearProperties();
+        CreateProperties();
+        //update system message
+        UpdateMoneyText();
     }
 }

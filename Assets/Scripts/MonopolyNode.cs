@@ -167,7 +167,6 @@ public class MonopolyNode : MonoBehaviour
         {
             propertyImage.SetActive(false);
         }
-
         return mortgageValue;
     }
 
