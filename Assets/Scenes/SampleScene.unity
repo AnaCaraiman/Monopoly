@@ -1156,6 +1156,7 @@ MonoBehaviour:
   managePanel: {fileID: 393369752}
   propertyGrid: {fileID: 1581079118}
   propertySetPrefab: {fileID: 749536537560206861, guid: 5a498015367b918419a5b3fad58a94a2, type: 3}
+  yourMoneyText: {fileID: 640640658}
 --- !u!1 &54597791
 GameObject:
   m_ObjectHideFlags: 0
@@ -3723,7 +3724,7 @@ MonoBehaviour:
   - {fileID: 2569138251018583920, guid: b8347be5ecb2c8d07bed282d8a5834e3, type: 3}
   - {fileID: 4500234306836694006, guid: 4db3264bf1e5f60fabcc10c6cacef6f5, type: 3}
   alwaysRollDouble: 0
-  forceDiceRolls: 1
+  forceDiceRolls: 0
   dice1: 6
   dice2: 6
 --- !u!1 &240363124
@@ -15681,7 +15682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.62200004, y: 0.032333333}
   m_AnchorMax: {x: 0.97550017, y: 0.7723334}
-  m_AnchoredPosition: {x: -2.065184, y: -1.4299929}
+  m_AnchoredPosition: {x: -2.0651855, y: -1.4300537}
   m_SizeDelta: {x: 3.869995, y: 14.859985}
   m_Pivot: {x: 0.49999988, y: 0.49999994}
 --- !u!114 &1025721060
@@ -24991,7 +24992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.58900005, y: 0.032333333}
   m_AnchorMax: {x: 0.6162709, y: 0.7723334}
-  m_AnchoredPosition: {x: -5.7419434, y: -1.4299927}
+  m_AnchoredPosition: {x: -5.7419434, y: -1.4299316}
   m_SizeDelta: {x: -9.4841, y: 14.859985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1667258286

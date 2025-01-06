@@ -54,6 +54,7 @@ public class ManagePropertyUi : MonoBehaviour
             //CANT AFFOD HOUSE
         }
         sellHouseButton.interactable = CheckIfSellAllowed();
+        ManageUi.instance.UpdateMoneyText();
     }
 
     public void SellHouseButton()
@@ -63,6 +64,7 @@ public class ManagePropertyUi : MonoBehaviour
         UpdateHouseVisuals();
 
         sellHouseButton.interactable = CheckIfSellAllowed();
+        ManageUi.instance.UpdateMoneyText();
     }
 
     bool CheckIfSellAllowed()

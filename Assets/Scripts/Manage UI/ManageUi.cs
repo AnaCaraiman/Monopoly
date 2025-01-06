@@ -2,13 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TMPro;
+
 public class ManageUi : MonoBehaviour
 {
+    public static ManageUi instance;
+
     [SerializeField] GameObject managePanel; // to show and hide
     [SerializeField] Transform propertyGrid; // to parent property sets to it
     [SerializeField] GameObject propertySetPrefab;
     Player playerReference;
     List<GameObject> propertyPrefabs = new List<GameObject>();
+    [SerializeField] TMP_Text yourMoneyText;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -42,6 +52,7 @@ public class ManageUi : MonoBehaviour
             }
         }
         managePanel.SetActive(true);
+        UpdateMoneyText();
     }
 
     public void CloseManager() 
@@ -52,5 +63,11 @@ public class ManageUi : MonoBehaviour
             Destroy(propertyPrefabs[i]);
         }
         propertyPrefabs.Clear();
+    }
+
+    public void UpdateMoneyText()
+    {
+        string showMoney = (playerReference.ReadMoney >= 0) ? "<color=green>RON" + playerReference.ReadMoney : "<color=red>RON" + playerReference.ReadMoney;
+        yourMoneyText.text = "<color=black>Your Money: </color>" + showMoney;
     }
 }

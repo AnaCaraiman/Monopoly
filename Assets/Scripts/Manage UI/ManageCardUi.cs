@@ -65,6 +65,7 @@ public class ManageCardUi : MonoBehaviour
         mortgageImage.SetActive(true);
         mortgageButton.interactable = false;
         unMortgageButton.interactable = true;
+        ManageUi.instance.UpdateMoneyText();
     }
 
     public void UnMortgageButton()
@@ -84,6 +85,7 @@ public class ManageCardUi : MonoBehaviour
         mortgageImage.SetActive(false);
         mortgageButton.interactable = true;
         unMortgageButton.interactable = false;
+        ManageUi.instance.UpdateMoneyText();
     }
 
     public void ShowBuildings()
