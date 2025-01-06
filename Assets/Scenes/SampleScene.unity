@@ -3710,11 +3710,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameBoard: {fileID: 2083298812}
   playerList:
-  - playerType: 0
-    name: OCTO
-    myToken: {fileID: 0}
-    myMonopolyNodes:
-    - {fileID: 0}
   - playerType: 1
     name: AI_BOT
     myToken: {fileID: 0}
@@ -3737,7 +3732,7 @@ MonoBehaviour:
   - {fileID: 2569138251018583920, guid: b8347be5ecb2c8d07bed282d8a5834e3, type: 3}
   - {fileID: 4500234306836694006, guid: 4db3264bf1e5f60fabcc10c6cacef6f5, type: 3}
   alwaysRollDouble: 0
-  forceDiceRolls: 1
+  forceDiceRolls: 0
   dice1: 6
   dice2: 6
 --- !u!1 &240363124
@@ -28023,6 +28018,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911006340}
   m_CullTransparentMesh: 1
+--- !u!1 &1913900832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1913900834}
+  - component: {fileID: 1913900833}
+  m_Layer: 0
+  m_Name: Trading System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1913900833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913900832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5d18e86f1dfdd468a981afcf2bac8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1913900834
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913900832}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1914050372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32946,3 +32985,4 @@ SceneRoots:
   - {fileID: 362553881}
   - {fileID: 2071151380}
   - {fileID: 53570153}
+  - {fileID: 1913900834}
