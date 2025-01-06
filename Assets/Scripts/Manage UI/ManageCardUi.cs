@@ -33,18 +33,7 @@ public class ManageCardUi : MonoBehaviour
             colorField.color = Color.black;
         }
 
-        //SHOW BUILDINGS
-        if (node.NumberOfHouses < 4)
-        {
-            for (int i = 0; i < node.NumberOfHouses; i++)
-            {
-                buildings[i].SetActive(true);
-            }
-        }
-        else
-        {
-            buildings[4].SetActive(true);
-        }
+        ShowBuildings();
 
         //SHOW MORTGAGE IMAGE
         mortgageImage.SetActive(node.IsMortgaged);
@@ -85,10 +74,36 @@ public class ManageCardUi : MonoBehaviour
             //ERROR MESSAGE
             return;
         }
+        if(playerReference.ReadMoney < nodeReference.MortgageValue)
+        {
+            //ERROR MESSAGE
+            return;
+        }
         playerReference.PayMoney(nodeReference.MortgageValue);
         nodeReference.UnMortgageProperty();
         mortgageImage.SetActive(false);
         mortgageButton.interactable = true;
         unMortgageButton.interactable = false;
+    }
+
+    public void ShowBuildings()
+    {
+        //HIDE ALL BUILDINGS
+        foreach (var icon in buildings)
+        {
+            icon.SetActive(false);
+        }
+        //SHOW BUILDINGS
+        if (nodeReference.NumberOfHouses < 5)
+        {
+            for (int i = 0; i < nodeReference.NumberOfHouses; i++)
+            {
+                buildings[i].SetActive(true);
+            }
+        }
+        else
+        {
+            buildings[4].SetActive(true);
+        }
     }
 }

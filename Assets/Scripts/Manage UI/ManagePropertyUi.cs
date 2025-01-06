@@ -39,7 +39,7 @@ public class ManagePropertyUi : MonoBehaviour
 
     public void BuyHouseButton()
     {
-        if(!CheckIfBuyAllowed())
+        if (!CheckIfBuyAllowed())
         {
             return;
         }
@@ -47,6 +47,7 @@ public class ManagePropertyUi : MonoBehaviour
         {
             playerReference.BuildHousesOrHotelEvenly(nodesInSet);
             //UPDATE MONEY TEXT
+            UpdateHouseVisuals();
         }
         else
         {
@@ -59,6 +60,7 @@ public class ManagePropertyUi : MonoBehaviour
     {
         playerReference.SellHouseEvenly(nodesInSet);
         //UPDATE MONEY TEXT
+        UpdateHouseVisuals();
 
         sellHouseButton.interactable = CheckIfSellAllowed();
     }
@@ -93,9 +95,14 @@ public class ManagePropertyUi : MonoBehaviour
         {
             return false;
         }
-        else
+        return false;
+    }
+
+    void UpdateHouseVisuals()
+    {
+        foreach (var card in cardsInSet)
         {
-            return false;
+            card.GetComponent<ManageCardUi>().ShowBuildings();
         }
     }
 }
