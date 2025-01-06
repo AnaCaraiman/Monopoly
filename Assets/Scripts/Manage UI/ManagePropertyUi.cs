@@ -4,6 +4,7 @@ using UnityEngine;
 
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class ManagePropertyUi : MonoBehaviour
 {
@@ -25,16 +26,23 @@ public class ManagePropertyUi : MonoBehaviour
             GameObject newCard = Instantiate(cardPrefab, cardHolder, false);
             ManageCardUi manageCardUi = newCard.GetComponent<ManageCardUi>();
             cardsInSet.Add(newCard);
-            manageCardUi.SetCard(nodesInSet[i], owner);
+            manageCardUi.SetCard(nodesInSet[i], owner, this);
         }
 
         var (list, allSame) = MonopolyBoard.instance.PlayerHasAllNodesOfSet(nodesInSet[0]);
-        buyHouseButton.interactable = allSame;
-        sellHouseButton.interactable = allSame;
+        buyHouseButton.interactable = allSame && CheckIfBuyAllowed();
+        sellHouseButton.interactable = CheckIfSellAllowed();
+
+        buyHousePriceText.text = "-" + nodesInSet[0].houseCost;
+        sellHousePriceText.text = "+" + nodesInSet[0].houseCost;
     }
 
     public void BuyHouseButton()
     {
+        if(!CheckIfBuyAllowed())
+        {
+            return;
+        }
         if (playerReference.CanAffordHouse(nodesInSet[0].houseCost))
         {
             playerReference.BuildHousesOrHotelEvenly(nodesInSet);
@@ -44,11 +52,50 @@ public class ManagePropertyUi : MonoBehaviour
         {
             //CANT AFFOD HOUSE
         }
+        sellHouseButton.interactable = CheckIfSellAllowed();
     }
 
     public void SellHouseButton()
     {
         playerReference.SellHouseEvenly(nodesInSet);
         //UPDATE MONEY TEXT
+
+        sellHouseButton.interactable = CheckIfSellAllowed();
+    }
+
+    bool CheckIfSellAllowed()
+    {
+        if (nodesInSet.Any(n => n.NumberOfHouses > 0))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    bool CheckIfBuyAllowed()
+    {
+        if (nodesInSet.Any(n => n.IsMortgaged == true))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public bool CheckIfMortgageAllowed()
+    {
+        if (nodesInSet.Any(n => n.NumberOfHouses > 0))
+        {
+            return false;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
