@@ -74,6 +74,13 @@ public class Player
     {
         money += amount;
         myInfo.SetPlayerCash(money);
+        if(playerType == PlayerType.Human && GameManager.instance.GetCurrentPlayer == this)
+        {
+            bool canEndTurn = !GameManager.instance.RolledADouble && ReadMoney >= 0;
+            bool canRollDice = GameManager.instance.RolledADouble && ReadMoney >= 0;
+            //SHOW UI
+            OnShowHumanPanel.Invoke(true, canRollDice, canEndTurn);
+        }
     }
 
     internal bool CanAffordNode(int price)
@@ -135,17 +142,25 @@ public class Player
                 //HANDLE INSUFFICIENT FUNDS > AI
                 HandleInsufficientFunds(amount);
             }
-            else
-            {
-                //disable human turn and roll dice
-                OnShowHumanPanel.Invoke(true, false, false);
-            }
+            //else
+            //{
+            //    //disable human turn and roll dice
+            //    OnShowHumanPanel.Invoke(true, false, false);
+            //}
         }
 
         money -= amount;
 
         //UPDATE UI
         myInfo.SetPlayerCash(money);
+
+        if (playerType == PlayerType.Human && GameManager.instance.GetCurrentPlayer == this)
+        {
+            bool canEndTurn = !GameManager.instance.RolledADouble && ReadMoney >= 0;
+            bool canRollDice = GameManager.instance.RolledADouble && ReadMoney >= 0;
+            //SHOW UI
+            OnShowHumanPanel.Invoke(true, canRollDice, canEndTurn);
+        }
     }
 
     //--------------------------------JAIL--------------------------------------
@@ -281,7 +296,7 @@ public class Player
         //GameManager.instance.RemovePlayer(this);
 
         //SEND A MESSAGE TO THE SYSTEM
-        OnUpdateMessage.Invoke($"{name} is bankrupt!");
+        OnUpdateMessage?.Invoke($"{name} is bankrupt!");
 
         //clear all what the player has owned
         for (int i = myMonopolyNodes.Count - 1; i >= 0; i--)
@@ -331,7 +346,7 @@ public class Player
         //for AI
         foreach (var node in myMonopolyNodes)
         {
-            if(node.IsMortgaged)
+            if(node && node.IsMortgaged)
             {
                 int cost = node.MortgageValue + (int)(node.MortgageValue * 0.1f); //10% interest
                 //can we afford to unmortgage?
@@ -370,7 +385,7 @@ public class Player
             if (node.NumberOfHouses == minHouses && node.NumberOfHouses < 5 && CanAffordHouse(node.houseCost))
             {
                 Debug.Log($"{name} is building a house on {node.name} & {node.price}");
-                OnUpdateMessage.Invoke($"{name} is building a house on {node.name}");
+                OnUpdateMessage?.Invoke($"{name} is building a house on {node.name}");
                 node.BuildHouseOrHotel();
                 PayMoney(node.houseCost);
             }
