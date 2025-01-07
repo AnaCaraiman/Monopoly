@@ -1,11 +1,9 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-using static UnityEngine.UI.GridLayoutGroup;
-using UnityEditor;
+using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class Player
 {
     public enum PlayerType
@@ -38,10 +36,12 @@ public class Player
 
     //MESSAGE SYSTEM
     public delegate void UpdateMessage(string message);
+
     public static UpdateMessage OnUpdateMessage;
 
     //HUMAN INOUT PANEL
     public delegate void ShowHumanPanel(bool activatePanel, bool activateRollDice, bool activateEndTurn);
+
     public static ShowHumanPanel OnShowHumanPanel;
 
     public void InitializePlayer(MonopolyNode startingNode, int startMoney, PlayerInfo playerInfo, GameObject token)
@@ -68,17 +68,18 @@ public class Player
             //UnMortgageProperty();
             TradingSystem.instance.FindMissingProperty(this);
         }
-        
     }
 
     public void CollectMoney(int amount)
     {
         money += amount;
         myInfo.SetPlayerCash(money);
-        if(playerType == PlayerType.Human && GameManager.instance.GetCurrentPlayer == this)
+        if (playerType == PlayerType.Human && GameManager.instance.GetCurrentPlayer == this)
         {
-            bool canEndTurn = !GameManager.instance.RolledADouble && ReadMoney >= 0;
-            bool canRollDice = GameManager.instance.RolledADouble && ReadMoney >= 0;
+            bool canEndTurn = !GameManager.instance.RolledADouble && ReadMoney >= 0 &&
+                              GameManager.instance.HasRolledDice;
+            bool canRollDice = GameManager.instance.RolledADouble && ReadMoney >= 0 &&
+                               GameManager.instance.HasRolledDice;
             //SHOW UI
             OnShowHumanPanel.Invoke(true, canRollDice, canEndTurn);
         }
@@ -157,8 +158,10 @@ public class Player
 
         if (playerType == PlayerType.Human && GameManager.instance.GetCurrentPlayer == this)
         {
-            bool canEndTurn = !GameManager.instance.RolledADouble && ReadMoney >= 0;
-            bool canRollDice = GameManager.instance.RolledADouble && ReadMoney >= 0;
+            bool canEndTurn = !GameManager.instance.RolledADouble && ReadMoney >= 0 &&
+                              GameManager.instance.HasRolledDice;
+            bool canRollDice = (GameManager.instance.RolledADouble && ReadMoney >= 0) ||
+                               (!GameManager.instance.HasRolledDice && ReadMoney >= 0);
             //SHOW UI
             OnShowHumanPanel.Invoke(true, canRollDice, canEndTurn);
         }
@@ -238,23 +241,23 @@ public class Player
         int allPropertiesToMortgage = 0;
 
         //count all houses
-        foreach(var node in myMonopolyNodes)
+        foreach (var node in myMonopolyNodes)
         {
             allHouses += node.NumberOfHouses;
         }
 
         //loop through all properties and try to sell as much as needed
-        while(money < amountToPay && allHouses > 0)
+        while (money < amountToPay && allHouses > 0)
         {
-            foreach(var node in myMonopolyNodes)
+            foreach (var node in myMonopolyNodes)
             {
                 housesToSell = node.NumberOfHouses;
-                if(housesToSell > 0)
+                if (housesToSell > 0)
                 {
                     CollectMoney(node.SellHouseOrHotel());
                     allHouses--;
                     //do we need more money?
-                    if(money >= amountToPay)
+                    if (money >= amountToPay)
                     {
                         return;
                     }
@@ -263,32 +266,32 @@ public class Player
         }
 
         //MORTGAGE
-        foreach(var node in myMonopolyNodes)
+        foreach (var node in myMonopolyNodes)
         {
-            allPropertiesToMortgage+=(!node.IsMortgaged) ? 1 : 0;
+            allPropertiesToMortgage += (!node.IsMortgaged) ? 1 : 0;
         }
 
         //loop through all properties and try to sell as much as needed
-        while(money < amountToPay && allPropertiesToMortgage > 0)
+        while (money < amountToPay && allPropertiesToMortgage > 0)
         {
-            foreach(var node in myMonopolyNodes)
+            foreach (var node in myMonopolyNodes)
             {
                 propertiesToMortgage = (!node.IsMortgaged) ? 1 : 0;
-                if(propertiesToMortgage > 0)
+                if (propertiesToMortgage > 0)
                 {
                     CollectMoney(node.MortgageProperty());
                     allPropertiesToMortgage--;
                     //do we need more money?
-                    if(money >= amountToPay)
+                    if (money >= amountToPay)
                     {
                         return;
                     }
                 }
             }
         }
+
         //we go bankrupt if we reach this point
         Bankrupt();
-
     }
 
     void Bankrupt()
@@ -307,7 +310,6 @@ public class Player
 
         //remove the player from the game
         GameManager.instance.RemovePlayer(this);
-
     }
 
     //--------------------------------CHECK IF PLAYER HAS A PROPERTY SET--------------------------------------
@@ -343,11 +345,11 @@ public class Player
         //for AI
         foreach (var node in myMonopolyNodes)
         {
-            if(node && node.IsMortgaged)
+            if (node && node.IsMortgaged)
             {
                 int cost = node.MortgageValue + (int)(node.MortgageValue * 0.1f); //10% interest
                 //can we afford to unmortgage?
-                if(money >= aiMoneySavity + cost)
+                if (money >= aiMoneySavity + cost)
                 {
                     PayMoney(cost);
                     node.UnMortgageProperty();
@@ -395,21 +397,23 @@ public class Player
         bool houseSold = false;
         foreach (var node in nodesToSellFrom)
         {
-            minHouses = Mathf.Min(minHouses, node.NumberOfHouses);  
+            minHouses = Mathf.Min(minHouses, node.NumberOfHouses);
         }
+
         //SELL HOUSE
         for (int i = nodesToSellFrom.Count - 1; i >= 0; i--)
         {
-            if(nodesToSellFrom[i].NumberOfHouses > minHouses)
+            if (nodesToSellFrom[i].NumberOfHouses > minHouses)
             {
                 CollectMoney(nodesToSellFrom[i].SellHouseOrHotel());
                 houseSold = true;
                 break;
             }
         }
-        if(!houseSold)
+
+        if (!houseSold)
         {
-            CollectMoney(nodesToSellFrom[nodesToSellFrom.Count-1].SellHouseOrHotel());
+            CollectMoney(nodesToSellFrom[nodesToSellFrom.Count - 1].SellHouseOrHotel());
         }
     }
 

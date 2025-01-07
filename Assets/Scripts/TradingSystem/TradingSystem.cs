@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-using System;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
+
 public class TradingSystem : MonoBehaviour
 {
     public static TradingSystem instance;
@@ -12,8 +11,7 @@ public class TradingSystem : MonoBehaviour
     [SerializeField] GameObject cardPrefab;
     [SerializeField] GameObject tradePanel;
 
-    [Header("LEFT SIDE")]
-    [SerializeField] TMP_Text leftOffererNameText;
+    [Header("LEFT SIDE")] [SerializeField] TMP_Text leftOffererNameText;
     [SerializeField] Transform leftCardGrid;
     [SerializeField] ToggleGroup leftToggleGroup;
     [SerializeField] TMP_Text leftYourMoneyText;
@@ -24,14 +22,14 @@ public class TradingSystem : MonoBehaviour
     MonopolyNode leftSelectedNode;
     Player leftPlayerReference;
 
-    [Header("MIDDLE")]
-    [SerializeField] Transform buttonGrid;
+    [Header("MIDDLE")] [SerializeField] Transform buttonGrid;
     [SerializeField] GameObject playerButtonPrefab;
 
     List<GameObject> playerButtonList = new List<GameObject>();
 
-    [Header("RIGHT SIDE")]
-    [SerializeField] TMP_Text rightOffererNameText;
+    [Header("RIGHT SIDE")] [SerializeField]
+    TMP_Text rightOffererNameText;
+
     [SerializeField] Transform rightCardGrid;
     [SerializeField] ToggleGroup rightToggleGroup;
     [SerializeField] TMP_Text rightYourMoneyText;
@@ -44,11 +42,14 @@ public class TradingSystem : MonoBehaviour
 
     //MESSAGE SYSTEM
     public delegate void UpdateMessage(string message);
+
     public static UpdateMessage OnUpdateMessage;
-    void Awake() 
+
+    void Awake()
     {
         instance = this;
     }
+
     void Start()
     {
         tradePanel.SetActive(false);
@@ -60,33 +61,36 @@ public class TradingSystem : MonoBehaviour
         MonopolyNode requestedNode = null;
         foreach (var node in currentPlayer.GetMonopolyNodes)
         {
-            var (list,allSame) = MonopolyBoard.instance.PlayerHasAllNodesOfSet(node);
-            List <MonopolyNode> nodeSet = new List<MonopolyNode>();
+            var (list, allSame) = MonopolyBoard.instance.PlayerHasAllNodesOfSet(node);
+            List<MonopolyNode> nodeSet = new List<MonopolyNode>();
             nodeSet.AddRange(list);
             //if all have been purchased
             bool notAllPurchased = list.Any(n => n.Owner == null);
 
-            if(allSame || processedSet == list || notAllPurchased)
+            if (allSame || processedSet == list || notAllPurchased)
             {
                 processedSet = list;
                 continue;
             }
+
             //AI owns this set already
-            if(allSame || processedSet == list)
+            if (allSame || processedSet == list)
             {
                 processedSet = list;
                 continue;
             }
-            if(list.Count == 2) 
+
+            if (list.Count == 2)
             {
                 requestedNode = list.Find(n => n.Owner != currentPlayer && n.Owner != null);
-                if(requestedNode != null)
+                if (requestedNode != null)
                 {
-                   MakeTradeDecision(currentPlayer, requestedNode.Owner, requestedNode);
+                    MakeTradeDecision(currentPlayer, requestedNode.Owner, requestedNode);
                     return;
                 }
             }
-            if(list.Count >= 3)
+
+            if (list.Count >= 3)
             {
                 int hasMostOfSet = list.Count(n => n.Owner == currentPlayer);
                 if (hasMostOfSet >= 2)
@@ -99,70 +103,72 @@ public class TradingSystem : MonoBehaviour
         }
     }
 
-    void MakeTradeDecision(Player currentPlayer, Player nodeOwner,MonopolyNode requestedNode)
+    void MakeTradeDecision(Player currentPlayer, Player nodeOwner, MonopolyNode requestedNode)
     {
-        if(currentPlayer.ReadMoney >= CalculateValueOfNode(requestedNode))
+        if (currentPlayer.ReadMoney >= CalculateValueOfNode(requestedNode))
         {
-            MakeTradeOffer(currentPlayer,nodeOwner,requestedNode, null, CalculateValueOfNode(requestedNode), 0);
+            MakeTradeOffer(currentPlayer, nodeOwner, requestedNode, null, CalculateValueOfNode(requestedNode), 0);
             return;
         }
 
         foreach (var node in currentPlayer.GetMonopolyNodes)
         {
             var checkedSet = MonopolyBoard.instance.PlayerHasAllNodesOfSet(node).list;
-            if(checkedSet.Contains(requestedNode))
+            if (checkedSet.Contains(requestedNode))
             {
                 continue;
             }
-            if(checkedSet.Count(n => n.Owner == currentPlayer) == 1)
+
+            if (checkedSet.Count(n => n.Owner == currentPlayer) == 1)
             {
-                if(CalculateValueOfNode(node) + currentPlayer.ReadMoney >= requestedNode.price)
+                if (CalculateValueOfNode(node) + currentPlayer.ReadMoney >= requestedNode.price)
                 {
                     int difference = CalculateValueOfNode(requestedNode) - CalculateValueOfNode(node);
-                    if(difference > 0)
+                    if (difference > 0)
                     {
-                        MakeTradeOffer(currentPlayer, nodeOwner, requestedNode, node,difference,0);
-
+                        MakeTradeOffer(currentPlayer, nodeOwner, requestedNode, node, difference, 0);
                     }
                     else
                     {
-                        MakeTradeOffer(currentPlayer, nodeOwner, requestedNode, node,0,Mathf.Abs(difference));
+                        MakeTradeOffer(currentPlayer, nodeOwner, requestedNode, node, 0, Mathf.Abs(difference));
                     }
-                    
+
                     break;
                 }
             }
         }
-
     }
 
-    void MakeTradeOffer(Player currentPlayer, Player nodeOwner,MonopolyNode requestedNode, MonopolyNode offeredNode, int offeredMoney, int requestedMoney )
+    void MakeTradeOffer(Player currentPlayer, Player nodeOwner, MonopolyNode requestedNode, MonopolyNode offeredNode,
+        int offeredMoney, int requestedMoney)
     {
-        if(nodeOwner.playerType == Player.PlayerType.AI)
+        if (nodeOwner.playerType == Player.PlayerType.AI)
         {
             ConsiderTradeOffer(currentPlayer, nodeOwner, requestedNode, offeredNode, offeredMoney, requestedMoney);
         }
         else if (nodeOwner.playerType == Player.PlayerType.Human)
         {
-
         }
     }
 
-    void ConsiderTradeOffer(Player currentPlayer, Player nodeOwner,MonopolyNode requestedNode, MonopolyNode offeredNode, int offeredMoney, int requestedMoney )
+    void ConsiderTradeOffer(Player currentPlayer, Player nodeOwner, MonopolyNode requestedNode,
+        MonopolyNode offeredNode, int offeredMoney, int requestedMoney)
     {
-        int valueOfTrade = (CalculateValueOfNode(requestedNode) + requestedMoney) - (CalculateValueOfNode(offeredNode) + offeredMoney);
+        int valueOfTheTrade = (CalculateValueOfNode(requestedNode) + requestedMoney) -
+                           (CalculateValueOfNode(offeredNode) + offeredMoney);
         // sell a node for money only 
-        if(requestedNode == null && offeredNode != null && requestedMoney < nodeOwner.ReadMoney/3)
+        if (requestedNode == null && offeredNode != null && requestedMoney < nodeOwner.ReadMoney / 3)
         {
             Trade(currentPlayer, nodeOwner, requestedNode, offeredNode, offeredMoney, requestedMoney);
             return;
         }
+
         //normal trade
-        if(valueOfTrade <= 0)
+        if (valueOfTheTrade <= 0 && !MonopolyBoard.instance.PlayerHasAllNodesOfSet(requestedNode).allSame)
         {
             Trade(currentPlayer, nodeOwner, requestedNode, offeredNode, offeredMoney, requestedMoney);
         }
-        else 
+        else
         {
             Debug.Log("AI rejected trade");
         }
@@ -171,25 +177,27 @@ public class TradingSystem : MonoBehaviour
     int CalculateValueOfNode(MonopolyNode requestedNode)
     {
         int value = 0;
-        if(requestedNode != null )
+        if (requestedNode != null)
         {
-            if(requestedNode.monopolyNodeType == MonopolyNodeType.Property)
+            if (requestedNode.monopolyNodeType == MonopolyNodeType.Property)
             {
                 value = requestedNode.price + requestedNode.NumberOfHouses * requestedNode.houseCost;
-
             }
             else
             {
                 value = requestedNode.price;
             }
+
             return value;
         }
+
         return value;
     }
-    
-    void Trade(Player currentPlayer, Player nodeOwner,MonopolyNode requestedNode, MonopolyNode offeredNode, int offeredMoney, int requestedMoney)
+
+    void Trade(Player currentPlayer, Player nodeOwner, MonopolyNode requestedNode, MonopolyNode offeredNode,
+        int offeredMoney, int requestedMoney)
     {
-        if(requestedNode != null)
+        if (requestedNode != null)
         {
             currentPlayer.PayMoney(offeredMoney);
 
@@ -197,33 +205,42 @@ public class TradingSystem : MonoBehaviour
 
             nodeOwner.CollectMoney(offeredMoney);
             nodeOwner.PayMoney(requestedMoney);
-            if(offeredNode != null)
+            if (offeredNode != null)
             {
                 offeredNode.changeOwner(nodeOwner);
-                
             }
+
             string offeredNodeName = offeredNode != null ? " & " + offeredNode.name : "";
-            OnUpdateMessage.Invoke(currentPlayer.name + " traded " + requestedNode.name +  " for " + offeredMoney + offeredNodeName + " to " + nodeOwner.name);
+            OnUpdateMessage.Invoke(currentPlayer.name + " traded " + requestedNode.name + " for " + offeredMoney +
+                                   offeredNodeName + " to " + nodeOwner.name);
         }
-        else if(offeredNode != null && requestedNode == null)
-            {
-                currentPlayer.CollectMoney(requestedMoney);
-                nodeOwner.PayMoney(requestedMoney);
-                offeredNode.changeOwner(nodeOwner);
-                OnUpdateMessage.Invoke(currentPlayer.name + " sold " + offeredNode.name +  " to " + nodeOwner.name + " for" + requestedMoney);
-            }
+        else if (offeredNode != null && requestedNode == null)
+        {
+            currentPlayer.CollectMoney(requestedMoney);
+            nodeOwner.PayMoney(requestedMoney);
+            offeredNode.changeOwner(nodeOwner);
+            OnUpdateMessage.Invoke(currentPlayer.name + " sold " + offeredNode.name + " to " + nodeOwner.name + " for" +
+                                   requestedMoney);
+        }
         
+        //HIDE UI FOR HUMAN AI
+        CloseTradePanel();
     }
 
     void CreateLeftPanel()
     {
         leftOffererNameText.text = leftPlayerReference.name;
 
-        for(int i = 0; i< leftPlayerReference.GetMonopolyNodes.Count; i++)
+        List<MonopolyNode> referenceNodes = leftPlayerReference.GetMonopolyNodes;
+
+        for (int i = 0; i < referenceNodes.Count; i++)
         {
             GameObject tradeCard = Instantiate(cardPrefab, leftCardGrid, false);
+            tradeCard.GetComponent<TradePropertyCard>().SetTradeCard(referenceNodes[i], leftToggleGroup);
+
             leftCardPrefabList.Add(tradeCard);
         }
+
         leftYourMoneyText.text = "Your Money: " + leftPlayerReference.ReadMoney;
 
         leftMoneySlider.maxValue = leftPlayerReference.ReadMoney;
@@ -238,7 +255,6 @@ public class TradingSystem : MonoBehaviour
     public void UpdateLeftSlider(float value)
     {
         leftOfferMoney.text = "Offer money: $ " + leftMoneySlider.value;
-
     }
 
     public void CloseTradePanel()
@@ -266,11 +282,15 @@ public class TradingSystem : MonoBehaviour
 
         rightOffererNameText.text = rightPlayerReference.name;
 
-        for(int i = 0; i< rightPlayerReference.GetMonopolyNodes.Count; i++)
+        List<MonopolyNode> referenceNodes = rightPlayerReference.GetMonopolyNodes;
+        for (int i = 0; i < referenceNodes.Count; i++)
         {
             GameObject tradeCard = Instantiate(cardPrefab, rightCardGrid, false);
+
+            tradeCard.GetComponent<TradePropertyCard>().SetTradeCard(referenceNodes[i], rightToggleGroup);
             rightCardPrefabList.Add(tradeCard);
         }
+
         rightYourMoneyText.text = "Your Money: " + rightPlayerReference.ReadMoney;
 
         rightMoneySlider.maxValue = rightPlayerReference.ReadMoney;
@@ -282,9 +302,14 @@ public class TradingSystem : MonoBehaviour
         tradePanel.SetActive(true);
     }
 
+    public void UpdateRightSlider(float value)
+    {
+        rightOfferMoney.text = "Requested money: $ " + rightMoneySlider.value;
+    }
+
     void CreateMiddleButton()
     {
-        for(int i = playerButtonList.Count - 1; i >=0 ; i-- )
+        for (int i = playerButtonList.Count - 1; i >= 0; i--)
         {
             Destroy(playerButtonList[i]);
         }
@@ -295,14 +320,13 @@ public class TradingSystem : MonoBehaviour
         allPlayers.AddRange(GameManager.instance.GetPlayers);
         allPlayers.Remove(leftPlayerReference);
 
-        foreach(var player in allPlayers)
+        foreach (var player in allPlayers)
         {
             GameObject newPlayerButton = Instantiate(playerButtonPrefab, buttonGrid, false);
             newPlayerButton.GetComponent<TradePlayerButton>().SetPlayer(player);
 
             playerButtonList.Add(newPlayerButton);
         }
-
     }
 
     void ClearAll()
@@ -312,40 +336,64 @@ public class TradingSystem : MonoBehaviour
         rightMoneySlider.maxValue = 0;
         rightMoneySlider.value = 0;
         UpdateRightSlider(rightMoneySlider.value);
-        for(int i = playerButtonList.Count - 1; i >=0 ; i-- )
+        for (int i = playerButtonList.Count - 1; i >= 0; i--)
         {
             Destroy(playerButtonList[i]);
         }
 
-        for(int i = leftCardPrefabList.Count - 1; i >=0 ; i-- )
+        for (int i = leftCardPrefabList.Count - 1; i >= 0; i--)
         {
             Destroy(leftCardPrefabList[i]);
         }
 
-        for(int i = rightCardPrefabList.Count - 1; i >=0 ; i-- )
+        for (int i = rightCardPrefabList.Count - 1; i >= 0; i--)
         {
             Destroy(rightCardPrefabList[i]);
         }
     }
 
     void ClearRightPanel()
-    {  
-        for(int i = rightCardPrefabList.Count - 1; i >=0 ; i-- )
+    {
+        for (int i = rightCardPrefabList.Count - 1; i >= 0; i--)
         {
             Destroy(rightCardPrefabList[i]);
         }
 
-        rightCardPrefabList.Clear(); 
+        rightCardPrefabList.Clear();
 
         rightMoneySlider.maxValue = 0;
 
         rightMoneySlider.value = 0;
-        UpdateRightSlider(rightMoneySlider.value);   
+        UpdateRightSlider(rightMoneySlider.value);
     }
 
-    public void UpdateRightSlider(float value)
+    //------------------------------ MAKE OFFER BUTTONS ------------------------------ HUMAN
+    public void MakeOfferButton()
     {
-        rightOfferMoney.text = "Requested money: $ " + rightMoneySlider.value;
+        MonopolyNode requestedNode = null;
+        MonopolyNode offeredNode = null;
 
+        if (rightPlayerReference == null)
+        {
+            //ERROR MESSAGE HERE
+            return;
+        }
+
+        //left
+        Toggle offeredToggle = leftToggleGroup.ActiveToggles().FirstOrDefault();
+        if (offeredToggle != null)
+        {
+            offeredNode = offeredToggle.GetComponentInParent<TradePropertyCard>().Node();
+        }
+
+        //right
+        Toggle requestedToggle = rightToggleGroup.ActiveToggles().FirstOrDefault();
+        if (requestedToggle != null)
+        {
+            requestedNode = requestedToggle.GetComponentInParent<TradePropertyCard>().Node();
+        }
+
+        MakeTradeOffer(leftPlayerReference, rightPlayerReference, requestedNode, offeredNode,
+            (int)leftMoneySlider.value, (int)rightMoneySlider.value);
     }
 }
