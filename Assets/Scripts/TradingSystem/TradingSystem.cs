@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,8 @@ public class TradingSystem : MonoBehaviour
 
     [SerializeField] GameObject cardPrefab;
     [SerializeField] GameObject tradePanel;
-
+    [SerializeField] GameObject resultPanel;
+    [SerializeField] TMP_Text resultMessageText;
     [Header("LEFT SIDE")] [SerializeField] TMP_Text leftOffererNameText;
     [SerializeField] Transform leftCardGrid;
     [SerializeField] ToggleGroup leftToggleGroup;
@@ -18,8 +20,7 @@ public class TradingSystem : MonoBehaviour
     [SerializeField] TMP_Text leftOfferMoney;
     [SerializeField] Slider leftMoneySlider;
     List<GameObject> leftCardPrefabList = new List<GameObject>();
-    int leftChosenMoneyAmount;
-    MonopolyNode leftSelectedNode;
+
     Player leftPlayerReference;
 
     [Header("MIDDLE")] [SerializeField] Transform buttonGrid;
@@ -36,9 +37,16 @@ public class TradingSystem : MonoBehaviour
     [SerializeField] TMP_Text rightOfferMoney;
     [SerializeField] Slider rightMoneySlider;
     List<GameObject> rightCardPrefabList = new List<GameObject>();
-    int rightChosenMoneyAmount;
-    MonopolyNode rightSelectedNode;
+    
     Player rightPlayerReference;
+
+    [Header("Trade Offer Panel")]
+    [SerializeField] GameObject tradeOfferPanel;
+    [SerializeField] TMP_Text leftMessageText, rightMessageText, leftMoneyText, rightMoneyText;
+    [SerializeField] GameObject leftCard, rightCard;
+    [SerializeField] Image leftColorField, rightColorField;
+    [SerializeField] Image leftPropImage, rightPropImage;
+    [SerializeField] Sprite houseSprite, railroadSprite, utilitySprite;
 
     //MESSAGE SYSTEM
     public delegate void UpdateMessage(string message);
@@ -53,6 +61,8 @@ public class TradingSystem : MonoBehaviour
     void Start()
     {
         tradePanel.SetActive(false);
+        resultPanel.SetActive(false);
+        tradeOfferPanel.SetActive(false);
     }
 
     public void FindMissingProperty(Player currentPlayer)
@@ -148,6 +158,7 @@ public class TradingSystem : MonoBehaviour
         }
         else if (nodeOwner.playerType == Player.PlayerType.Human)
         {
+            ShowTradeOfferPanel(currentPlayer, nodeOwner, requestedNode, offeredNode, offeredMoney, requestedMoney);
         }
     }
 
@@ -157,9 +168,10 @@ public class TradingSystem : MonoBehaviour
         int valueOfTheTrade = (CalculateValueOfNode(requestedNode) + requestedMoney) -
                            (CalculateValueOfNode(offeredNode) + offeredMoney);
         // sell a node for money only 
-        if (requestedNode == null && offeredNode != null && requestedMoney < nodeOwner.ReadMoney / 3)
+        if (requestedNode == null && offeredNode != null && requestedMoney <= nodeOwner.ReadMoney / 3 && !MonopolyBoard.instance.PlayerHasAllNodesOfSet(requestedNode).allSame)
         {
             Trade(currentPlayer, nodeOwner, requestedNode, offeredNode, offeredMoney, requestedMoney);
+            TradeResult(true);
             return;
         }
 
@@ -167,9 +179,11 @@ public class TradingSystem : MonoBehaviour
         if (valueOfTheTrade <= 0 && !MonopolyBoard.instance.PlayerHasAllNodesOfSet(requestedNode).allSame)
         {
             Trade(currentPlayer, nodeOwner, requestedNode, offeredNode, offeredMoney, requestedMoney);
+            TradeResult(true);
         }
         else
         {
+            TradeResult(false);
             Debug.Log("AI rejected trade");
         }
     }
@@ -395,5 +409,86 @@ public class TradingSystem : MonoBehaviour
 
         MakeTradeOffer(leftPlayerReference, rightPlayerReference, requestedNode, offeredNode,
             (int)leftMoneySlider.value, (int)rightMoneySlider.value);
+    }
+
+
+    //------------------------------ TRADE RESULT ------------------------------ HUMAN 
+
+    void TradeResult(bool accepted)
+    {
+        if(accepted)
+        {
+            resultMessageText.text = rightPlayerReference.name + "<b><color=green> accepted </color></b>" + "the trade.";
+        }
+        else
+        {
+            resultMessageText.text = rightPlayerReference.name + "<b><color=red> rejected </color></b>" + "the trade.";
+        }
+
+        resultPanel.SetActive(true);
+    }
+
+    //------------------------------ TRADE OFFER PANEL ------------------------------ HUMAN
+    
+    void ShowTradeOfferPanel(Player currentPlayer, Player nodeOwner, MonopolyNode requestedNode, MonopolyNode offeredNode,
+        int offeredMoney, int requestedMoney)
+    {
+        tradeOfferPanel.SetActive(true);
+        leftMessageText.text = currentPlayer.name + " offers:";
+        rightMessageText.text = "For " + nodeOwner.name + " 's:";
+        leftMoneyText.text = "+$" + offeredMoney;
+        rightMoneyText.text = "+$" + requestedMoney;
+        leftCard.SetActive(offeredNode != null ? true : false);
+        rightCard.SetActive(requestedMoney != null ? true : false);
+
+        if(leftCard.activeInHierarchy)
+        {
+            leftColorField.color = (offeredNode.propertyColorField != null)?offeredNode.propertyColorField.color:Color.black;
+            switch (offeredNode.monopolyNodeType)
+            {
+                case MonopolyNodeType.Property:
+                    leftPropImage.sprite = houseSprite;
+                    leftPropImage.color = Color.blue;
+                    break;
+                case MonopolyNodeType.Railroad:
+                    leftPropImage.sprite = railroadSprite;
+                    leftPropImage.color = Color.white;
+                    break;
+                case MonopolyNodeType.Utility:
+                    leftPropImage.sprite = utilitySprite;
+                    leftPropImage.color = Color.black;
+                    break;
+            }
+        }
+
+        if (rightCard.activeInHierarchy)
+        {
+            rightColorField.color = (requestedNode.propertyColorField != null) ? requestedNode.propertyColorField.color : Color.black;
+            switch (requestedNode.monopolyNodeType)
+            {
+                case MonopolyNodeType.Property:
+                    rightPropImage.sprite = houseSprite;
+                    rightPropImage.color = Color.blue;
+                    break;
+                case MonopolyNodeType.Railroad:
+                    rightPropImage.sprite = railroadSprite;
+                    rightPropImage.color = Color.white;
+                    break;
+                case MonopolyNodeType.Utility:
+                    rightPropImage.sprite = utilitySprite;
+                    rightPropImage.color = Color.black;
+                    break;
+            }
+        }
+    }
+
+    public void AcceptOffer()
+    {
+
+    }
+
+    public void RejectOffer()
+    {
+
     }
 }
