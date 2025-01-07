@@ -607,4 +607,12 @@ public class MonopolyNode : MonoBehaviour
         //UPDATE UI
         OnOwnerUpdated();
     }
+
+    public void changeOwner(Player newOwner)
+    {
+        owner.RemoveProperty(this);
+        newOwner.addProperty(this);
+        SetOwner(newOwner);
+
+    }
 }

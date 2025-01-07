@@ -8,10 +8,15 @@ using TMPro;
 public class ManageCardUi : MonoBehaviour
 {
     [SerializeField] Image colorField;
+
+    [SerializeField] TMP_Text propertyNameText;
     [SerializeField] GameObject[] buildings;
     [SerializeField] GameObject mortgageImage;
     [SerializeField] TMP_Text mortgageValueText;
     [SerializeField] Button mortgageButton, unMortgageButton;
+    
+    [SerializeField] Image iconImage;
+    [SerializeField] Sprite houseSprite, railroadSprite, utilitySprite;
 
     Player playerReference;
     MonopolyNode nodeReference;
@@ -43,6 +48,26 @@ public class ManageCardUi : MonoBehaviour
         //BUTTONS
         mortgageButton.interactable = !node.IsMortgaged;
         unMortgageButton.interactable = node.IsMortgaged;
+
+        //SET ICON
+        switch(nodeReference.monopolyNodeType)
+        {
+            case MonopolyNodeType.Property:
+                iconImage.sprite = houseSprite;
+                iconImage.color = Color.blue;
+                break;
+            case MonopolyNodeType.Railroad:
+                iconImage.sprite = railroadSprite;
+                iconImage.color = Color.white;
+                break;
+            case MonopolyNodeType.Utility:
+                iconImage.sprite = utilitySprite;
+                iconImage.color = Color.black;
+                break;
+        }
+
+        //SET NAME OF PROPERTY
+        propertyNameText.text = nodeReference.name;
     }
 
     public void MortgageButton()
