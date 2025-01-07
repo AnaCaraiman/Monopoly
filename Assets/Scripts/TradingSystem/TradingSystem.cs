@@ -369,16 +369,23 @@ public class TradingSystem : MonoBehaviour
     {
         MonopolyNode requestedNode = null;
         MonopolyNode offeredNode = null;
+
+        if (rightPlayerReference == null)
+        {
+            //ERROR MESSAGE HERE
+            return;
+        }
+
         //left
-        Toggle offeredToggle = leftToggleGroup.ActiveToggles().First();
+        Toggle offeredToggle = leftToggleGroup.ActiveToggles().FirstOrDefault();
         if (offeredToggle != null)
         {
             offeredNode = offeredToggle.GetComponentInParent<TradePropertyCard>().Node();
         }
 
         //right
-        Toggle requestedToggle = rightToggleGroup.ActiveToggles().First();
-        if (offeredToggle != null)
+        Toggle requestedToggle = rightToggleGroup.ActiveToggles().FirstOrDefault();
+        if (requestedToggle != null)
         {
             requestedNode = requestedToggle.GetComponentInParent<TradePropertyCard>().Node();
         }

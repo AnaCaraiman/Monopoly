@@ -3748,7 +3748,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.32000002, y: 0}
   m_AnchorMax: {x: 0.67800003, y: 0.1452972}
-  m_AnchoredPosition: {x: 2, y: 9.136719}
+  m_AnchoredPosition: {x: 2, y: 9.13678}
   m_SizeDelta: {x: 4.0300293, y: -16.229614}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &222922199
@@ -5986,7 +5986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &362553878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9154,7 +9154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 318.94, y: -296.8404}
+  m_AnchoredPosition: {x: 318.94, y: -296.84045}
   m_SizeDelta: {x: 637.88, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537494575
@@ -12144,7 +12144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.028890718, y: 0.12051418}
   m_AnchorMax: {x: 0.97533613, y: 0.886783}
-  m_AnchoredPosition: {x: -1.5, y: -0.4999962}
+  m_AnchoredPosition: {x: -1.5, y: -0.49998856}
   m_SizeDelta: {x: -0.48358154, y: -2.382103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &750448437
@@ -17961,8 +17961,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 525458489}
   m_HandleRect: {fileID: 525458488}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.50000006
+  m_Value: 1
+  m_Size: 0.49999973
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -18043,7 +18043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.31935418, y: 0.025777102}
   m_AnchorMax: {x: 0.675, y: 0.148}
-  m_AnchoredPosition: {x: 5.5, y: -6.3652344}
+  m_AnchoredPosition: {x: 5.5, y: -6.3651123}
   m_SizeDelta: {x: 9.030029, y: 8.770386}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1062108853
@@ -19534,8 +19534,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 815897055}
   m_HandleRect: {fileID: 815897054}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.50000006
+  m_Value: 1
+  m_Size: 0.49999973
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21360,7 +21360,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 318.94, y: -296.8404}
+  m_AnchoredPosition: {x: 318.94, y: -296.84045}
   m_SizeDelta: {x: 637.88, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1257859448
@@ -36063,7 +36063,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2030398992}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1913900833}
+        m_TargetAssemblyTypeName: TradingSystem, Assembly-CSharp
+        m_MethodName: MakeOfferButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2030398992
 MonoBehaviour:
   m_ObjectHideFlags: 0
