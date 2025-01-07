@@ -166,9 +166,8 @@ RectTransform:
   m_Children:
   - {fileID: 5822429115225412925}
   - {fileID: 277339902502401066}
-  - {fileID: 8084223422762590241}
   - {fileID: 7071958877707513104}
-  - {fileID: 5893028901019199261}
+  - {fileID: 8084223422762590241}
   m_Father: {fileID: 4058574673858091484}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -328,7 +327,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5893028901019199261}
   m_Father: {fileID: 5986320339546694099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -399,16 +399,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4890952769576812529}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5986320339546694099}
+  m_Father: {fileID: 7071958877707513104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00000095367, y: -31.138}
+  m_AnchoredPosition: {x: 0, y: -10.587997}
   m_SizeDelta: {x: 82.019, y: 62.276}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6540307034413515526
@@ -536,6 +536,7 @@ GameObject:
   - component: {fileID: 4058574673858091484}
   - component: {fileID: 7107396186462692136}
   - component: {fileID: 7156067248107404083}
+  - component: {fileID: 5096019072941902913}
   m_Layer: 5
   m_Name: TradeCardPrefab
   m_TagString: Untagged
@@ -602,6 +603,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5096019072941902913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6215727062162924523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfcbf7efc781eb59fa1440326abac5e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorField: {fileID: 438980836535509436}
+  propertyNameText: {fileID: 5235954347403896487}
+  typeImage: {fileID: 3720308313501343354}
+  houseSprite: {fileID: 1350244894, guid: c6139f9ecc0603d478af8c23a090acee, type: 3}
+  railRoadSprite: {fileID: 1006044722, guid: c6139f9ecc0603d478af8c23a090acee, type: 3}
+  utilitySprite: {fileID: -1528445794, guid: c6139f9ecc0603d478af8c23a090acee, type: 3}
+  mortgageImage: {fileID: 4890952769576812529}
+  propertyPriceText: {fileID: 8860579852930614329}
+  toggleButton: {fileID: 213407545995770650}
 --- !u!1 &6378664619988878209
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,7 +808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000098212, y: -99.045006}
+  m_AnchoredPosition: {x: -0, y: -99.045006}
   m_SizeDelta: {x: 154, y: 40.41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3322412324735829894
