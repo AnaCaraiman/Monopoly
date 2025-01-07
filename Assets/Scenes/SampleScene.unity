@@ -4044,6 +4044,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameBoard: {fileID: 2083298812}
   playerList:
+  - playerType: 0
+    name: Player
+    myToken: {fileID: 0}
+    myMonopolyNodes:
+    - {fileID: 0}
   - playerType: 1
     name: AI_BOT
     myToken: {fileID: 0}
@@ -7889,7 +7894,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Your Money: 2000 RON'
+  m_text: 'Your Money: 0 RON'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8611,7 +8616,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Your Money: 2000 RON'
+  m_text: 'Your Money: $ 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9149,7 +9154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 318.94, y: -334.38007}
+  m_AnchoredPosition: {x: 318.94, y: -334.38004}
   m_SizeDelta: {x: 637.88, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537494575
@@ -11587,7 +11592,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 723861220}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1913900833}
+        m_TargetAssemblyTypeName: TradingSystem, Assembly-CSharp
+        m_MethodName: OpenTradePanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &723861220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13139,7 +13156,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.35
+  m_fontSize: 44.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17254,7 +17271,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Offer Money:'
+  m_text: 'Offer Money: 0 RON'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -19224,7 +19241,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Offer Money:'
+  m_text: 'Requested Money: $ 0 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21343,7 +21360,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 318.94, y: -334.38007}
+  m_AnchoredPosition: {x: 318.94, y: -334.38004}
   m_SizeDelta: {x: 637.88, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1257859448
@@ -26174,11 +26191,23 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1913900833}
+        m_TargetAssemblyTypeName: TradingSystem, Assembly-CSharp
+        m_MethodName: UpdateLeftSlider
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1504111102
 GameObject:
   m_ObjectHideFlags: 0
@@ -27264,7 +27293,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1545528351}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1913900833}
+        m_TargetAssemblyTypeName: TradingSystem, Assembly-CSharp
+        m_MethodName: CloseTradePanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1545528351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29918,13 +29959,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1913900833}
+        m_TargetAssemblyTypeName: TradingSystem, Assembly-CSharp
+        m_MethodName: CloseTradePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -33599,11 +33640,23 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
-  m_WholeNumbers: 0
+  m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1913900833}
+        m_TargetAssemblyTypeName: TradingSystem, Assembly-CSharp
+        m_MethodName: UpdateRightSlider
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1913900832
 GameObject:
   m_ObjectHideFlags: 0
@@ -33633,6 +33686,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5d18e86f1dfdd468a981afcf2bac8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardPrefab: {fileID: 6215727062162924523, guid: e8abcf4c5c2649d4a8f50020168dbb46, type: 3}
+  tradePanel: {fileID: 1922398142}
+  leftOffererNameText: {fileID: 1189015074}
+  leftCardGrid: {fileID: 537494574}
+  leftToggleGroup: {fileID: 974615443}
+  leftYourMoneyText: {fileID: 464036650}
+  leftOfferMoney: {fileID: 1012572616}
+  leftMoneySlider: {fileID: 1494107720}
+  buttonGrid: {fileID: 1126869110}
+  playerButtonPrefab: {fileID: 5651892880300169753, guid: 959529b7264b7aa439f442a6b70aaa18, type: 3}
+  rightOffererNameText: {fileID: 1184912888}
+  rightCardGrid: {fileID: 1257859447}
+  rightToggleGroup: {fileID: 1532536400}
+  rightYourMoneyText: {fileID: 498352210}
+  rightOfferMoney: {fileID: 1152451408}
+  rightMoneySlider: {fileID: 1911378481}
 --- !u!4 &1913900834
 Transform:
   m_ObjectHideFlags: 0
@@ -33837,7 +33906,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -7, y: 67}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1922398144
@@ -36356,7 +36425,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.35
+  m_fontSize: 44.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
