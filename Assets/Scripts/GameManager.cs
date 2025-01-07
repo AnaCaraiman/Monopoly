@@ -10,16 +10,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Player> playerList = new List<Player>();
     [SerializeField] private int currentPlayer;
 
-    [Header("Globla Game Settings")]
-    [SerializeField]
+    [Header("Globla Game Settings")] [SerializeField]
     private int maxTurnsInJail = 3;
 
     [SerializeField] private int startMoney = 1500;
     [SerializeField] private int goMoney = 500;
     [SerializeField] private float secondsBeetweenTurns = 3f;
 
-    [Header("Player Info")]
-    [SerializeField]
+    [Header("Player Info")] [SerializeField]
     GameObject playerInfoPrefab;
 
     [SerializeField] private Transform playerPanel; // Where the player info will be displayed
@@ -29,8 +27,9 @@ public class GameManager : MonoBehaviour
     private bool rolledADouble;
     public bool RolledADouble => rolledADouble;
     public void ResetRolledADouble() => rolledADouble = false;
-
     private int doubleRollCount;
+    private bool hasRolledDice;
+    public bool HasRolledDice => hasRolledDice;
 
     //tax pool
     int taxPool = 0;
@@ -42,10 +41,12 @@ public class GameManager : MonoBehaviour
 
     //MESSAGE SYSTEM
     public delegate void UpdateMessage(string message);
+
     public static UpdateMessage OnUpdateMessage;
 
     //HUMAN INPUT PANEL
     public delegate void ShowHumanPanel(bool activatePanel, bool activateRollDice, bool activateEndTurn);
+
     public static ShowHumanPanel OnShowHumanPanel;
 
     //DEBUG
@@ -86,10 +87,11 @@ public class GameManager : MonoBehaviour
                 Quaternion.identity);
             playerList[i].InitializePlayer(gameBoard.route[0], startMoney, playerInfoComponent, newToken);
         }
+
         playerList[currentPlayer].ActivateSelector(true);
 
         if (playerList[currentPlayer].playerType == Player.PlayerType.Human)
-        { 
+        {
             OnShowHumanPanel.Invoke(true, true, false);
         }
         else
@@ -101,6 +103,7 @@ public class GameManager : MonoBehaviour
     public void RollDice()
     {
         bool allowedToMove = true;
+        hasRolledDice = true;
         //RESET LAST ROLL
         rolledDice = new int[2];
 
@@ -135,7 +138,8 @@ public class GameManager : MonoBehaviour
             if (rolledADouble)
             {
                 playerList[currentPlayer].SetOutOfJail();
-                OnUpdateMessage?.Invoke($"{playerList[currentPlayer].name} rolled a <b>double</b> and <b><color=green>is out of jail!</color></b>");
+                OnUpdateMessage?.Invoke(
+                    $"{playerList[currentPlayer].name} rolled a <b>double</b> and <b><color=green>is out of jail!</color></b>");
                 doubleRollCount++;
                 //MOVE PLAYER
             }
@@ -143,7 +147,8 @@ public class GameManager : MonoBehaviour
             {
                 //ALLOWED TO LEAVE
                 playerList[currentPlayer].SetOutOfJail();
-                OnUpdateMessage?.Invoke($"{playerList[currentPlayer].name} has been in jail for <b>{maxTurnsInJail} turns</b> and <b><color=green>is out of jail!</color></b>");
+                OnUpdateMessage?.Invoke(
+                    $"{playerList[currentPlayer].name} has been in jail for <b>{maxTurnsInJail} turns</b> and <b><color=green>is out of jail!</color></b>");
             }
             else
             {
@@ -166,7 +171,8 @@ public class GameManager : MonoBehaviour
                     int indexOnBoard = MonopolyBoard.instance.route.IndexOf(playerList[currentPlayer].MyMonopolyNode);
                     playerList[currentPlayer].GoToJail(indexOnBoard);
 
-                    OnUpdateMessage?.Invoke($"{playerList[currentPlayer].name} rolled <b>3 doubles</b> in a row and <b><color=red>is sent to jail!</color></b>");
+                    OnUpdateMessage?.Invoke(
+                        $"{playerList[currentPlayer].name} rolled <b>3 doubles</b> in a row and <b><color=red>is sent to jail!</color></b>");
 
                     rolledADouble = false;
                     return;
@@ -179,13 +185,15 @@ public class GameManager : MonoBehaviour
         //MOVE IF ALLOWED
         if (allowedToMove)
         {
-            OnUpdateMessage?.Invoke($"{playerList[currentPlayer].name} rolled a <b>{rolledDice[0] + rolledDice[1]}</b> and is moving...");
+            OnUpdateMessage?.Invoke(
+                $"{playerList[currentPlayer].name} rolled a <b>{rolledDice[0] + rolledDice[1]}</b> and is moving...");
             StartCoroutine(DelayBeforMove(rolledDice[0] + rolledDice[1]));
         }
         else
         {
             //SWITCH PLAYER
-            OnUpdateMessage?.Invoke($"{playerList[currentPlayer].name} rolled a <b>{rolledDice[0]} & {rolledDice[1]}</b> and <b><color=red>is still in jail!</color></b>");
+            OnUpdateMessage?.Invoke(
+                $"{playerList[currentPlayer].name} rolled a <b>{rolledDice[0]} & {rolledDice[1]}</b> and <b><color=red>is still in jail!</color></b>");
             StartCoroutine(DeleyBeforeSwitchPlayer());
         }
 
@@ -211,6 +219,7 @@ public class GameManager : MonoBehaviour
     public void SwitchPlayers()
     {
         currentPlayer++;
+        hasRolledDice = false;
 
         doubleRollCount = 0;
         if (currentPlayer >= playerList.Count)
@@ -230,8 +239,6 @@ public class GameManager : MonoBehaviour
         {
             OnShowHumanPanel.Invoke(true, true, false);
         }
-
-        
     }
 
     public int[] LastRolledDice => rolledDice;
@@ -257,7 +264,7 @@ public class GameManager : MonoBehaviour
 
     void CheckForGameOver()
     {
-        if(playerList.Count == 1)
+        if (playerList.Count == 1)
         {
             Debug.Log(playerList[0].name + "IS THE WINNER!");
             OnUpdateMessage?.Invoke(playerList[0].name + "IS THE WINNER!");
@@ -266,6 +273,7 @@ public class GameManager : MonoBehaviour
             //SHOW UI
         }
     }
+
     void DeactivateArrows()
     {
         foreach (Player player in playerList)

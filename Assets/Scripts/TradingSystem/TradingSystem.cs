@@ -154,7 +154,7 @@ public class TradingSystem : MonoBehaviour
     void ConsiderTradeOffer(Player currentPlayer, Player nodeOwner, MonopolyNode requestedNode,
         MonopolyNode offeredNode, int offeredMoney, int requestedMoney)
     {
-        int valueOfTrade = (CalculateValueOfNode(requestedNode) + requestedMoney) -
+        int valueOfTheTrade = (CalculateValueOfNode(requestedNode) + requestedMoney) -
                            (CalculateValueOfNode(offeredNode) + offeredMoney);
         // sell a node for money only 
         if (requestedNode == null && offeredNode != null && requestedMoney < nodeOwner.ReadMoney / 3)
@@ -164,7 +164,7 @@ public class TradingSystem : MonoBehaviour
         }
 
         //normal trade
-        if (valueOfTrade <= 0)
+        if (valueOfTheTrade <= 0 && !MonopolyBoard.instance.PlayerHasAllNodesOfSet(requestedNode).allSame)
         {
             Trade(currentPlayer, nodeOwner, requestedNode, offeredNode, offeredMoney, requestedMoney);
         }
@@ -222,6 +222,9 @@ public class TradingSystem : MonoBehaviour
             OnUpdateMessage.Invoke(currentPlayer.name + " sold " + offeredNode.name + " to " + nodeOwner.name + " for" +
                                    requestedMoney);
         }
+        
+        //HIDE UI FOR HUMAN AI
+        CloseTradePanel();
     }
 
     void CreateLeftPanel()
