@@ -603,6 +603,8 @@ public class MonopolyNode : MonoBehaviour
         owner.RemoveProperty(this);
         //REMOVE PROPERTY FROM OWNER
         owner.name = "";
+        owner.ActivateSelector(false);
+        owner = null;
 
         //UPDATE UI
         OnOwnerUpdated();
