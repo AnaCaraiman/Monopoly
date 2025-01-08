@@ -245,7 +245,7 @@ public class TradingSystem : MonoBehaviour
             }
 
             string offeredNodeName = offeredNode != null ? " & " + offeredNode.name : "";
-            OnUpdateMessage.Invoke(currentPlayer.name + " traded " + requestedNode.name + " for " + offeredMoney +
+            OnUpdateMessage?.Invoke(currentPlayer.name + " traded " + requestedNode.name + " for " + offeredMoney +
                                    offeredNodeName + " to " + nodeOwner.name);
         }
         else if (offeredNode != null && requestedNode == null)
@@ -253,7 +253,7 @@ public class TradingSystem : MonoBehaviour
             currentPlayer.CollectMoney(requestedMoney);
             nodeOwner.PayMoney(requestedMoney);
             offeredNode.changeOwner(nodeOwner);
-            OnUpdateMessage.Invoke(currentPlayer.name + " sold " + offeredNode.name + " to " + nodeOwner.name + " for" +
+            OnUpdateMessage?.Invoke(currentPlayer.name + " sold " + offeredNode.name + " to " + nodeOwner.name + " for" +
                                    requestedMoney);
         }
         
