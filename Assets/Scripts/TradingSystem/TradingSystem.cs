@@ -48,6 +48,11 @@ public class TradingSystem : MonoBehaviour
     [SerializeField] Image leftPropImage, rightPropImage;
     [SerializeField] Sprite houseSprite, railroadSprite, utilitySprite;
 
+    //STORE THE OFFER FOR HUMAN
+     Player currentPlayer, nodeOwner;
+    MonopolyNode requestedNode, offeredNode;
+    int offeredMoney, requestedMoney;
+
     //MESSAGE SYSTEM
     public delegate void UpdateMessage(string message);
 
@@ -111,6 +116,11 @@ public class TradingSystem : MonoBehaviour
                 }
             }
         }
+        //CONTINUE IF NOTHING HAS BEEN FOUND
+        if(requestedNode==null)
+        {
+            currentPlayer.ChangeState(Player.AiStates.IDLE);
+        }
     }
 
     void MakeTradeDecision(Player currentPlayer, Player nodeOwner, MonopolyNode requestedNode)
@@ -171,7 +181,11 @@ public class TradingSystem : MonoBehaviour
         if (requestedNode == null && offeredNode != null && requestedMoney <= nodeOwner.ReadMoney / 3 && !MonopolyBoard.instance.PlayerHasAllNodesOfSet(requestedNode).allSame)
         {
             Trade(currentPlayer, nodeOwner, requestedNode, offeredNode, offeredMoney, requestedMoney);
-            TradeResult(true);
+            if(currentPlayer.playerType == Player.PlayerType.Human)
+            {
+                TradeResult(true);
+            }
+            
             return;
         }
 
@@ -179,11 +193,17 @@ public class TradingSystem : MonoBehaviour
         if (valueOfTheTrade <= 0 && !MonopolyBoard.instance.PlayerHasAllNodesOfSet(requestedNode).allSame)
         {
             Trade(currentPlayer, nodeOwner, requestedNode, offeredNode, offeredMoney, requestedMoney);
-            TradeResult(true);
+            if (currentPlayer.playerType == Player.PlayerType.Human)
+            {
+                TradeResult(true);
+            }
         }
         else
         {
-            TradeResult(false);
+            if (currentPlayer.playerType == Player.PlayerType.Human)
+            {
+                TradeResult(false);
+            }
             Debug.Log("AI rejected trade");
         }
     }
@@ -239,6 +259,10 @@ public class TradingSystem : MonoBehaviour
         
         //HIDE UI FOR HUMAN AI
         CloseTradePanel();
+        if(currentPlayer.playerType==Player.PlayerType.AI)
+        {
+            currentPlayer.ChangeState(Player.AiStates.IDLE);
+        }
     }
 
     void CreateLeftPanel()
@@ -430,9 +454,17 @@ public class TradingSystem : MonoBehaviour
 
     //------------------------------ TRADE OFFER PANEL ------------------------------ HUMAN
     
-    void ShowTradeOfferPanel(Player currentPlayer, Player nodeOwner, MonopolyNode requestedNode, MonopolyNode offeredNode,
-        int offeredMoney, int requestedMoney)
+    void ShowTradeOfferPanel(Player _currentPlayer, Player _nodeOwner, MonopolyNode _requestedNode, MonopolyNode _offeredNode,
+        int _offeredMoney, int _requestedMoney)
     {
+        //FILL THE ACTUAL OFFER CONTENT
+        currentPlayer = _currentPlayer;
+        nodeOwner = _nodeOwner;
+        requestedNode = _requestedNode;
+        offeredNode = _offeredNode;
+        offeredMoney = _offeredMoney;
+        requestedMoney = _requestedMoney;
+       //SHOW PANEL CONTENT
         tradeOfferPanel.SetActive(true);
         leftMessageText.text = currentPlayer.name + " offers:";
         rightMessageText.text = "For " + nodeOwner.name + " 's:";
@@ -483,12 +515,24 @@ public class TradingSystem : MonoBehaviour
     }
 
     public void AcceptOffer()
-    {
-
+    {   
+        Trade(currentPlayer, nodeOwner, requestedNode, offeredNode, offeredMoney, requestedMoney);
+       
+        ResetOffer();
     }
 
     public void RejectOffer()
     {
-
+        currentPlayer.ChangeState(Player.AiStates.IDLE);
+        ResetOffer();
+    }
+    void ResetOffer()
+    {
+        currentPlayer = null;
+        nodeOwner = null;
+        requestedNode = null;
+        offeredNode = null;
+        offeredMoney = 0;
+        requestedMoney = 0;
     }
 }

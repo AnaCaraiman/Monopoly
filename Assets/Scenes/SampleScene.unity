@@ -4258,15 +4258,18 @@ MonoBehaviour:
     myToken: {fileID: 0}
     myMonopolyNodes:
     - {fileID: 0}
+    aiState: 0
   - playerType: 1
     name: AI_BOT
     myToken: {fileID: 0}
     myMonopolyNodes: []
+    aiState: 0
   - playerType: 1
     name: AI_333
     myToken: {fileID: 0}
     myMonopolyNodes:
     - {fileID: 0}
+    aiState: 0
   currentPlayer: 0
   maxTurnsInJail: 3
   startMoney: 1500
@@ -4280,9 +4283,9 @@ MonoBehaviour:
   - {fileID: 2569138251018583920, guid: b8347be5ecb2c8d07bed282d8a5834e3, type: 3}
   - {fileID: 4500234306836694006, guid: 4db3264bf1e5f60fabcc10c6cacef6f5, type: 3}
   alwaysRollDouble: 0
-  forceDiceRolls: 0
-  dice1: 2
-  dice2: 1
+  forceDiceRolls: 1
+  dice1: 1
+  dice2: 0
 --- !u!1 &240363124
 GameObject:
   m_ObjectHideFlags: 0
@@ -9517,7 +9520,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 318.94, y: -296.8404}
+  m_AnchoredPosition: {x: 318.94, y: -296.84042}
   m_SizeDelta: {x: 637.88, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537494575
@@ -9974,7 +9977,7 @@ GameObject:
   - component: {fileID: 569265370}
   - component: {fileID: 569265369}
   m_Layer: 5
-  m_Name: Message
+  m_Name: OffererText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18803,8 +18806,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 525458489}
   m_HandleRect: {fileID: 525458488}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.50000006
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -20460,8 +20463,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 815897055}
   m_HandleRect: {fileID: 815897054}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.50000006
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -22361,7 +22364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 318.94, y: -296.8404}
+  m_AnchoredPosition: {x: 318.94, y: -296.84042}
   m_SizeDelta: {x: 637.88, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1257859448
@@ -26580,6 +26583,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1913900833}
+        m_TargetAssemblyTypeName: TradingSystem, Assembly-CSharp
+        m_MethodName: AcceptOffer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1617914546}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -29986,7 +30001,7 @@ GameObject:
   - component: {fileID: 1617914549}
   - component: {fileID: 1617914548}
   m_Layer: 5
-  m_Name: Trade To Human Panel
+  m_Name: Trade Offer Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30758,7 +30773,7 @@ GameObject:
   - component: {fileID: 1642640328}
   - component: {fileID: 1642640327}
   m_Layer: 5
-  m_Name: Message (1)
+  m_Name: ReceieverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31993,6 +32008,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1913900833}
+        m_TargetAssemblyTypeName: TradingSystem, Assembly-CSharp
+        m_MethodName: RejectOffer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1617914546}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -35874,6 +35901,20 @@ MonoBehaviour:
   rightYourMoneyText: {fileID: 498352210}
   rightOfferMoney: {fileID: 1152451408}
   rightMoneySlider: {fileID: 1911378481}
+  tradeOfferPanel: {fileID: 1617914546}
+  leftMessageText: {fileID: 569265369}
+  rightMessageText: {fileID: 1642640327}
+  leftMoneyText: {fileID: 759378571}
+  rightMoneyText: {fileID: 113964414}
+  leftCard: {fileID: 401274250}
+  rightCard: {fileID: 1915515832}
+  leftColorField: {fileID: 851434249}
+  rightColorField: {fileID: 120866948}
+  leftPropImage: {fileID: 1254899163}
+  rightPropImage: {fileID: 535620853}
+  houseSprite: {fileID: 1350244894, guid: c6139f9ecc0603d478af8c23a090acee, type: 3}
+  railroadSprite: {fileID: 1006044722, guid: c6139f9ecc0603d478af8c23a090acee, type: 3}
+  utilitySprite: {fileID: -1528445794, guid: c6139f9ecc0603d478af8c23a090acee, type: 3}
 --- !u!4 &1913900834
 Transform:
   m_ObjectHideFlags: 0

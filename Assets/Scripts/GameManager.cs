@@ -281,4 +281,22 @@ public class GameManager : MonoBehaviour
             player.ActivateSelector(false);
         }
     }
+
+    public void Continue()
+    {
+        Invoke("ContinueGame",SecondsBeetweenTurns);
+    }
+    void ContinueGame()
+    {
+        if (RolledADouble)
+        {
+            //ROLL AGAIN
+            RollDice();
+        }
+        else
+        {
+            //SWITCH PLAYER
+           SwitchPlayers();
+        }
+    }
 }

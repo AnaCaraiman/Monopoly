@@ -44,7 +44,7 @@ public class CommunityChest : MonoBehaviour
     }
 
     void ShuffleCards()
-    { 
+    {
         for (int i = 0; i < cardPool.Count; i++)
         {
             int index = Random.Range(0, cardPool.Count);
@@ -60,7 +60,7 @@ public class CommunityChest : MonoBehaviour
         pickedCard = cardPool[0];
         cardPool.RemoveAt(0);
         usedCardPool.Add(pickedCard);
-        if(cardPool.Count == 0)
+        if (cardPool.Count == 0)
         {
             //PUT BACK ALL CARDS
             cardPool.AddRange(usedCardPool);
@@ -77,10 +77,10 @@ public class CommunityChest : MonoBehaviour
         cardText.text = pickedCard.textOnCard;
 
         //DEACTIVATE THE BUTTON IF WE ARE AN AI PLAYER
-        if(currentPlayer.playerType == Player.PlayerType.AI)
+        if (currentPlayer.playerType == Player.PlayerType.AI)
         {
             closeCardButton.interactable = false;
-            Invoke("ApplyCardEffect", showTime);   
+            Invoke("ApplyCardEffect", showTime);
         }
         else
         {
@@ -159,20 +159,16 @@ public class CommunityChest : MonoBehaviour
     {
         if (currentPlayer.playerType == Player.PlayerType.AI)
         {
-            if (!isMoving && GameManager.instance.RolledADouble)
-            {
-                GameManager.instance.RollDice();
-            }
-            else if(!isMoving && !GameManager.instance.RolledADouble)
-            {
-                GameManager.instance.SwitchPlayers();
-            }
-        }
-        else //HUMAN INPUT
-        {
             if (!isMoving)
             {
-                OnShowHumanPanel.Invoke(true, GameManager.instance.RolledADouble, !GameManager.instance.RolledADouble);
+                GameManager.instance.Continue();
+            }
+            else //HUMAN INPUT
+            {
+                if (!isMoving)
+                {
+                    OnShowHumanPanel.Invoke(true, GameManager.instance.RolledADouble, !GameManager.instance.RolledADouble);
+                }
             }
         }
     }

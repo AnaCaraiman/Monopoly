@@ -416,7 +416,8 @@ public class MonopolyNode : MonoBehaviour
         //continue
         if (!playerIsHuman)
         {
-            Invoke("ContinueGame", GameManager.instance.SecondsBeetweenTurns);
+            // Invoke("ContinueGame", GameManager.instance.SecondsBeetweenTurns);
+            currentPlayer.ChangeState(Player.AiStates.TRADING);
         }
         else
         {
@@ -427,19 +428,19 @@ public class MonopolyNode : MonoBehaviour
         }
     }
 
-    void ContinueGame()
-    {
-        if (GameManager.instance.RolledADouble)
-        {
-            //ROLL AGAIN
-            GameManager.instance.RollDice();
-        }
-        else
-        {
+  //  void ContinueGame()
+  //  {
+  //      if (GameManager.instance.RolledADouble)
+  //      {
+  //          //ROLL AGAIN
+  //          GameManager.instance.RollDice();
+  //      }
+  //      else
+  //      {
             //SWITCH PLAYER
-            GameManager.instance.SwitchPlayers();
-        }
-    }
+   //         GameManager.instance.SwitchPlayers();
+   //     }
+   // }
 
     int CalculatePropertyRent()
     {

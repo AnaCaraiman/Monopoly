@@ -173,14 +173,11 @@ public class ChanceField : MonoBehaviour
     {
         if (currentPlayer.playerType == Player.PlayerType.AI)
         {
-            if (!isMoving && GameManager.instance.RolledADouble)
+            if (!isMoving)
             {
-                GameManager.instance.RollDice();
+                GameManager.instance.Continue();
             }
-            else if (!isMoving && !GameManager.instance.RolledADouble)
-            {
-                GameManager.instance.SwitchPlayers();
-            }
+            
         }
         else //HUMAN INPUT
         {
