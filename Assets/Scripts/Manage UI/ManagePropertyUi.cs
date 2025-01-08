@@ -34,7 +34,7 @@ public class ManagePropertyUi : MonoBehaviour
         sellHouseButton.interactable = CheckIfSellAllowed();
 
         buyHousePriceText.text = "-" + nodesInSet[0].houseCost;
-        sellHousePriceText.text = "+" + nodesInSet[0].houseCost;
+        sellHousePriceText.text = "+" + nodesInSet[0].houseCost / 2;
     }
 
     public void BuyHouseButton()
