@@ -131,6 +131,8 @@ public class TradingSystem : MonoBehaviour
             return;
         }
 
+        bool foundDecision = false;
+
         foreach (var node in currentPlayer.GetMonopolyNodes)
         {
             var checkedSet = MonopolyBoard.instance.PlayerHasAllNodesOfSet(node).list;
@@ -152,10 +154,14 @@ public class TradingSystem : MonoBehaviour
                     {
                         MakeTradeOffer(currentPlayer, nodeOwner, requestedNode, node, 0, Mathf.Abs(difference));
                     }
-
+                    bool foundDecision = true;
                     break;
                 }
             }
+        }
+        if(!foundDecision)
+        {
+            currentPlayer.ChangeState(Player.AiStates.IDLE);
         }
     }
 
