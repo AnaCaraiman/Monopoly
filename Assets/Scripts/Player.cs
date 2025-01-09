@@ -304,7 +304,7 @@ public class Player
                 }
             }
         }
-        if (playerType = PlayerType.AI)
+        if (playerType == PlayerType.AI)
         {             
             //we go bankrupt if we reach this point
             Bankrupt();

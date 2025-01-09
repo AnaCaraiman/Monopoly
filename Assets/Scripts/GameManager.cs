@@ -332,7 +332,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if (playerList.Cout > 1)
+            if (playerList.Count > 1)
             {
                 //SWITCH PLAYER
                 SwitchPlayers();

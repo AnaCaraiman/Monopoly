@@ -154,7 +154,7 @@ public class TradingSystem : MonoBehaviour
                     {
                         MakeTradeOffer(currentPlayer, nodeOwner, requestedNode, node, 0, Mathf.Abs(difference));
                     }
-                    bool foundDecision = true;
+                    foundDecision = true;
                     break;
                 }
             }
