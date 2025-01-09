@@ -303,7 +303,7 @@ public class Player
         Bankrupt();
     }
 
-    void Bankrupt()
+    internal void Bankrupt()
     {
         //REMOVE PLAYER FROM THE GAME
         //GameManager.instance.RemovePlayer(this);
@@ -314,7 +314,11 @@ public class Player
         //clear all what the player has owned
         for (int i = myMonopolyNodes.Count - 1; i >= 0; i--)
         {
-            myMonopolyNodes[i].ResetNode();
+            if (myMonopolyNodes[i] != null)
+            {
+                myMonopolyNodes[i].ResetNode();
+            }
+            
         }
 
         //remove the player from the game
