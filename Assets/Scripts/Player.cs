@@ -22,11 +22,26 @@ public class Player
     [SerializeField] private List<MonopolyNode> myMonopolyNodes = new List<MonopolyNode>();
     public List<MonopolyNode> GetMonopolyNodes => myMonopolyNodes;
 
+    bool hasChanceJailFreeCard;
+    bool hasCommunityJailFreeCard;
+
+    public bool HasChanceJailFreeCard => hasChanceJailFreeCard;
+    public bool HasCommunityJailFreeCard => hasCommunityJailFreeCard;
+
     // PLAYER INFO
     private PlayerInfo myInfo;
 
     //AI
     private int aiMoneySavity = 200;
+
+    //AI STATES
+    public enum AiStates
+    {
+       IDLE,
+       TRADING
+    }   
+
+    public AiStates aiState;
 
     //RETURN SOME INFOS
     public bool IsInJail => isInJail;
@@ -40,7 +55,7 @@ public class Player
     public static UpdateMessage OnUpdateMessage;
 
     //HUMAN INOUT PANEL
-    public delegate void ShowHumanPanel(bool activatePanel, bool activateRollDice, bool activateEndTurn);
+    public delegate void ShowHumanPanel(bool activatePanel, bool activateRollDice, bool activateEndTurn, bool hasChanceJailCard, bool hasCommunityJailCard);
 
     public static ShowHumanPanel OnShowHumanPanel;
 
@@ -66,7 +81,7 @@ public class Player
             //check for unmortgaged properties
             UnMortgageProperties();
             //UnMortgageProperty();
-            TradingSystem.instance.FindMissingProperty(this);
+            //TradingSystem.instance.FindMissingProperty(this);
         }
     }
 
@@ -81,7 +96,7 @@ public class Player
             bool canRollDice = GameManager.instance.RolledADouble && ReadMoney >= 0 &&
                                GameManager.instance.HasRolledDice;
             //SHOW UI
-            OnShowHumanPanel.Invoke(true, canRollDice, canEndTurn);
+            OnShowHumanPanel.Invoke(true, canRollDice, canEndTurn, hasChanceJailFreeCard, hasCommunityJailFreeCard);
         }
     }
 
@@ -124,7 +139,7 @@ public class Player
             else
             {
                 //disable human turn and roll dice
-                OnShowHumanPanel.Invoke(true, false, false);
+                OnShowHumanPanel.Invoke(true, false, false, hasChanceJailFreeCard, hasCommunityJailFreeCard);
             }
         }
 
@@ -163,7 +178,7 @@ public class Player
             bool canRollDice = (GameManager.instance.RolledADouble && ReadMoney >= 0) ||
                                (!GameManager.instance.HasRolledDice && ReadMoney >= 0);
             //SHOW UI
-            OnShowHumanPanel.Invoke(true, canRollDice, canEndTurn);
+            OnShowHumanPanel.Invoke(true, canRollDice, canEndTurn, hasChanceJailFreeCard, hasCommunityJailFreeCard);
         }
     }
 
@@ -289,12 +304,14 @@ public class Player
                 }
             }
         }
-
-        //we go bankrupt if we reach this point
-        Bankrupt();
+        if (playerType == PlayerType.AI)
+        {             
+            //we go bankrupt if we reach this point
+            Bankrupt();
+        }
     }
 
-    void Bankrupt()
+    internal void Bankrupt()
     {
         //REMOVE PLAYER FROM THE GAME
         //GameManager.instance.RemovePlayer(this);
@@ -305,7 +322,20 @@ public class Player
         //clear all what the player has owned
         for (int i = myMonopolyNodes.Count - 1; i >= 0; i--)
         {
-            myMonopolyNodes[i].ResetNode();
+            if (myMonopolyNodes[i] != null)
+            {
+                myMonopolyNodes[i].ResetNode();
+            }
+            
+        }
+
+        if (hasChanceJailFreeCard)
+        {
+            ChanceField.instance.AddBackJailFreeCard();
+        }
+        if (hasCommunityJailFreeCard)
+        {
+            CommunityChest.instance.AddBackJailFreeCard();
         }
 
         //remove the player from the game
@@ -444,5 +474,65 @@ public class Player
     {
         myMonopolyNodes.Remove(node);
         SortPropertiesByPrice();
+    }
+
+    public void ChangeState(AiStates state)
+    {   if(playerType==PlayerType.Human)
+        {
+            return;
+        }
+        aiState = state;
+        switch(aiState)
+        {
+            case AiStates.IDLE:
+                {
+                    //CONTINUE THE GAME
+                    GameManager.instance.Continue();
+                    
+                }
+                break;
+            case AiStates.TRADING:
+                {
+                    //HOLD THE GAME UNTIL CONTINUED
+                    TradingSystem.instance.FindMissingProperty(this);
+                }
+                break;
+        }
+
+    }
+   
+    //JAIL FREE CARDS
+    public void AddChanceJailFreeCard()
+    {
+        hasChanceJailFreeCard = true;
+    }
+
+    public void AddCommunityJailFreeCard()
+    {
+        hasCommunityJailFreeCard = true;
+    }
+
+    public void UseCommunityJailFreeCard()//JAIL 2
+    {
+        if(!IsInJail)
+        {
+            return;
+        }
+        hasCommunityJailFreeCard = false;
+        SetOutOfJail();
+        CommunityChest.instance.AddBackJailFreeCard();
+        OnUpdateMessage?.Invoke($"{name} used a community chest jail free card!");
+    }
+
+    public void UseChanceJailFreeCard() //JAIL 1
+    {
+        if (!IsInJail)
+        {
+            return;
+        }
+        hasChanceJailFreeCard = false;
+        SetOutOfJail();
+        ChanceField.instance.AddBackJailFreeCard();
+        OnUpdateMessage?.Invoke($"{name} used a chance jail free card!");
     }
 }

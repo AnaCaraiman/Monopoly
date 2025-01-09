@@ -15,6 +15,7 @@ public class ManagePropertyUi : MonoBehaviour
     Player playerReference;
     List<MonopolyNode> nodesInSet = new List<MonopolyNode>();
     List<GameObject> cardsInSet = new List<GameObject>();
+    [SerializeField] GameObject buttonBox;
 
     //FOR 1 SPECIFIC CARD SET
     public void SetProperty(List<MonopolyNode> nodes, Player owner)
@@ -34,7 +35,11 @@ public class ManagePropertyUi : MonoBehaviour
         sellHouseButton.interactable = CheckIfSellAllowed();
 
         buyHousePriceText.text = "-" + nodesInSet[0].houseCost;
-        sellHousePriceText.text = "+" + nodesInSet[0].houseCost;
+        sellHousePriceText.text = "+" + nodesInSet[0].houseCost / 2;
+        if (nodes[0].monopolyNodeType != MonopolyNodeType.Property)
+        {
+            buttonBox.SetActive(false);
+        }
     }
 
     public void BuyHouseButton()

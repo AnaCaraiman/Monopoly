@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using UnityEngine.UI;
 public class CommunityChest : MonoBehaviour
 {
+    public static CommunityChest instance;
     [SerializeField] List<SCR_CommunityCard> cards = new List<SCR_CommunityCard>();
     [SerializeField] TMP_Text cardText;
     [SerializeField] GameObject cardHolderBackground;
@@ -16,12 +17,14 @@ public class CommunityChest : MonoBehaviour
 
     List<SCR_CommunityCard> cardPool = new List<SCR_CommunityCard>();
     List<SCR_CommunityCard> usedCardPool = new List<SCR_CommunityCard>();
+
+    SCR_CommunityCard jailFreeCard;
     //CURRENT CARD AND CURRENT PLAYER
     SCR_CommunityCard pickedCard;
     Player currentPlayer;
 
     //HUMAN INOUT PANEL
-    public delegate void ShowHumanPanel(bool activatePanel, bool activateRollDice, bool activateEndTurn);
+    public delegate void ShowHumanPanel(bool activatePanel, bool activateRollDice, bool activateEndTurn, bool hasChanceJailCard, bool hasCommunityJailCard);
     public static ShowHumanPanel OnShowHumanPanel;
 
     private void OnEnable()
@@ -34,6 +37,11 @@ public class CommunityChest : MonoBehaviour
         MonopolyNode.OnDrawCommunityCard -= DrawCard;
     }
 
+    void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         cardHolderBackground.SetActive(false);
@@ -44,7 +52,7 @@ public class CommunityChest : MonoBehaviour
     }
 
     void ShuffleCards()
-    { 
+    {
         for (int i = 0; i < cardPool.Count; i++)
         {
             int index = Random.Range(0, cardPool.Count);
@@ -59,8 +67,17 @@ public class CommunityChest : MonoBehaviour
         //DRAW AN ACTUAL CARD
         pickedCard = cardPool[0];
         cardPool.RemoveAt(0);
-        usedCardPool.Add(pickedCard);
-        if(cardPool.Count == 0)
+
+        if (pickedCard.jailFreeCard)
+        {
+            jailFreeCard = pickedCard;
+        }
+        else
+        {
+            usedCardPool.Add(pickedCard);
+        }
+
+        if (cardPool.Count == 0)
         {
             //PUT BACK ALL CARDS
             cardPool.AddRange(usedCardPool);
@@ -77,10 +94,10 @@ public class CommunityChest : MonoBehaviour
         cardText.text = pickedCard.textOnCard;
 
         //DEACTIVATE THE BUTTON IF WE ARE AN AI PLAYER
-        if(currentPlayer.playerType == Player.PlayerType.AI)
+        if (currentPlayer.playerType == Player.PlayerType.AI)
         {
             closeCardButton.interactable = false;
-            Invoke("ApplyCardEffect", showTime);   
+            Invoke("ApplyCardEffect", showTime);
         }
         else
         {
@@ -149,7 +166,7 @@ public class CommunityChest : MonoBehaviour
         }
         else if (pickedCard.jailFreeCard) //JAIL FREE CARD
         {
-
+            currentPlayer.AddCommunityJailFreeCard();
         }
         cardHolderBackground.SetActive(false);
         ContinueGame(isMoving);
@@ -159,21 +176,25 @@ public class CommunityChest : MonoBehaviour
     {
         if (currentPlayer.playerType == Player.PlayerType.AI)
         {
-            if (!isMoving && GameManager.instance.RolledADouble)
-            {
-                GameManager.instance.RollDice();
-            }
-            else if(!isMoving && !GameManager.instance.RolledADouble)
-            {
-                GameManager.instance.SwitchPlayers();
-            }
-        }
-        else //HUMAN INPUT
-        {
             if (!isMoving)
             {
-                OnShowHumanPanel.Invoke(true, GameManager.instance.RolledADouble, !GameManager.instance.RolledADouble);
+                GameManager.instance.Continue();
+            }
+            else //HUMAN INPUT
+            {
+                if (!isMoving)
+                {
+                    bool jail1 = currentPlayer.HasChanceJailFreeCard;
+                    bool jail2 = currentPlayer.HasCommunityJailFreeCard;
+                    OnShowHumanPanel.Invoke(true, GameManager.instance.RolledADouble, !GameManager.instance.RolledADouble, jail1, jail2);
+                }
             }
         }
+    }
+
+    public void AddBackJailFreeCard()
+    {
+        usedCardPool.Add(jailFreeCard);
+        jailFreeCard = null;
     }
 }
