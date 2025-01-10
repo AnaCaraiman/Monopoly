@@ -46,8 +46,6 @@ public class GameManager : MonoBehaviour
     //tax pool
     int taxPool = 0;
 
-
-
     public int GetGoMoney => goMoney;
     public float SecondsBeetweenTurns => secondsBeetweenTurns;
     public List<Player> GetPlayers => playerList;
@@ -171,7 +169,7 @@ public class GameManager : MonoBehaviour
         //rolledDice[0] = 3;
         //rolledDice[1] = 2;
 
-        //Debug.Log($"{playerList[currentPlayer].name} Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
+        Debug.Log($"{playerList[currentPlayer].name} Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
 
         //DEBUG
        // if (alwaysRollDouble)

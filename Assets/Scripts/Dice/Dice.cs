@@ -42,6 +42,7 @@ public class Dice : MonoBehaviour
 
     public void RollDice()
     {
+        Reset();
         if(!thrown && !hasLanded)
         {
             Reset();
@@ -68,14 +69,14 @@ public class Dice : MonoBehaviour
 
     void ReRollDice()
     {
-        if (hasLanded) 
-        {
+        // if (hasLanded) 
+        // {
             Reset(); 
             thrown = true; 
             rb.useGravity = true;
             rb.isKinematic = false;
             rb.AddTorque(Random.Range(0, 500), Random.Range(0, 500), Random.Range(0, 500));
-        }
+        // }
     }
 
 
