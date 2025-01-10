@@ -21,6 +21,10 @@ public class ManagePropertyUi : MonoBehaviour
     public void SetProperty(List<MonopolyNode> nodes, Player owner)
     {
         playerReference = owner;
+        if (nodes.Count == 0)
+        {
+            return;
+        }
         nodesInSet.AddRange(nodes);
         for (int i = 0; i < nodesInSet.Count; i++)
         {
@@ -44,6 +48,12 @@ public class ManagePropertyUi : MonoBehaviour
 
     public void BuyHouseButton()
     {
+        if (nodesInSet.Count == 0)
+        {
+            string message = "No properties to build a house";
+            ManageUi.instance.UpdateSystemMessage(message);
+            return;
+        }
         if (!CheckIfBuyAllowed())
         {
             //ERROR MESSAGE
@@ -71,6 +81,19 @@ public class ManagePropertyUi : MonoBehaviour
 
     public void SellHouseButton()
     {
+        if (nodesInSet.Count == 0)
+        {
+            string message = "No properties to sell a house";
+            ManageUi.instance.UpdateSystemMessage(message);
+            return;
+        }
+        if (!CheckIfSellAllowed())
+        {
+            //ERROR MESSAGE
+            string message = "No houses to sell";
+            ManageUi.instance.UpdateSystemMessage(message);
+            return;
+        }
         playerReference.SellHouseEvenly(nodesInSet);
         //UPDATE MONEY TEXT
         UpdateHouseVisuals();

@@ -230,6 +230,11 @@ public class Player
     {
         int houses = 0; //GOES TO INDEX 0
         int hotels = 0; //GOES TO INDEX 1
+        if(myMonopolyNodes.Count == 0)
+        {
+            return new int[] { 0, 0 };
+        }
+
 
         foreach (var node in myMonopolyNodes)
         {

@@ -167,6 +167,6 @@ public class MonopolyBoard : MonoBehaviour
             }
         }
 
-        return (null, allSame);
+        return(new List<MonopolyNode>(), allSame);
     }
 }
