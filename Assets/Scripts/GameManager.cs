@@ -31,7 +31,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] TMP_Text winnerNameText;
 
-    private int[] rolledDice;
+    [Header("Dice")]
+    [SerializeField] Dice _dice1;
+    [SerializeField] Dice _dice2;
+
+    List<int> rolledDice = new List<int>();
     private bool rolledADouble;
     public bool RolledADouble => rolledADouble;
     public void ResetRolledADouble() => rolledADouble = false;
@@ -42,10 +46,13 @@ public class GameManager : MonoBehaviour
     //tax pool
     int taxPool = 0;
 
+
+
     public int GetGoMoney => goMoney;
     public float SecondsBeetweenTurns => secondsBeetweenTurns;
     public List<Player> GetPlayers => playerList;
     public Player GetCurrentPlayer => playerList[currentPlayer];
+
 
     //MESSAGE SYSTEM
     public delegate void UpdateMessage(string message);
@@ -75,7 +82,8 @@ public class GameManager : MonoBehaviour
         Initialize();
         if (playerList[currentPlayer].playerType == Player.PlayerType.AI)
         {
-            RollDice();
+            //RollDice();
+            RollPhysicalDice();
         }
         else
         {
@@ -115,11 +123,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RollDice()
+    public void RollPhysicalDice()
     {
-        bool allowedToMove = true;
-        hasRolledDice = true;
+        CheckForJailFree();
+        rolledDice.Clear();
+        _dice1.RollDice();
+        _dice2.RollDice();
+    }
 
+    void CheckForJailFree()
+    {
         //JAIL FREE CARD
         if (playerList[currentPlayer].IsInJail && playerList[currentPlayer].playerType == Player.PlayerType.AI)
         {
@@ -132,28 +145,46 @@ public class GameManager : MonoBehaviour
                 playerList[currentPlayer].UseCommunityJailFreeCard();
             }
         }
-        //RESET LAST ROLL
-        rolledDice = new int[2];
+    }
 
-        rolledDice[0] = Random.Range(1, 7);
-        rolledDice[1] = Random.Range(1, 7);
+
+    public void ReportDiceRolled(int diceValue)
+    {
+        rolledDice.Add(diceValue);
+        if (rolledDice.Count == 2)
+        {
+            RollDice();
+        }
+    }
+
+    void RollDice()
+    {
+        bool allowedToMove = true;
+        hasRolledDice = true;
+
+        
+        //RESET LAST ROLL
+        //rolledDice = new int[2];
+
+        //rolledDice[0] = Random.Range(1, 7);
+        //rolledDice[1] = Random.Range(1, 7);
         //rolledDice[0] = 3;
         //rolledDice[1] = 2;
 
-        Debug.Log($"{playerList[currentPlayer].name} Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
+        //Debug.Log($"{playerList[currentPlayer].name} Rolled dice: {rolledDice[0]} and {rolledDice[1]}");
 
         //DEBUG
-        if (alwaysRollDouble)
-        {
-            rolledDice[0] = 1;
-            rolledDice[1] = 1;
-        }
-
-        if (forceDiceRolls)
-        {
-            rolledDice[0] = dice1;
-            rolledDice[1] = dice2;
-        }
+       // if (alwaysRollDouble)
+       // {
+       //     rolledDice[0] = 1;
+       //     rolledDice[1] = 1;
+       // }
+//
+       // if (forceDiceRolls)
+        //{
+        //    rolledDice[0] = dice1;
+        //    rolledDice[1] = dice2;
+        //}
 
         //CHECK FOR DOUBLES
         rolledADouble = rolledDice[0] == rolledDice[1];
@@ -262,7 +293,8 @@ public class GameManager : MonoBehaviour
 
         if (playerList[currentPlayer].playerType == Player.PlayerType.AI)
         {
-            RollDice(); ;
+            //RollDice(); 
+            RollPhysicalDice();
             OnShowHumanPanel.Invoke(false, false, false, false, false);
         }
         else //if human - show ui
@@ -273,7 +305,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int[] LastRolledDice => rolledDice;
+    public List<int> LastRolledDice => rolledDice;
 
     public void AddTaxToPool(int amount)
     {
@@ -328,7 +360,8 @@ public class GameManager : MonoBehaviour
         if (RolledADouble)
         {
             //ROLL AGAIN
-            RollDice();
+            //RollDice();
+            RollPhysicalDice();
         }
         else
         {
