@@ -12,10 +12,10 @@ public class Dice : MonoBehaviour
     int diceValue;
 
     [SerializeField] DiceSide[] diceSide;
-
-    private void Start()
+    
+    void Start()
     {
-        rb= GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         initPosition = transform.position;
         rb.useGravity = false;
         rb.isKinematic = true;
