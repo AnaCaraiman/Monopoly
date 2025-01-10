@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dice : MonoBehaviour
 {
-    Rigidbody rb;
+    private Rigidbody rb;
     bool hasLanded;
     bool thrown;
 
