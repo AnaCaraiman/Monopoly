@@ -137,7 +137,7 @@ public class MonopolyNode : MonoBehaviour
 
         if (priceText != null)
         {
-            priceText.text = "$ " + price;
+            priceText.text = price +" RON";
         }
 
         //UPDATE OWNER
@@ -228,7 +228,7 @@ public class MonopolyNode : MonoBehaviour
                         currentPlayer.PayRent(rentToPay, owner);
                         //TODO take the corect color of the players
                         OnUpdateMessage?.Invoke(
-                            $"<b>{currentPlayer.name}</b> pays rent of <b><color=green>${rentToPay}</color></b> to <b>{owner.name}</b>! 💸");
+                            $"<b>{currentPlayer.name}</b> pays rent of <b><color=green>{rentToPay}RON</color></b> to <b>{owner.name}</b>! 💸");
                     }
                     else if (owner == null && currentPlayer.CanAffordNode(price))
                     {
@@ -236,7 +236,7 @@ public class MonopolyNode : MonoBehaviour
                         currentPlayer.BuyProperty(this);
                         OnOwnerUpdated();
                         OnUpdateMessage?.Invoke(
-                            $"<b>{currentPlayer.name}</color></b> bought <b>{name}</b> for <b><color=green>${price}</color></b>! 🏠");
+                            $"<b>{currentPlayer.name}</color></b> bought <b>{name}</b> for <b><color=green>{price}RON</color></b>! 🏠");
                     }
                     else
                     {
@@ -284,7 +284,7 @@ public class MonopolyNode : MonoBehaviour
                         currentPlayer.PayRent(rentToPay, owner);
 
                         OnUpdateMessage?.Invoke(
-                            $"<b>{currentPlayer.name}</b> pays Utility rent of <b><color=green>${rentToPay}</color></b> to <b>{owner.name}</b>! 💸");
+                            $"<b>{currentPlayer.name}</b> pays Utility rent of <b><color=green>{rentToPay} RON</color></b> to <b>{owner.name}</b>! 💸");
                     }
                     else if (owner == null && currentPlayer.CanAffordNode(price))
                     {
@@ -292,7 +292,7 @@ public class MonopolyNode : MonoBehaviour
                         currentPlayer.BuyProperty(this);
                         OnOwnerUpdated();
                         OnUpdateMessage?.Invoke(
-                            $"<b>{currentPlayer.name}</b> bought <b>{name}</b> for <b><color=green>${price}</color></b>! \ud83d\udee0\ufe0f");
+                            $"<b>{currentPlayer.name}</b> bought <b>{name}</b> for <b><color=green>{price} RON</color></b>! \ud83d\udee0\ufe0f");
                     }
                     else
                     {
@@ -337,14 +337,14 @@ public class MonopolyNode : MonoBehaviour
                         currentPlayer.PayRent(rentToPay, owner);
 
                         OnUpdateMessage?.Invoke(
-                            $"<b>{currentPlayer.name}</b> pays Railroad rent of <b><color=green>${rentToPay}</color></b> to <b>{owner.name}</b>! 💸");
+                            $"<b>{currentPlayer.name}</b> pays Railroad rent of <b><color=green>{rentToPay}RON</color></b> to <b>{owner.name}</b>! 💸");
                     }
                     else if (owner == null && currentPlayer.CanAffordNode(price))
                     {
                         currentPlayer.BuyProperty(this);
                         OnOwnerUpdated();
                         OnUpdateMessage?.Invoke(
-                            $"<b>{currentPlayer.name}</b> bought <b>{name}</b> for <b><color=green>${price}</color></b>! \ud83d\ude82");
+                            $"<b>{currentPlayer.name}</b> bought <b>{name}</b> for <b><color=green>{price}RON</color></b>! \ud83d\ude82");
                     }
                     else
                     {
@@ -381,7 +381,7 @@ public class MonopolyNode : MonoBehaviour
                 currentPlayer.PayMoney(price);
                 //SHOW A MESSAGE
                 OnUpdateMessage?.Invoke(
-                    $"<b>{currentPlayer.name}</b> pays <b><color=red>${price}</color></b> in taxes! 💸");
+                    $"<b>{currentPlayer.name}</b> pays <b><color=red>{price}RON</color></b> in taxes! 💸");
 
                 break;
             case MonopolyNodeType.FreeParking:
@@ -389,7 +389,7 @@ public class MonopolyNode : MonoBehaviour
                 currentPlayer.CollectMoney(tax);
                 //SHOW A MESSAGE
                 OnUpdateMessage?.Invoke(
-                    $"<b>{currentPlayer.name}</b> collects <b><color=green>${tax}</color></b> from Free Parking! 💸");
+                    $"<b>{currentPlayer.name}</b> collects <b><color=green>{tax}RON</color></b> from Free Parking! 💸");
 
                 break;
             case MonopolyNodeType.GoToJail:

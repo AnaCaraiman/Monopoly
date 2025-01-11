@@ -43,7 +43,7 @@ public class ManageCardUi : MonoBehaviour
         //SHOW MORTGAGE IMAGE
         mortgageImage.SetActive(node.IsMortgaged);
         //TEXT UPDATE
-        mortgageValueText.text = "Mortgage Value <br><b>$ " + node.MortgageValue + " RON";
+        mortgageValueText.text = "Mortgage Value <br><b> " + node.MortgageValue + " RON";
 
         //BUTTONS
         mortgageButton.interactable = !node.IsMortgaged;
