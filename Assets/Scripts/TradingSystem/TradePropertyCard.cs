@@ -16,6 +16,12 @@ public class TradePropertyCard : MonoBehaviour
 
     public void SetTradeCard(MonopolyNode node, ToggleGroup toggleGroup)
     {
+        if (node == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         nodeReference = node;
         colorField.color = node.propertyColorField != null ? node.propertyColorField.color : Color.black;
         propertyNameText.text = node.name;
