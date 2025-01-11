@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         currentPlayer = Random.Range(0, playerList.Count);
         gameOverPanel.SetActive(false);
         Initialize();
+        CameraSwitcher.instance.switchToTopDown();
         if (playerList[currentPlayer].playerType == Player.PlayerType.AI)
         {
             //RollDice();
@@ -92,19 +93,27 @@ public class GameManager : MonoBehaviour
 
     void Initialize()
     {
-        // Initialize the players
-        for (int i = 0; i < playerList.Count; i++)
+        if(GameSettings.settingsList.Count == 0)
         {
+            Debug.LogError("Start game from menu");
+            return;
+        }
+        foreach(var setting in GameSettings.settingsList)
+        {
+            Player player = new Player();
+            player.name = setting.playerName;
+            player.playerType = (Player.PlayerType)setting.selectedType;
+            playerList.Add(player);
+
             GameObject playerInfo = Instantiate(playerInfoPrefab, playerPanel, false);
             PlayerInfo playerInfoComponent = playerInfo.GetComponent<PlayerInfo>();
 
-            // Randomize the color of the player token
-            int randomIndex = Random.Range(0, playerTokenList.Count);
-            GameObject newToken = Instantiate(playerTokenList[randomIndex], gameBoard.route[0].transform.position,
+             GameObject newToken = Instantiate(playerTokenList[setting.selectedColor], gameBoard.route[0].transform.position,
                 Quaternion.identity);
-            playerList[i].InitializePlayer(gameBoard.route[0], startMoney, playerInfoComponent, newToken);
+            
+            player.InitializePlayer(gameBoard.route[0], startMoney, playerInfoComponent, newToken);
         }
-
+    
         playerList[currentPlayer].ActivateSelector(true);
 
         if (playerList[currentPlayer].playerType == Player.PlayerType.Human)
@@ -127,6 +136,15 @@ public class GameManager : MonoBehaviour
         rolledDice.Clear();
         _dice1.RollDice();
         _dice2.RollDice();
+        CameraSwitcher.instance.switchToDice();
+
+        //SHOW OR HIDE UI
+        if (playerList[currentPlayer].playerType == Player.PlayerType.Human)
+        {
+            bool jail1 = playerList[currentPlayer].HasChanceJailFreeCard;
+            bool jail2 = playerList[currentPlayer].HasCommunityJailFreeCard;
+            OnShowHumanPanel.Invoke(true, false, false, jail1, jail2);
+        }
     }
 
     void CheckForJailFree()
@@ -244,7 +262,7 @@ public class GameManager : MonoBehaviour
         {
             OnUpdateMessage?.Invoke(
                 $"{playerList[currentPlayer].name} rolled a <b>{rolledDice[0] + rolledDice[1]}</b> and is moving...");
-            StartCoroutine(DelayBeforMove(rolledDice[0] + rolledDice[1]));
+            StartCoroutine(DelayBeforeMove(rolledDice[0] + rolledDice[1]));
         }
         else
         {
@@ -254,17 +272,11 @@ public class GameManager : MonoBehaviour
             StartCoroutine(DeleyBeforeSwitchPlayer());
         }
 
-        //SHOW OR HIDE UI
-        if (playerList[currentPlayer].playerType == Player.PlayerType.Human)
-        {
-            bool jail1 = playerList[currentPlayer].HasChanceJailFreeCard;
-            bool jail2 = playerList[currentPlayer].HasCommunityJailFreeCard;
-            OnShowHumanPanel.Invoke(true, false, false, jail1, jail2);
-        }
     }
 
-    IEnumerator DelayBeforMove(int rolledDice)
+    IEnumerator DelayBeforeMove(int rolledDice)
     {
+        CameraSwitcher.instance.switchToPlayer(playerList[currentPlayer].MyToken.transform);
         yield return new WaitForSeconds(secondsBeetweenTurns);
         gameBoard.MovePlayerToken(rolledDice, playerList[currentPlayer]);
     }
@@ -277,6 +289,7 @@ public class GameManager : MonoBehaviour
 
     public void SwitchPlayers()
     {
+        CameraSwitcher.instance.switchToTopDown();
         currentPlayer++;
         hasRolledDice = false;
 

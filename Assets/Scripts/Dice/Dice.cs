@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dice : MonoBehaviour
 {
-    private Rigidbody rb;
+    Rigidbody rb;
     bool hasLanded;
     bool thrown;
 
@@ -19,7 +19,6 @@ public class Dice : MonoBehaviour
         initPosition = transform.position;
         rb.useGravity = false;
         rb.isKinematic = true;
-
     }
 
 
@@ -58,7 +57,7 @@ public class Dice : MonoBehaviour
         //}
     }
      void Reset()
-     {
+    {
          transform.position = initPosition;
          thrown = false;
          hasLanded = false;
