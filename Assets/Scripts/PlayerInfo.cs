@@ -16,7 +16,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void SetPlayerCash(int currentCash)
     {
-        playerCashText.text = $"$ {currentCash}";
+        playerCashText.text = $"{currentCash} RON";
     }
     
     public void SetPlayerNameAndCash(string playerName, int currentCash)

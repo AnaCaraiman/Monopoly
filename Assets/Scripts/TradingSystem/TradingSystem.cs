@@ -285,7 +285,7 @@ public class TradingSystem : MonoBehaviour
             leftCardPrefabList.Add(tradeCard);
         }
 
-        leftYourMoneyText.text = "Your Money: " + leftPlayerReference.ReadMoney;
+        leftYourMoneyText.text = "Your Money: " + leftPlayerReference.ReadMoney + "RON";
 
         leftMoneySlider.maxValue = leftPlayerReference.ReadMoney;
 
@@ -298,7 +298,7 @@ public class TradingSystem : MonoBehaviour
 
     public void UpdateLeftSlider(float value)
     {
-        leftOfferMoney.text = "Offer money: $ " + leftMoneySlider.value;
+        leftOfferMoney.text = "Offer money: " + leftMoneySlider.value +"RON";
     }
 
     public void CloseTradePanel()
@@ -335,7 +335,7 @@ public class TradingSystem : MonoBehaviour
             rightCardPrefabList.Add(tradeCard);
         }
 
-        rightYourMoneyText.text = "Your Money: " + rightPlayerReference.ReadMoney;
+        rightYourMoneyText.text = "Your Money: " + rightPlayerReference.ReadMoney + "RON";
 
         rightMoneySlider.maxValue = rightPlayerReference.ReadMoney;
 
@@ -348,7 +348,7 @@ public class TradingSystem : MonoBehaviour
 
     public void UpdateRightSlider(float value)
     {
-        rightOfferMoney.text = "Requested money: $ " + rightMoneySlider.value;
+        rightOfferMoney.text = "Requested money: " + rightMoneySlider.value + "RON";
     }
 
     void CreateMiddleButton()
@@ -376,7 +376,7 @@ public class TradingSystem : MonoBehaviour
     void ClearAll()
     {
         rightOffererNameText.text = "Select a Player";
-        rightYourMoneyText.text = "Your Money: $ 0";
+        rightYourMoneyText.text = "Your Money: 0 RON";
         rightMoneySlider.maxValue = 0;
         rightMoneySlider.value = 0;
         UpdateRightSlider(rightMoneySlider.value);
@@ -474,8 +474,8 @@ public class TradingSystem : MonoBehaviour
         tradeOfferPanel.SetActive(true);
         leftMessageText.text = currentPlayer.name + " offers:";
         rightMessageText.text = "For " + nodeOwner.name + " 's:";
-        leftMoneyText.text = "+$" + offeredMoney;
-        rightMoneyText.text = "+$" + requestedMoney;
+        leftMoneyText.text =  offeredMoney + "+RON";
+        rightMoneyText.text = requestedMoney + "+RON";
         leftCard.SetActive(offeredNode != null ? true : false);
         rightCard.SetActive(requestedMoney != null ? true : false);
 
