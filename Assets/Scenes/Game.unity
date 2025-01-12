@@ -10832,7 +10832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 318.94, y: -296.8404}
+  m_AnchoredPosition: {x: 318.94, y: -296.84042}
   m_SizeDelta: {x: 637.88, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537494575
@@ -14093,6 +14093,10 @@ PrefabInstance:
     - target: {fileID: 1096488279081603658, guid: a110d498550b3f54699bec11358e52eb, type: 3}
       propertyPath: m_Name
       value: Railroad Node (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055553669891068402, guid: a110d498550b3f54699bec11358e52eb, type: 3}
+      propertyPath: m_text
+      value: Gara de Nord
       objectReference: {fileID: 0}
     - target: {fileID: 3918171999879786405, guid: a110d498550b3f54699bec11358e52eb, type: 3}
       propertyPath: m_IsActive
@@ -20865,8 +20869,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 525458489}
   m_HandleRect: {fileID: 525458488}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.50000006
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21277,9 +21281,17 @@ PrefabInstance:
       propertyPath: calculateRentAuto
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3055553669891068402, guid: a110d498550b3f54699bec11358e52eb, type: 3}
+      propertyPath: m_text
+      value: Gara de Vest
+      objectReference: {fileID: 0}
     - target: {fileID: 3918171999879786405, guid: a110d498550b3f54699bec11358e52eb, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882833085891909758, guid: a110d498550b3f54699bec11358e52eb, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22677,8 +22689,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 815897055}
   m_HandleRect: {fileID: 815897054}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.50000006
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -24640,7 +24652,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 318.94, y: -296.8404}
+  m_AnchoredPosition: {x: 318.94, y: -296.84042}
   m_SizeDelta: {x: 637.88, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1257859448
@@ -40297,6 +40309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Railroad Node (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3055553669891068402, guid: a110d498550b3f54699bec11358e52eb, type: 3}
+      propertyPath: m_text
+      value: Gara de Est
+      objectReference: {fileID: 0}
     - target: {fileID: 3918171999879786405, guid: a110d498550b3f54699bec11358e52eb, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -45955,6 +45971,10 @@ PrefabInstance:
     - target: {fileID: 1672416545606516348, guid: a110d498550b3f54699bec11358e52eb, type: 3}
       propertyPath: name
       value: Gara de nord
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055553669891068402, guid: a110d498550b3f54699bec11358e52eb, type: 3}
+      propertyPath: m_text
+      value: Gara de Sud
       objectReference: {fileID: 0}
     - target: {fileID: 3918171999879786405, guid: a110d498550b3f54699bec11358e52eb, type: 3}
       propertyPath: m_IsActive

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 047c758fadeb0354cb877254678d6b90, type: 3}
   m_Name: 2 Advance To Illinois Ave
   m_EditorClassIdentifier: 
-  textOnCard: Advance to Illinois Ave.
+  textOnCard: Advance to Tg Jiu.
   rewardMoney: 0
   penalityMoney: 0
   moveToBoardIndex: 24

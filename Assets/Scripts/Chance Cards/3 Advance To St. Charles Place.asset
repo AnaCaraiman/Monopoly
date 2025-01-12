@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 047c758fadeb0354cb877254678d6b90, type: 3}
   m_Name: 3 Advance To St. Charles Place
   m_EditorClassIdentifier: 
-  textOnCard: Advance to St. Charles Place.
+  textOnCard: Advance to Mioveni.
   rewardMoney: 0
   penalityMoney: 0
   moveToBoardIndex: 11
