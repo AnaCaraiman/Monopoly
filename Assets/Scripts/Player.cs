@@ -422,6 +422,7 @@ public class Player
                 OnUpdateMessage?.Invoke($"{name} is building a house on {node.name}");
                 node.BuildHouseOrHotel();
                 PayMoney(node.houseCost);
+                break;
             }
         }
     }
