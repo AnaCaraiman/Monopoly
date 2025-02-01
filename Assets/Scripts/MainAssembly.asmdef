@@ -1,0 +1,9 @@
+{
+    "name": "MainAssembly",
+    "references": [
+        "UnityEngine.UI",
+        "Unity.TextMeshPro",
+		"Cinemachine",
+		"TMPro"	
+    ]
+}
