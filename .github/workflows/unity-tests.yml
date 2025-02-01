@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cache Library Folder
         uses: actions/cache@v3
@@ -19,7 +19,7 @@ jobs:
             Library-${{ runner.os }}-
 
       - name: Set up Unity
-        uses: game-ci/unity-test-runner@v2
+        uses: game-ci/unity-test-runner@v4
         with:
           unityVersion: 2022.3.49f1  
           testMode: all
