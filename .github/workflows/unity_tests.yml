@@ -9,9 +9,9 @@ jobs:
       - uses: game-ci/unity-test-runner@v2
         with:
           projectPath: .
-          testMode: edit mode
+          testMode: EditMode
       - uses: game-ci/unity-test-runner@v2
         with:
           projectPath: .
-          testMode: play mode
+          testMode: PlayMode
 
