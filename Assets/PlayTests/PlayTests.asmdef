@@ -1,0 +1,11 @@
+{
+  "name": "PlayTests",
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "references": [
+    "MainAssembly",
+    "Unity.TextMeshPro",
+    "Cinemachine"
+  ]
+}
