@@ -1,0 +1,33 @@
+name: Run Unity Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Run Unity Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Cache Library Folder
+        uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            Library-${{ runner.os }}-
+
+      - name: Set up Unity
+        uses: game-ci/unity-test-runner@v2
+        with:
+          unityVersion: 2022.3.49f1  
+          testMode: all
+          #githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Test Results
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test-Results
+          path: artifacts
