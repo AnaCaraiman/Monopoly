@@ -23,7 +23,7 @@ public class Dice : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if(rb.IsSleeping() && !hasLanded && thrown)
         {

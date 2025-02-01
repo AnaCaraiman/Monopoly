@@ -82,6 +82,6 @@ public class MainMenuPlayModeTest
         yield return new WaitForSeconds(0.5f);
 
         // Assert
-        Assert.IsTrue(sceneLoaded, "SceneManager should load the Game scene.");
+        Assert.IsTrue(sceneLoaded);
     }
 }
